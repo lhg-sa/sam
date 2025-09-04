@@ -1,6 +1,6 @@
 ### SAM
 
-Sistema de Administraación Municipal
+Sistema de Administración Municipal
 
 ### Installation
 
