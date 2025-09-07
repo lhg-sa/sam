@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-05 18:31:57.609642",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_id",
+  "xxxx",
+  "customer_name2"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "label": "<span class=\"badge bg-success\">Active</span>",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "xxxx",
+   "fieldtype": "Data",
+   "label": "<span style=\"font-size:18px; font-weight:bold; color:red;\">    Important! </span>",
+   "options": "custom-label highlighted-field"
+  },
+  {
+   "fieldname": "customer_name2",
+   "fieldtype": "Data",
+   "options": "custom-field warning-field"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-06 21:37:34.369077",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Beneficiario",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

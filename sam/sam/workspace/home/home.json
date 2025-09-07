@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"glmhmda0-U\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Tareas Principales</b></span>\",\"col\":12}},{\"id\":\"GsWSn2M0t4\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Home Workspace\",\"col\":12}}]",
+ "content": "[{\"id\":\"glmhmda0-U\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Tareas Principales</b></span>\",\"col\":12}},{\"id\":\"_52Bhk2tIA\",\"type\":\"card\",\"data\":{\"card_name\":\"Pricipales\",\"col\":4}},{\"id\":\"GsWSn2M0t4\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Home Workspace\",\"col\":12}}]",
  "creation": "2020-01-23 13:46:38.833076",
  "custom_blocks": [
   {
@@ -13,7 +13,7 @@
  "for_user": "",
  "hide_custom": 0,
  "icon": "getting-started",
- "idx": 0,
+ "idx": 1,
  "is_hidden": 0,
  "label": "Home",
  "links": [
@@ -203,9 +203,28 @@
    "link_type": "DocType",
    "onboard": 1,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pricipales",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cliente/Vecino",
+   "link_count": 0,
+   "link_to": "Customer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-09-05 13:08:00.950475",
+ "modified": "2025-09-06 20:39:56.770279",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Home",
