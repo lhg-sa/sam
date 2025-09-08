@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5l13eN3N3H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Secretaria de Obras Sociales de la Esposa del Alcalde</span>\",\"col\":12}},{\"id\":\"1b57Iod081\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Oficina Municipal de la Mujer</b></span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"5l13eN3N3H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Secretaria de Obras Sociales de la Esposa del Alcalde</span>\",\"col\":12}},{\"id\":\"h16mnF2xRa\",\"type\":\"card\",\"data\":{\"card_name\":\"Estudios Socio Economicos\",\"col\":4}},{\"id\":\"1b57Iod081\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Oficina Municipal de la Mujer</b></span>\",\"col\":12}}]",
  "creation": "2025-09-03 21:30:30.788224",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,8 +12,28 @@
  "indicator_color": "",
  "is_hidden": 0,
  "label": "SOSEA-OMM",
- "links": [],
- "modified": "2025-09-04 20:27:41.061020",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Estudios Socio Economicos",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Registro Socio Econ\u00f3mico",
+   "link_count": 0,
+   "link_to": "Estudio Socio Economico",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-09-07 20:10:41.591821",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "SOSEA-OMM",

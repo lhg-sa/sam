@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "autoname": "format:ES-{#}",
+ "creation": "2025-09-05 18:31:57.609642",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "cui_dpi",
+  "tipo_de_documento_presentado",
+  "turno_ticket",
+  "column_break_nbvo",
+  "cui_label",
+  "telefono_primario",
+  "direccion_principal",
+  "estado_fisico",
+  "tiene_discapacidad",
+  "column_break_oyva",
+  "tipo_de_discapacidad",
+  "detalle_discapacidad",
+  "detalle_de_ingresos_y_gastos_section",
+  "ingresos",
+  "gastos",
+  "caracteristicas_de_vivienda_section",
+  "tipo_de_vivienda",
+  "column_break_rdjl",
+  "tipo_de_paredes",
+  "column_break_aysl",
+  "tipo_de_piso"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "cui_dpi",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Registro Vinculado",
+   "options": "Customer",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_nbvo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fetch_from": "cui_dpi.custom_cui__dpi",
+   "fieldname": "cui_label",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "CUI",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "DPI",
+   "fieldname": "tipo_de_documento_presentado",
+   "fieldtype": "Select",
+   "label": "Tipo de Documento Presentado",
+   "options": "DPI\nDPI (AUDIENCIA)\nCERTIFICADO TRAMITE DPI\nCERTIFICADO NACIMIENTO\nOTRO"
+  },
+  {
+   "fetch_from": "cui_dpi.custom_telefono_principal",
+   "fieldname": "telefono_primario",
+   "fieldtype": "Data",
+   "label": "Telefono Primario",
+   "read_only": 1
+  },
+  {
+   "fieldname": "turno_ticket",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Turno Asignado"
+  },
+  {
+   "fieldname": "estado_fisico",
+   "fieldtype": "Section Break",
+   "label": "Estado F\u00edsico"
+  },
+  {
+   "default": "NO",
+   "fieldname": "tiene_discapacidad",
+   "fieldtype": "Select",
+   "label": "Posee Discapacidad",
+   "options": "SI\nNO"
+  },
+  {
+   "fieldname": "column_break_oyva",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "NO",
+   "depends_on": "eval:doc.tiene_discapacidad == \"SI\"",
+   "fieldname": "tipo_de_discapacidad",
+   "fieldtype": "Select",
+   "label": "Tipo de Discapacidad",
+   "options": "NO\nFISICA\nINTELECTUAL\nSENSORIAL\nMENTAL\nOTRA"
+  },
+  {
+   "depends_on": "eval:doc.tiene_discapacidad == \"SI\"",
+   "fieldname": "detalle_discapacidad",
+   "fieldtype": "Small Text",
+   "label": "Detalle de Discapacidad"
+  },
+  {
+   "fieldname": "detalle_de_ingresos_y_gastos_section",
+   "fieldtype": "Section Break",
+   "label": "Detalle de Ingresos y Gastos"
+  },
+  {
+   "fieldname": "ingresos",
+   "fieldtype": "Data",
+   "label": "Ingresos"
+  },
+  {
+   "fieldname": "gastos",
+   "fieldtype": "Data",
+   "label": "Gastos"
+  },
+  {
+   "fetch_from": "cui_dpi.custom_direccion_principal",
+   "fieldname": "direccion_principal",
+   "fieldtype": "Small Text",
+   "label": "Direcci\u00f3n Principal Registrada",
+   "read_only": 1
+  },
+  {
+   "fieldname": "caracteristicas_de_vivienda_section",
+   "fieldtype": "Section Break",
+   "label": "Caracteristicas de Vivienda"
+  },
+  {
+   "fieldname": "tipo_de_vivienda",
+   "fieldtype": "Select",
+   "label": "Tipo de Vivienda",
+   "options": "CASA INDEPENDIENTE\nAPARTAMENTO\nUNA HABITACION (CUARTO)\nCOMPARTIDO\nOTRO",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rdjl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tipo_de_paredes",
+   "fieldtype": "Select",
+   "label": "Tipo de Paredes",
+   "options": "BLOCK\nADOBE\nLAMINA\nLADRILLO\nOTRO"
+  },
+  {
+   "fieldname": "column_break_aysl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tipo_de_piso",
+   "fieldtype": "Select",
+   "label": "Tipo de Piso",
+   "options": "TIERRA\nCEMENTO\nTORTA FINA\nCERAMICO\nOTRO"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-07 20:35:43.621985",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Estudio Socio Economico",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

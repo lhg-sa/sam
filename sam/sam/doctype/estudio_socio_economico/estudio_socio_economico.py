@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Beneficiario(Document):
+class EstudioSocioEconomico(Document):
 	pass
