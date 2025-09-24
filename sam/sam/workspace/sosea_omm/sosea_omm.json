@@ -17,7 +17,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Estudios Socio Economicos",
-   "link_count": 1,
+   "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -31,9 +31,29 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Programa Social y Eventos",
+   "link_count": 0,
+   "link_to": "Programa Social y Evento",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inscripci\u00f3n y Asistencia",
+   "link_count": 0,
+   "link_to": "Inscripcion de Programa",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-09-07 20:10:41.591821",
+ "modified": "2025-09-23 22:15:31.881653",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "SOSEA-OMM",

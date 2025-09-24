@@ -14,18 +14,24 @@
   "direccion_principal",
   "estado_fisico",
   "tiene_discapacidad",
+  "enfermedades",
   "column_break_oyva",
   "tipo_de_discapacidad",
   "detalle_discapacidad",
   "detalle_de_ingresos_y_gastos_section",
   "ingresos",
   "gastos",
+  "apoyos_recibidos_section",
+  "apoyo",
   "caracteristicas_de_vivienda_section",
   "tipo_de_vivienda",
-  "column_break_rdjl",
+  "tipo_de_piso",
   "tipo_de_paredes",
+  "column_break_rdjl",
+  "tipo_de_propiedad",
   "column_break_aysl",
-  "tipo_de_piso"
+  "servicios_y_equipamiento",
+  "divisiones"
  ],
  "fields": [
   {
@@ -160,12 +166,44 @@
    "fieldtype": "Select",
    "label": "Tipo de Piso",
    "options": "TIERRA\nCEMENTO\nTORTA FINA\nCERAMICO\nOTRO"
+  },
+  {
+   "fieldname": "tipo_de_propiedad",
+   "fieldtype": "Select",
+   "label": "Estatus de la Propiedad",
+   "options": "PROPIA Y PAGADA (CON ESCRITURA)\nPROPIA, PAGADA (SIN ESCRITURA)\nPROPIA Y PAGANDOLA\nALQUILADA\nVIVE CON FAMILIAR\nOTRO"
+  },
+  {
+   "fieldname": "servicios_y_equipamiento",
+   "fieldtype": "Data",
+   "label": "Servicios y Equipamiento **"
+  },
+  {
+   "fieldname": "divisiones",
+   "fieldtype": "Data",
+   "label": "Ambientes **"
+  },
+  {
+   "fieldname": "enfermedades",
+   "fieldtype": "Select",
+   "label": "Tiene alguna Enfermedad",
+   "options": "NO TIENE\nCANCER\nHIPERTENSION\nCARDIACOS\nALERGIAS\nDIABETES\nPRESION ALTA\nPRESION BAJA\nESTRABISMO\nPALADAR HENDIDO\nALZHEIMER\nEPILEPSIA\nRENALES\nCARDIOPATIAS\nMULTIPLES\nOTROS"
+  },
+  {
+   "fieldname": "apoyos_recibidos_section",
+   "fieldtype": "Section Break",
+   "label": "Apoyos Recibidos tablka"
+  },
+  {
+   "fieldname": "apoyo",
+   "fieldtype": "Data",
+   "label": "tipo - sector - observacion"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-07 20:35:43.621985",
+ "modified": "2025-09-08 12:06:21.944602",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Estudio Socio Economico",

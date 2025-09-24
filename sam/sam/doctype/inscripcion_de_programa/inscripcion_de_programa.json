@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "autoname": "field:programa_o_evento",
+ "creation": "2025-09-20 22:51:14.168449",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "column_break_sjgs",
+  "programa_o_evento",
+  "descripcion",
+  "column_break_dtns",
+  "section_break_ziwi",
+  "column_break_rsli",
+  "column_break_tlcc",
+  "cui_dpi",
+  "column_break_rukd",
+  "section_break_rlbd",
+  "html_inscripcion"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "programa_o_evento",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Programa o Evento",
+   "options": "Programa Social y Evento",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_sjgs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "descripcion",
+   "fieldtype": "Read Only",
+   "is_virtual": 1,
+   "label": "Descripci\u00f3n",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ziwi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_rsli",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tlcc",
+   "fieldtype": "Column Break",
+   "options": "<h1>{{ doc.your_field_name }}</h1>"
+  },
+  {
+   "fieldname": "column_break_rukd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cui_dpi",
+   "fieldtype": "Data",
+   "label": "CUI"
+  },
+  {
+   "fieldname": "column_break_dtns",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rlbd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html_inscripcion",
+   "fieldtype": "HTML",
+   "label": "Registrados"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-23 21:46:25.544858",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Inscripcion de Programa",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

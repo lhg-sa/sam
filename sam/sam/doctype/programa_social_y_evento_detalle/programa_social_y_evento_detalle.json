@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "autoname": "format:{doc_link}-{beneficiario_id}",
+ "creation": "2025-09-22 09:48:08.901889",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "beneficiario_id",
+  "cui_beneficiario",
+  "customer_name",
+  "doc_link"
+ ],
+ "fields": [
+  {
+   "fetch_from": "beneficiario_id.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Nombre Completo"
+  },
+  {
+   "fetch_from": "beneficiario_id.custom_cui__dpi",
+   "fieldname": "cui_beneficiario",
+   "fieldtype": "Data",
+   "label": "CUI"
+  },
+  {
+   "fieldname": "beneficiario_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiario",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "doc_link",
+   "fieldtype": "Data",
+   "label": "Documento Vinculado"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-09-23 18:48:19.262810",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Programa Social y Evento Detalle",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

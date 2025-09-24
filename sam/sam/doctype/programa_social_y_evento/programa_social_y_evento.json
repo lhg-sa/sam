@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:PSA-{#}",
+ "creation": "2025-09-20 21:32:43.388612",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "descripcion",
+  "notas",
+  "column_break_yqpn",
+  "fecha_inicial",
+  "fecha_final",
+  "activo",
+  "section_break_ljpl",
+  "programa_afiliado"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_yqpn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fecha_inicial",
+   "fieldtype": "Date",
+   "label": "Fecha Inicial"
+  },
+  {
+   "fieldname": "fecha_final",
+   "fieldtype": "Date",
+   "label": "Fecha Final"
+  },
+  {
+   "default": "0",
+   "fieldname": "activo",
+   "fieldtype": "Check",
+   "label": "Activo"
+  },
+  {
+   "fieldname": "notas",
+   "fieldtype": "Small Text",
+   "label": "Notas"
+  },
+  {
+   "fieldname": "descripcion",
+   "fieldtype": "Data",
+   "label": "Descripci\u00f3n del Programa o Evento"
+  },
+  {
+   "fieldname": "section_break_ljpl",
+   "fieldtype": "Section Break",
+   "label": "Afiliados al Programa"
+  },
+  {
+   "fieldname": "programa_afiliado",
+   "fieldtype": "Table",
+   "options": "Programa Social y Evento Detalle"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-22 10:22:11.253849",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Programa Social y Evento",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
