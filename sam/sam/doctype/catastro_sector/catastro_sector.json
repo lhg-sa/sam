@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:sector",
+ "creation": "2025-09-30 22:06:11.860335",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sector"
+ ],
+ "fields": [
+  {
+   "fieldname": "sector",
+   "fieldtype": "Data",
+   "label": "Nombre del Sector",
+   "unique": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-30 22:06:37.580957",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Catastro Sector",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

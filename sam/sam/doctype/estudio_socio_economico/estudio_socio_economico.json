@@ -1,37 +1,54 @@
 {
  "actions": [],
- "autoname": "format:ES-{#}",
+ "autoname": "format:S-{YY}-{#####}",
  "creation": "2025-09-05 18:31:57.609642",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "datos_generales_tab",
   "cui_dpi",
+  "nombre_completo",
   "tipo_de_documento_presentado",
   "turno_ticket",
+  "sector_poblaci\u00f3n",
+  "observaciones",
   "column_break_nbvo",
   "cui_label",
   "telefono_primario",
+  "sector",
   "direccion_principal",
-  "estado_fisico",
-  "tiene_discapacidad",
-  "enfermedades",
-  "column_break_oyva",
-  "tipo_de_discapacidad",
-  "detalle_discapacidad",
-  "detalle_de_ingresos_y_gastos_section",
-  "ingresos",
-  "gastos",
-  "apoyos_recibidos_section",
-  "apoyo",
+  "section_break_hxii",
+  "tipo_de_entrevista",
+  "column_break_eqff",
+  "entrevistador__responsable",
+  "ingresos_y_gastos_tab",
+  "ingresos_y_gastos_section",
+  "tabla_ingresos",
+  "tabla_gastos",
+  "section_break_aeui",
+  "total_ingresos",
+  "total_miembros_familia",
+  "column_break_wqgc",
+  "total_gastos",
+  "diferencia_ingreso_gasto",
+  "vivienda_y_salud_tab",
   "caracteristicas_de_vivienda_section",
   "tipo_de_vivienda",
   "tipo_de_piso",
   "tipo_de_paredes",
   "column_break_rdjl",
   "tipo_de_propiedad",
-  "column_break_aysl",
   "servicios_y_equipamiento",
-  "divisiones"
+  "ambientes",
+  "apoyos_recibidos_section",
+  "enfermedad",
+  "tiene_discapacidad",
+  "tipo_de_discapacidad",
+  "column_break_vbxm",
+  "notas_generales",
+  "programas_asignados_tab",
+  "programas_sociales_section",
+  "programas_asignados"
  ],
  "fields": [
   {
@@ -41,7 +58,7 @@
    "in_filter": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Registro Vinculado",
+   "label": "Registro Unificado Vinculado",
    "options": "Customer",
    "reqd": 1,
    "unique": 1
@@ -60,7 +77,8 @@
    "in_standard_filter": 1,
    "label": "CUI",
    "no_copy": 1,
-   "read_only": 1
+   "read_only": 1,
+   "unique": 1
   },
   {
    "default": "DPI",
@@ -78,15 +96,10 @@
   },
   {
    "fieldname": "turno_ticket",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Turno Asignado"
-  },
-  {
-   "fieldname": "estado_fisico",
-   "fieldtype": "Section Break",
-   "label": "Estado F\u00edsico"
   },
   {
    "default": "NO",
@@ -96,37 +109,12 @@
    "options": "SI\nNO"
   },
   {
-   "fieldname": "column_break_oyva",
-   "fieldtype": "Column Break"
-  },
-  {
    "default": "NO",
    "depends_on": "eval:doc.tiene_discapacidad == \"SI\"",
    "fieldname": "tipo_de_discapacidad",
    "fieldtype": "Select",
    "label": "Tipo de Discapacidad",
    "options": "NO\nFISICA\nINTELECTUAL\nSENSORIAL\nMENTAL\nOTRA"
-  },
-  {
-   "depends_on": "eval:doc.tiene_discapacidad == \"SI\"",
-   "fieldname": "detalle_discapacidad",
-   "fieldtype": "Small Text",
-   "label": "Detalle de Discapacidad"
-  },
-  {
-   "fieldname": "detalle_de_ingresos_y_gastos_section",
-   "fieldtype": "Section Break",
-   "label": "Detalle de Ingresos y Gastos"
-  },
-  {
-   "fieldname": "ingresos",
-   "fieldtype": "Data",
-   "label": "Ingresos"
-  },
-  {
-   "fieldname": "gastos",
-   "fieldtype": "Data",
-   "label": "Gastos"
   },
   {
    "fetch_from": "cui_dpi.custom_direccion_principal",
@@ -158,10 +146,6 @@
    "options": "BLOCK\nADOBE\nLAMINA\nLADRILLO\nOTRO"
   },
   {
-   "fieldname": "column_break_aysl",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "tipo_de_piso",
    "fieldtype": "Select",
    "label": "Tipo de Piso",
@@ -175,35 +159,178 @@
   },
   {
    "fieldname": "servicios_y_equipamiento",
-   "fieldtype": "Data",
-   "label": "Servicios y Equipamiento **"
-  },
-  {
-   "fieldname": "divisiones",
-   "fieldtype": "Data",
-   "label": "Ambientes **"
-  },
-  {
-   "fieldname": "enfermedades",
-   "fieldtype": "Select",
-   "label": "Tiene alguna Enfermedad",
-   "options": "NO TIENE\nCANCER\nHIPERTENSION\nCARDIACOS\nALERGIAS\nDIABETES\nPRESION ALTA\nPRESION BAJA\nESTRABISMO\nPALADAR HENDIDO\nALZHEIMER\nEPILEPSIA\nRENALES\nCARDIOPATIAS\nMULTIPLES\nOTROS"
+   "fieldtype": "Table MultiSelect",
+   "label": "Servicios y Equipamiento",
+   "options": "Estudio Socio Economico Servicio Vinculado"
   },
   {
    "fieldname": "apoyos_recibidos_section",
    "fieldtype": "Section Break",
-   "label": "Apoyos Recibidos tablka"
+   "label": "Condiciones de Salud"
   },
   {
-   "fieldname": "apoyo",
+   "fieldname": "ingresos_y_gastos_section",
+   "fieldtype": "Section Break",
+   "label": "Ingresos y Gastos"
+  },
+  {
+   "fieldname": "tabla_ingresos",
+   "fieldtype": "Table",
+   "label": "Ingresos Familiares",
+   "options": "Estudio Socio Economico Ingreso Familia"
+  },
+  {
+   "fieldname": "tabla_gastos",
+   "fieldtype": "Table",
+   "label": "Gastos Mensuales",
+   "options": "Estudio Socio Economico Gasto Familia"
+  },
+  {
+   "fieldname": "total_miembros_familia",
+   "fieldtype": "Int",
+   "label": "Total de Miembros Familiares "
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "diferencia_ingreso_gasto",
+   "fieldtype": "Currency",
+   "label": "Estimado de Disponibilidad Financiera",
+   "precision": "0"
+  },
+  {
+   "fieldname": "datos_generales_tab",
+   "fieldtype": "Tab Break",
+   "label": "Datos Generales",
+   "show_dashboard": 1
+  },
+  {
+   "fieldname": "ingresos_y_gastos_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ingresos y Gastos"
+  },
+  {
+   "fieldname": "vivienda_y_salud_tab",
+   "fieldtype": "Tab Break",
+   "label": "Vivienda y Salud"
+  },
+  {
+   "fieldname": "enfermedad",
+   "fieldtype": "Table MultiSelect",
+   "label": "Tiene Alguna Enfermedad",
+   "options": "Estudio Socio Economico Enfermedad Vinculado"
+  },
+  {
+   "fieldname": "programas_sociales_section",
+   "fieldtype": "Section Break",
+   "label": "Programas Sociales"
+  },
+  {
+   "fieldname": "section_break_aeui",
+   "fieldtype": "Section Break",
+   "label": "Ingresos y Gastos"
+  },
+  {
+   "fieldname": "column_break_wqgc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ambientes",
+   "fieldtype": "Table MultiSelect",
+   "label": "Ambientes",
+   "options": "Estudio Socio Economico Ambiente Vinculado"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_ingresos",
+   "fieldtype": "Currency",
+   "label": "Total de Ingresos",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_gastos",
+   "fieldtype": "Currency",
+   "label": "Total de Gastos",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_vbxm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "programas_asignados_tab",
+   "fieldtype": "Tab Break",
+   "label": "Programas Asignados"
+  },
+  {
+   "fieldname": "programas_asignados",
+   "fieldtype": "Table",
+   "is_virtual": 1,
+   "label": "Detalle",
+   "options": "Programa Social y Evento Detalle"
+  },
+  {
+   "fetch_from": "cui_dpi.customer_name",
+   "fieldname": "nombre_completo",
    "fieldtype": "Data",
-   "label": "tipo - sector - observacion"
+   "hidden": 1,
+   "label": "Nombre Completo",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sector",
+   "fieldtype": "Link",
+   "label": "Sector",
+   "options": "Catastro Sector"
+  },
+  {
+   "depends_on": "eval:doc.tiene_discapacidad == \"SI\"",
+   "fieldname": "notas_generales",
+   "fieldtype": "Small Text",
+   "label": "Notas Generales de Salud"
+  },
+  {
+   "fieldname": "sector_poblaci\u00f3n",
+   "fieldtype": "Select",
+   "label": "Sector Poblaci\u00f3n",
+   "options": "MADRE SOLTERA\nVIUDOS\nDISCAPACIDAD\nADULTO MAYOR\nENFERMEDADES CRONICAS\nOTRO"
+  },
+  {
+   "fieldname": "section_break_hxii",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tipo_de_entrevista",
+   "fieldtype": "Select",
+   "label": "Tipo de Entrevista",
+   "options": "ENTREVISTA EN OFICINA\nVISITA DOMICILIARIA\nOTROS"
+  },
+  {
+   "fieldname": "column_break_eqff",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "entrevistador__responsable",
+   "fieldtype": "Data",
+   "label": "Entrevistador / Responsable"
+  },
+  {
+   "fieldname": "observaciones",
+   "fieldtype": "Small Text",
+   "label": "Observaciones Generales"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-09-08 12:06:21.944602",
+ "links": [
+  {
+   "group": "Otros",
+   "link_doctype": "Customer",
+   "link_fieldname": "name"
+  }
+ ],
+ "modified": "2025-10-02 16:25:21.452509",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Estudio Socio Economico",

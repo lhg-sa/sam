@@ -7,10 +7,12 @@
  "engine": "InnoDB",
  "field_order": [
   "descripcion",
+  "tipo_programa",
   "notas",
   "column_break_yqpn",
-  "fecha_inicial",
-  "fecha_final",
+  "fecha_inicial_evento",
+  "fecha_final_evento",
+  "sector_poblacional",
   "activo",
   "section_break_ljpl",
   "programa_afiliado"
@@ -19,16 +21,6 @@
   {
    "fieldname": "column_break_yqpn",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "fecha_inicial",
-   "fieldtype": "Date",
-   "label": "Fecha Inicial"
-  },
-  {
-   "fieldname": "fecha_final",
-   "fieldtype": "Date",
-   "label": "Fecha Final"
   },
   {
    "default": "0",
@@ -55,12 +47,35 @@
    "fieldname": "programa_afiliado",
    "fieldtype": "Table",
    "options": "Programa Social y Evento Detalle"
+  },
+  {
+   "fieldname": "tipo_programa",
+   "fieldtype": "Select",
+   "label": "Tipo de Programa / Evento",
+   "options": "PROGRAMA SOCIAL\nEVENTO GENERAL\nNA"
+  },
+  {
+   "fieldname": "fecha_inicial_evento",
+   "fieldtype": "Date",
+   "label": "Fecha Inicial"
+  },
+  {
+   "fieldname": "fecha_final_evento",
+   "fieldtype": "Date",
+   "label": "Fecha Final"
+  },
+  {
+   "default": "OTRO",
+   "fieldname": "sector_poblacional",
+   "fieldtype": "Select",
+   "label": "Sector Poblacional",
+   "options": "MADRE SOLTERA\nVIUDOS\nDISCAPACIDAD\nADULTO MAYOR\nENFERMEDADES CRONICAS\nDEPORTIVO\nCULTURAL Y EDUCATIVO\nOTRO"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-22 10:22:11.253849",
+ "modified": "2025-10-02 11:11:10.088396",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Programa Social y Evento",

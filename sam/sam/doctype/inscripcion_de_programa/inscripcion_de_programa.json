@@ -8,6 +8,7 @@
   "column_break_sjgs",
   "programa_o_evento",
   "descripcion",
+  "fecha_evento",
   "column_break_dtns",
   "section_break_ziwi",
   "column_break_rsli",
@@ -35,6 +36,8 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "programa_o_evento.descripcion",
+   "fetch_if_empty": 1,
    "fieldname": "descripcion",
    "fieldtype": "Read Only",
    "is_virtual": 1,
@@ -75,12 +78,19 @@
    "fieldname": "html_inscripcion",
    "fieldtype": "HTML",
    "label": "Registrados"
+  },
+  {
+   "fetch_from": "programa_o_evento.fecha_inicial_evento",
+   "fieldname": "fecha_evento",
+   "fieldtype": "Date",
+   "label": "Fecha de Inicio",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-23 21:46:25.544858",
+ "modified": "2025-10-02 11:14:54.861750",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Inscripcion de Programa",

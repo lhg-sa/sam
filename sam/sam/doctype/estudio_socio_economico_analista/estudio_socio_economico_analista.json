@@ -1,0 +1,65 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:cui_analista",
+ "creation": "2025-10-04 16:48:46.309870",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "estudio_analista",
+  "nombre_completo",
+  "cui_analista"
+ ],
+ "fields": [
+  {
+   "fieldname": "estudio_analista",
+   "fieldtype": "Link",
+   "label": "Analista",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "estudio_analista.customer_name",
+   "fieldname": "nombre_completo",
+   "fieldtype": "Data",
+   "label": "Nombre Completo",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "estudio_analista.custom_cui__dpi",
+   "fieldname": "cui_analista",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "CUI del Analista",
+   "read_only": 1,
+   "unique": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-05 10:26:37.078413",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Estudio Socio Economico Analista",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "nombre_completo",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
