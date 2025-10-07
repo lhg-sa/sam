@@ -17,7 +17,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Estudios Socio Economicos",
-   "link_count": 4,
+   "link_count": 5,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -55,15 +55,25 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Registro de Beneficiario",
+   "label": "Registro General",
    "link_count": 0,
    "link_to": "Customer",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Padron Temporal",
+   "link_count": 0,
+   "link_to": "Padron Temporal",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-09-30 12:17:39.526568",
+ "modified": "2025-10-06 13:44:11.918682",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "SOSEA-OMM",

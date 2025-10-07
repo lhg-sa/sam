@@ -20,7 +20,8 @@
   "section_break_hxii",
   "tipo_de_entrevista",
   "column_break_eqff",
-  "entrevistador__responsable",
+  "entrevistador_responsable",
+  "nombre_analista",
   "ingresos_y_gastos_tab",
   "ingresos_y_gastos_section",
   "tabla_ingresos",
@@ -99,7 +100,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Turno Asignado"
+   "label": "Turno Asignado",
+   "unique": 1
   },
   {
    "default": "NO",
@@ -311,14 +313,23 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "entrevistador__responsable",
-   "fieldtype": "Data",
-   "label": "Entrevistador / Responsable"
-  },
-  {
    "fieldname": "observaciones",
    "fieldtype": "Small Text",
    "label": "Observaciones Generales"
+  },
+  {
+   "fieldname": "entrevistador_responsable",
+   "fieldtype": "Link",
+   "label": "Entrevistador / Responsable",
+   "options": "Estudio Socio Economico Analista"
+  },
+  {
+   "fetch_from": "entrevistador_responsable.nombre_completo",
+   "fieldname": "nombre_analista",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Nombre del Analista",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
@@ -330,7 +341,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2025-10-02 16:25:21.452509",
+ "modified": "2025-10-06 12:57:46.354557",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Estudio Socio Economico",

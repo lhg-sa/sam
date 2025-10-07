@@ -216,7 +216,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Cliente/Vecino",
+   "label": "Registro General",
    "link_count": 0,
    "link_to": "Customer",
    "link_type": "DocType",
@@ -224,7 +224,7 @@
    "type": "Link"
   }
  ],
- "modified": "2025-09-06 20:39:56.770279",
+ "modified": "2025-10-06 12:58:48.515969",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Home",
