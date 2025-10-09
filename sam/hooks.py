@@ -248,3 +248,9 @@ fixtures = [
         "dt": "Client Script"
     }
 ]
+
+fixtures = [
+    "Server Script"
+]
+
+
