@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "autoname": "format:{placa_tipo}-{placa_numero}",
+ "creation": "2025-10-08 15:24:11.187762",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "placa_tipo",
+  "placa_numero",
+  "placa_unificada",
+  "column_break_hpnu",
+  "registro_unificado_de_vecino",
+  "nit_del_propietario",
+  "propietario",
+  "marca_vehiculo",
+  "datos_generales_section",
+  "vehiculo_linea",
+  "ano_fabricacion",
+  "color",
+  "column_break_vtxi",
+  "motor",
+  "codigo",
+  "certificado"
+ ],
+ "fields": [
+  {
+   "description": "Ejemplo \"P\"",
+   "fieldname": "placa_tipo",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tipo de Placa",
+   "reqd": 1
+  },
+  {
+   "description": "Ejemplo \"012ABC\"",
+   "fieldname": "placa_numero",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Identificador de Placa ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hpnu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "placa_unificada",
+   "fieldtype": "HTML",
+   "label": "Placa Unificada",
+   "read_only": 1
+  },
+  {
+   "fieldname": "registro_unificado_de_vecino",
+   "fieldtype": "Link",
+   "label": "Registro Unificado de Vecino",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "nit_del_propietario",
+   "fieldtype": "Data",
+   "label": "NIT del Propietario"
+  },
+  {
+   "fieldname": "marca_vehiculo",
+   "fieldtype": "Link",
+   "label": "Marca del Vehiculo",
+   "options": "PMT Marca Vehiculo"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "datos_generales_section",
+   "fieldtype": "Section Break",
+   "label": "Datos Generales"
+  },
+  {
+   "fieldname": "vehiculo_linea",
+   "fieldtype": "Data",
+   "label": "Linea del Vehiculo"
+  },
+  {
+   "fieldname": "ano_fabricacion",
+   "fieldtype": "Int",
+   "label": "A\u00f1o de Fabricaci\u00f3n"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Data",
+   "label": "Color"
+  },
+  {
+   "fieldname": "column_break_vtxi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "motor",
+   "fieldtype": "Data",
+   "label": "Motor"
+  },
+  {
+   "fieldname": "codigo",
+   "fieldtype": "Data",
+   "label": "C\u00f3digo del Veh\u00edculo"
+  },
+  {
+   "fieldname": "certificado",
+   "fieldtype": "Data",
+   "label": "Numero de Certificado "
+  },
+  {
+   "fieldname": "propietario",
+   "fieldtype": "Data",
+   "label": "Nombre del Propietario"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-08 16:30:42.167596",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "PMT Vehiculo",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

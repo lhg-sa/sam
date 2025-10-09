@@ -287,7 +287,6 @@
    "options": "Catastro Sector"
   },
   {
-   "depends_on": "eval:doc.tiene_discapacidad == \"SI\"",
    "fieldname": "notas_generales",
    "fieldtype": "Small Text",
    "label": "Notas Generales de Salud"
@@ -341,7 +340,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2025-10-06 12:57:46.354557",
+ "modified": "2025-10-08 20:28:45.731638",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Estudio Socio Economico",

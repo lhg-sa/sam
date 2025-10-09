@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:placa_tipo",
+ "creation": "2025-10-08 13:12:37.751751",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "placa_tipo",
+  "placa_descripcion"
+ ],
+ "fields": [
+  {
+   "fieldname": "placa_tipo",
+   "fieldtype": "Data",
+   "label": "Tipo de Placa",
+   "unique": 1
+  },
+  {
+   "fieldname": "placa_descripcion",
+   "fieldtype": "Data",
+   "label": "Descripci\u00f3n de la Placa"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-08 13:14:10.636096",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "PMT Placa Tipo",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

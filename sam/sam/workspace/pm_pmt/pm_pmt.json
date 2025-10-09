@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"VACwdSMwrd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Policia Municipal</span>\",\"col\":12}},{\"id\":\"LWOkoyCCAJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Polic\u00eda Municipal de Tr\u00e1nsito<b></b></span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"VACwdSMwrd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Policia Municipal</span>\",\"col\":12}},{\"id\":\"LWOkoyCCAJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Polic\u00eda Municipal de Tr\u00e1nsito<b></b></span>\",\"col\":12}},{\"id\":\"FigRhrN0sa\",\"type\":\"card\",\"data\":{\"card_name\":\"Catalogos\",\"col\":4}},{\"id\":\"udkeqVNcRT\",\"type\":\"card\",\"data\":{\"card_name\":\"Gesti\u00f3n de Infracciones\",\"col\":4}}]",
  "creation": "2025-09-03 21:54:24.988483",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,8 +12,97 @@
  "indicator_color": "",
  "is_hidden": 0,
  "label": "PM-PMT",
- "links": [],
- "modified": "2025-09-04 20:28:23.975902",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Catalogos",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agentes",
+   "link_count": 0,
+   "link_to": "PMT Agente",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Art\u00edculos",
+   "link_count": 0,
+   "link_to": "PMT Articulo",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tipos de Placas",
+   "link_count": 0,
+   "link_to": "PMT Placa Tipo",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gesti\u00f3n de Talonarios",
+   "link_count": 0,
+   "link_to": "PMT Talonario",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Registro de Marcas",
+   "link_count": 0,
+   "link_to": "PMT Marca Vehiculo",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gesti\u00f3n de Infracciones",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gesti\u00f3n de Infractores",
+   "link_count": 0,
+   "link_to": "PMT Infractor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Registro de Vehiculos",
+   "link_count": 0,
+   "link_to": "PMT Vehiculo",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-10-08 20:26:08.210063",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PM-PMT",
