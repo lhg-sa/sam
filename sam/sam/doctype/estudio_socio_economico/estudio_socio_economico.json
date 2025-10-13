@@ -37,6 +37,7 @@
   "tipo_de_vivienda",
   "tipo_de_piso",
   "tipo_de_paredes",
+  "tipo_techo",
   "column_break_rdjl",
   "tipo_de_propiedad",
   "servicios_y_equipamiento",
@@ -329,6 +330,12 @@
    "is_virtual": 1,
    "label": "Nombre del Analista",
    "read_only": 1
+  },
+  {
+   "fieldname": "tipo_techo",
+   "fieldtype": "Select",
+   "label": "Tipo de Techo",
+   "options": "LAMINA\nTERRAZA\nMADERA\nCARTON\nNYLON\nOTRO"
   }
  ],
  "grid_page_length": 50,
@@ -340,7 +347,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2025-10-08 20:28:45.731638",
+ "modified": "2025-10-10 10:11:12.596275",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Estudio Socio Economico",

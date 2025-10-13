@@ -1,18 +1,18 @@
 {
  "actions": [],
- "autoname": "format:{placa_tipo}-{placa_numero}",
+ "autoname": "format:{placa_tipo}{placa_numero}",
  "creation": "2025-10-08 15:24:11.187762",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "placa_tipo",
   "placa_numero",
+  "marca_vehiculo",
   "placa_unificada",
   "column_break_hpnu",
   "registro_unificado_de_vecino",
   "nit_del_propietario",
   "propietario",
-  "marca_vehiculo",
   "datos_generales_section",
   "vehiculo_linea",
   "ano_fabricacion",
@@ -26,9 +26,10 @@
   {
    "description": "Ejemplo \"P\"",
    "fieldname": "placa_tipo",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Tipo de Placa",
+   "options": "PMT Placa Tipo",
    "reqd": 1
   },
   {
@@ -52,10 +53,11 @@
   {
    "fieldname": "registro_unificado_de_vecino",
    "fieldtype": "Link",
-   "label": "Registro Unificado de Vecino",
+   "label": "Propietario Registrado",
    "options": "Customer"
   },
   {
+   "fetch_from": "registro_unificado_de_vecino.custom_nit",
    "fieldname": "nit_del_propietario",
    "fieldtype": "Data",
    "label": "NIT del Propietario"
@@ -107,6 +109,7 @@
    "label": "Numero de Certificado "
   },
   {
+   "fetch_from": "registro_unificado_de_vecino.customer_name",
    "fieldname": "propietario",
    "fieldtype": "Data",
    "label": "Nombre del Propietario"
@@ -115,7 +118,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-08 16:30:42.167596",
+ "modified": "2025-10-11 19:51:58.160947",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Vehiculo",

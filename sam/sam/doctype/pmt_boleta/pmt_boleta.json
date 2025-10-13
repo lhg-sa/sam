@@ -1,0 +1,227 @@
+{
+ "actions": [],
+ "autoname": "field:boleta_id",
+ "creation": "2025-10-10 20:45:43.319313",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "datos_de_infracci\u00f3n_section",
+  "boleta_id",
+  "estado_boleta",
+  "column_break_upek",
+  "agente",
+  "datos_del_vehiculo_section",
+  "vehiculo_id",
+  "fecha_infraccion",
+  "column_break_zmnx",
+  "marca_vehiculo",
+  "propietario",
+  "nit",
+  "datos_del_conductor_section",
+  "cui",
+  "column_break_kohq",
+  "nombre_infractor",
+  "licencia",
+  "tipo_de_licencia",
+  "datos_de_la_infracci\u00f3n_section",
+  "articulo_codigo",
+  "descripci\u00f3n_del_articulo",
+  "column_break_frix",
+  "articulo_valor",
+  "fecha_infraccion_descuento",
+  "infraccion_saldo"
+ ],
+ "fields": [
+  {
+   "fieldname": "datos_de_infracci\u00f3n_section",
+   "fieldtype": "Section Break",
+   "label": "Datos de Infracci\u00f3n"
+  },
+  {
+   "bold": 1,
+   "fieldname": "boleta_id",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Boleta",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "agente",
+   "fieldtype": "Data",
+   "label": "Agente Asignado",
+   "read_only": 1
+  },
+  {
+   "fieldname": "datos_del_vehiculo_section",
+   "fieldtype": "Section Break",
+   "label": "Datos del Vehiculo"
+  },
+  {
+   "fieldname": "vehiculo_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vehiculo/Placa",
+   "options": "PMT Vehiculo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fecha_infraccion",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Fecha de Infracci\u00f3n",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_zmnx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "vehiculo_id.marca_vehiculo",
+   "fieldname": "marca_vehiculo",
+   "fieldtype": "Data",
+   "label": "Marca",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "vehiculo_id.propietario",
+   "fieldname": "propietario",
+   "fieldtype": "Data",
+   "label": "Propietario",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "vehiculo_id.nit_del_propietario",
+   "fieldname": "nit",
+   "fieldtype": "Data",
+   "label": "NIT Propietario",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_upek",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "datos_del_conductor_section",
+   "fieldtype": "Section Break",
+   "label": "Datos del Conductor"
+  },
+  {
+   "fieldname": "cui",
+   "fieldtype": "Link",
+   "label": "CUI",
+   "options": "PMT Infractor"
+  },
+  {
+   "fieldname": "column_break_kohq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "cui.nombre_infractor",
+   "fieldname": "nombre_infractor",
+   "fieldtype": "Data",
+   "label": "Nombre",
+   "read_only": 1
+  },
+  {
+   "fieldname": "datos_de_la_infracci\u00f3n_section",
+   "fieldtype": "Section Break",
+   "label": "Datos de la Infracci\u00f3n"
+  },
+  {
+   "fieldname": "articulo_codigo",
+   "fieldtype": "Link",
+   "label": "Articulo Infringido ",
+   "options": "PMT Articulo"
+  },
+  {
+   "fetch_from": "articulo_codigo.articulo_descripcion",
+   "fieldname": "descripci\u00f3n_del_articulo",
+   "fieldtype": "Small Text",
+   "is_virtual": 1,
+   "label": "Descripci\u00f3n del Articulo",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_frix",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "articulo_codigo.articulo_valor",
+   "fieldname": "articulo_valor",
+   "fieldtype": "Currency",
+   "label": "Valor de la Infracci\u00f3n",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fecha_infraccion_descuento",
+   "fieldtype": "Date",
+   "label": "Fecha Limite de Descuento "
+  },
+  {
+   "fieldname": "infraccion_saldo",
+   "fieldtype": "HTML",
+   "label": "Saldo Actual"
+  },
+  {
+   "fieldname": "estado_boleta",
+   "fieldtype": "Select",
+   "label": "Estado de Boleta",
+   "options": "DIGITADA\nVERIFICACION\nJUZGADO\nANULADA\nPAGADA"
+  },
+  {
+   "fetch_from": "cui.licencia_numero",
+   "fieldname": "licencia",
+   "fieldtype": "Data",
+   "label": "Numero de Licencia",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "cui.licencia_tipo",
+   "fieldname": "tipo_de_licencia",
+   "fieldtype": "Data",
+   "label": "Tipo de Licencia",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-12 23:34:38.517995",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "PMT Boleta",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

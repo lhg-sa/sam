@@ -25,7 +25,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-08 13:14:10.636096",
+ "modified": "2025-10-10 21:40:46.391436",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Placa Tipo",
@@ -46,6 +46,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "search_fields": "placa_descripcion",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

@@ -13,6 +13,8 @@
   "agente_asignado",
   "agente_nombre",
   "activo",
+  "section_break_rhov",
+  "talonario_detalle",
   "section_break_uvgn",
   "boletas_html"
  ],
@@ -67,7 +69,7 @@
    "fieldname": "boletas_html",
    "fieldtype": "HTML",
    "is_virtual": 1,
-   "label": "Boletas Asignadas"
+   "label": "Boletas Operadas"
   },
   {
    "default": "1",
@@ -79,12 +81,23 @@
    "fieldname": "datos_generales_section",
    "fieldtype": "Section Break",
    "label": "Datos Generales"
+  },
+  {
+   "fieldname": "section_break_rhov",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "talonario_detalle",
+   "fieldtype": "Table",
+   "label": "Talonario",
+   "options": "PMT Talonario Detalle",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-08 15:16:24.361116",
+ "modified": "2025-10-12 23:07:17.256963",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Talonario",
@@ -107,6 +120,5 @@
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+ "states": []
 }

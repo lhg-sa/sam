@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:sector",
  "creation": "2025-09-30 22:06:11.860335",
@@ -19,7 +20,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-30 22:06:37.580957",
+ "modified": "2025-10-09 13:12:17.316624",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Catastro Sector",

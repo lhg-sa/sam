@@ -1,26 +1,52 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "field:infractor_id",
  "creation": "2025-10-08 16:32:58.562571",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "cui_infractor"
+  "infractor_id",
+  "nombre_infractor",
+  "column_break_hqtf",
+  "licencia_tipo",
+  "licencia_numero"
  ],
  "fields": [
   {
-   "fieldname": "cui_infractor",
+   "fieldname": "infractor_id",
    "fieldtype": "Data",
-   "label": "CUI Infractor"
+   "label": "Identificador (cui)",
+   "unique": 1
+  },
+  {
+   "fieldname": "nombre_infractor",
+   "fieldtype": "Data",
+   "label": "Nombre"
+  },
+  {
+   "fieldname": "column_break_hqtf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "licencia_tipo",
+   "fieldtype": "Select",
+   "label": "Tipo de Licencia",
+   "options": "A - Transporte Pesado y de pasajeros\nB Veh\u00edculos ligeros con remuneraci\u00f3n\nC Veh\u00edculos ligeros sin fines de lucro\nM Motocicletas\nE Maquinaria agr\u00edcola o industrial"
+  },
+  {
+   "fieldname": "licencia_numero",
+   "fieldtype": "Data",
+   "label": "Numero de Licencia"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-08 16:33:46.000058",
+ "modified": "2025-10-11 11:55:38.247428",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Infractor",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
