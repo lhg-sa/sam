@@ -41,12 +41,16 @@
    "bold": 1,
    "fieldname": "boleta_id",
    "fieldtype": "Int",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Boleta",
+   "options": "PMT Talonario Detalle",
    "reqd": 1,
    "unique": 1
   },
   {
+   "fetch_from": "boleta_id.agente_asignado",
    "fieldname": "agente",
    "fieldtype": "Data",
    "label": "Agente Asignado",
@@ -168,7 +172,7 @@
    "fieldname": "estado_boleta",
    "fieldtype": "Select",
    "label": "Estado de Boleta",
-   "options": "DIGITADA\nVERIFICACION\nJUZGADO\nANULADA\nPAGADA"
+   "options": "DISPONIBLE\nDIGITADA\nVERIFICACION\nJUZGADO\nANULADA\nPAGADA"
   },
   {
    "fetch_from": "cui.licencia_numero",
@@ -188,7 +192,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-12 23:34:38.517995",
+ "modified": "2025-10-14 15:38:27.658269",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",

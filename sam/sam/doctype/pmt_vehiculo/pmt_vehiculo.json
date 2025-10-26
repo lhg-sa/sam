@@ -118,7 +118,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-11 19:51:58.160947",
+ "modified": "2025-10-14 14:57:17.308285",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Vehiculo",
@@ -138,6 +138,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",

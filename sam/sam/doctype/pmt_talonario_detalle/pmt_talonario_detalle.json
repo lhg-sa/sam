@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "boleta_id_detalle",
-  "estado_boleta"
+  "estado_boleta",
+  "agente_asignado"
  ],
  "fields": [
   {
@@ -19,13 +20,18 @@
    "fieldname": "estado_boleta",
    "fieldtype": "Data",
    "label": "Estado de boleta"
+  },
+  {
+   "fieldname": "agente_asignado",
+   "fieldtype": "Data",
+   "label": "Agente Asignado"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-10-12 22:13:32.000573",
+ "modified": "2025-10-14 14:50:44.006460",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Talonario Detalle",

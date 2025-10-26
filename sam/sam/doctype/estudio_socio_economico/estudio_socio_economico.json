@@ -17,6 +17,7 @@
   "telefono_primario",
   "sector",
   "direccion_principal",
+  "foto_ese",
   "section_break_hxii",
   "tipo_de_entrevista",
   "column_break_eqff",
@@ -327,7 +328,6 @@
    "fetch_from": "entrevistador_responsable.nombre_completo",
    "fieldname": "nombre_analista",
    "fieldtype": "Data",
-   "is_virtual": 1,
    "label": "Nombre del Analista",
    "read_only": 1
   },
@@ -336,6 +336,12 @@
    "fieldtype": "Select",
    "label": "Tipo de Techo",
    "options": "LAMINA\nTERRAZA\nMADERA\nCARTON\nNYLON\nOTRO"
+  },
+  {
+   "fetch_from": "cui_dpi.custom_foto",
+   "fetch_if_empty": 1,
+   "fieldname": "foto_ese",
+   "fieldtype": "Attach Image"
   }
  ],
  "grid_page_length": 50,
@@ -347,7 +353,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2025-10-10 10:11:12.596275",
+ "modified": "2025-10-25 21:09:25.913165",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Estudio Socio Economico",
