@@ -52,8 +52,9 @@
   {
    "fetch_from": "talonario_id.agente_asignado",
    "fieldname": "agente",
-   "fieldtype": "Data",
-   "label": "Chapa / ID"
+   "fieldtype": "Link",
+   "label": "Chapa / ID",
+   "options": "PMT Agente"
   },
   {
    "fieldname": "datos_del_vehiculo_section",
@@ -197,7 +198,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-03 16:19:58.429862",
+ "modified": "2025-11-03 22:59:36.241639",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",
