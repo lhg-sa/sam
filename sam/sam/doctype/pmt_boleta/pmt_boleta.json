@@ -189,7 +189,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "talonario_id.agente_nombre",
+   "fetch_from": "agente.agente_nombre",
    "fieldname": "nombre_agente",
    "fieldtype": "Data",
    "label": "Nombre del Agente"
@@ -198,7 +198,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-03 22:59:36.241639",
+ "modified": "2025-11-04 09:30:50.389486",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",
