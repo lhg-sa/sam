@@ -51,18 +51,21 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "registro_unificado_de_vecino",
    "fieldtype": "Link",
    "label": "Propietario Registrado",
    "options": "Customer"
   },
   {
-   "fetch_from": "registro_unificado_de_vecino.custom_nit",
+   "allow_in_quick_entry": 1,
+   "description": "* Sin espacios",
    "fieldname": "nit_del_propietario",
    "fieldtype": "Data",
    "label": "NIT del Propietario"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "marca_vehiculo",
    "fieldtype": "Link",
    "label": "Marca del Vehiculo",
@@ -118,7 +121,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-14 14:57:17.308285",
+ "modified": "2025-11-02 20:47:32.397100",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Vehiculo",

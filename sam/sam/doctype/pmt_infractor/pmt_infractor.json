@@ -9,13 +9,16 @@
   "nombre_infractor",
   "column_break_hqtf",
   "licencia_tipo",
-  "licencia_numero"
+  "licencia_numero_vehiculo",
+  "tipo_de_otros_vehiculos",
+  "licencia_numero_otro"
  ],
  "fields": [
   {
+   "description": "* CUI, pasaporte o documento extranjero",
    "fieldname": "infractor_id",
    "fieldtype": "Data",
-   "label": "Identificador (cui)",
+   "label": "Identificador (CUI/Otro)",
    "unique": 1
   },
   {
@@ -30,11 +33,22 @@
   {
    "fieldname": "licencia_tipo",
    "fieldtype": "Select",
-   "label": "Tipo de Licencia",
+   "label": "Licencia Veh\u00edculo",
    "options": "A - Transporte Pesado y de pasajeros\nB Veh\u00edculos ligeros con remuneraci\u00f3n\nC Veh\u00edculos ligeros sin fines de lucro\nM Motocicletas\nE Maquinaria agr\u00edcola o industrial"
   },
   {
-   "fieldname": "licencia_numero",
+   "fieldname": "licencia_numero_vehiculo",
+   "fieldtype": "Data",
+   "label": "Numero de Licencia"
+  },
+  {
+   "fieldname": "tipo_de_otros_vehiculos",
+   "fieldtype": "Select",
+   "label": "Otros Vehiculos",
+   "options": "M Motocicletas\nE Maquinaria agr\u00edcola o industrial"
+  },
+  {
+   "fieldname": "licencia_numero_otro",
    "fieldtype": "Data",
    "label": "Numero de Licencia"
   }
@@ -42,7 +56,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-11 11:55:38.247428",
+ "modified": "2025-11-02 20:44:54.257177",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Infractor",

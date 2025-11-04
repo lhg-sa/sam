@@ -10,6 +10,7 @@
   "estado_boleta",
   "column_break_upek",
   "agente",
+  "nombre_agente",
   "datos_del_vehiculo_section",
   "vehiculo_id",
   "fecha_infraccion",
@@ -40,21 +41,19 @@
   {
    "bold": 1,
    "fieldname": "boleta_id",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "in_filter": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Boleta",
-   "options": "PMT Talonario Detalle",
    "reqd": 1,
    "unique": 1
   },
   {
-   "fetch_from": "boleta_id.agente_asignado",
+   "fetch_from": "talonario_id.agente_asignado",
    "fieldname": "agente",
    "fieldtype": "Data",
-   "label": "Agente Asignado",
-   "read_only": 1
+   "label": "Chapa / ID"
   },
   {
    "fieldname": "datos_del_vehiculo_section",
@@ -187,12 +186,18 @@
    "fieldtype": "Data",
    "label": "Tipo de Licencia",
    "read_only": 1
+  },
+  {
+   "fetch_from": "talonario_id.agente_nombre",
+   "fieldname": "nombre_agente",
+   "fieldtype": "Data",
+   "label": "Nombre del Agente"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-14 15:38:27.658269",
+ "modified": "2025-11-03 16:19:58.429862",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",

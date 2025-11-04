@@ -46,18 +46,9 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "agente_asignado",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Agente Asignado",
-   "options": "PMT Agente",
-   "reqd": 1
-  },
-  {
    "fetch_from": "agente_asignado.agente_nombre",
    "fieldname": "agente_nombre",
    "fieldtype": "Data",
-   "is_virtual": 1,
    "label": "Nombre del Agente"
   },
   {
@@ -92,12 +83,20 @@
    "label": "Talonario",
    "options": "PMT Talonario Detalle",
    "read_only": 1
+  },
+  {
+   "fieldname": "agente_asignado",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Agente Asignado",
+   "options": "PMT Agente",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-12 23:07:17.256963",
+ "modified": "2025-11-03 21:24:31.147599",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Talonario",
