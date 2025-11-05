@@ -1,27 +1,48 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "hash",
  "creation": "2025-11-04 10:08:28.100895",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "section_break_njfg"
+  "boleta_id_detalle",
+  "estado_boleta",
+  "agente_asignado_detalle",
+  "talonario_id"
  ],
  "fields": [
   {
-   "fieldname": "section_break_njfg",
-   "fieldtype": "Section Break"
+   "fieldname": "boleta_id_detalle",
+   "fieldtype": "Int",
+   "label": "Boleta"
+  },
+  {
+   "fieldname": "estado_boleta",
+   "fieldtype": "Data",
+   "label": " Estado de boleta"
+  },
+  {
+   "fieldname": "agente_asignado_detalle",
+   "fieldtype": "Data",
+   "label": " Agente Asignado"
+  },
+  {
+   "fieldname": "talonario_id",
+   "fieldtype": "Data",
+   "label": "Talonario"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-04 10:08:28.100895",
+ "modified": "2025-11-04 20:57:50.868586",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Talonario Detalle",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",
