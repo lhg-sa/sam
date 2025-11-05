@@ -7,6 +7,26 @@
 // 	},
 // });
 frappe.ui.form.on('PMT Boleta', {
+    refresh: function(frm) {
+        // Cambiar tamaño de letra del campo (input)
+       $(frm.fields_dict.boleta_id.wrapper).find('input').css({
+            'font-size': '26px',
+            'text-align': 'center',
+            'border': '2px solid red',        // ← ¡Aquí va el borde!
+            'border-radius': '6px',           // opcional: bordes redondeados
+            'padding': '8px'                  // opcional: más espacio interno
+        });        
+
+        // Cambiar color de la ETIQUETA a rojo
+          $(frm.fields_dict.boleta_id.label_area).css({
+            'color': 'red',
+            'text-align': 'center',
+            'width': '100%',
+            'font-size': '20px',
+            'font-weight': 'bold'  // opcional: para hacerla más visible
+        });
+    },
+
     boleta_id: function(frm) {
         if (frm.doc.boleta_id) {
             frappe.call({

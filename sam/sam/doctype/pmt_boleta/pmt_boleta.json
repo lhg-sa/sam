@@ -5,11 +5,16 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "datos_de_infracci\u00f3n_section",
+  "datos_de_boleta_section",
+  "column_break_qkdw",
+  "column_break_mvvo",
   "boleta_id",
   "estado_boleta",
-  "column_break_upek",
+  "column_break_gaik",
+  "datos_de_infracci\u00f3n_section",
+  "column_break_hnlb",
   "agente",
+  "column_break_upek",
   "nombre_agente",
   "datos_del_vehiculo_section",
   "vehiculo_id",
@@ -36,7 +41,7 @@
   {
    "fieldname": "datos_de_infracci\u00f3n_section",
    "fieldtype": "Section Break",
-   "label": "Datos de Infracci\u00f3n"
+   "label": "<label style=\"color: RED;\">Datos de Infracci\u00f3n</label>"
   },
   {
    "bold": 1,
@@ -45,7 +50,7 @@
    "in_filter": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Boleta",
+   "label": "Numero de Boleta",
    "reqd": 1,
    "unique": 1
   },
@@ -59,7 +64,7 @@
   {
    "fieldname": "datos_del_vehiculo_section",
    "fieldtype": "Section Break",
-   "label": "Datos del Vehiculo"
+   "label": "<label style=\"color: RED;\">Datos del Vehiculo</label>"
   },
   {
    "fieldname": "vehiculo_id",
@@ -108,7 +113,7 @@
   {
    "fieldname": "datos_del_conductor_section",
    "fieldtype": "Section Break",
-   "label": "Datos del Conductor"
+   "label": "<label style=\"color: RED;\">Datos del Conductor</label>"
   },
   {
    "fieldname": "cui",
@@ -130,7 +135,7 @@
   {
    "fieldname": "datos_de_la_infracci\u00f3n_section",
    "fieldtype": "Section Break",
-   "label": "Datos de la Infracci\u00f3n"
+   "label": "<label style=\"color: RED;\">Datos de la Infracci\u00f3n</label>"
   },
   {
    "fieldname": "articulo_codigo",
@@ -193,12 +198,33 @@
    "fieldname": "nombre_agente",
    "fieldtype": "Data",
    "label": "Nombre del Agente"
+  },
+  {
+   "fieldname": "datos_de_boleta_section",
+   "fieldtype": "Section Break",
+   "label": "Datos de Boleta"
+  },
+  {
+   "fieldname": "column_break_hnlb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_qkdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_mvvo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gaik",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-04 09:30:50.389486",
+ "modified": "2025-11-05 09:47:07.444087",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",
