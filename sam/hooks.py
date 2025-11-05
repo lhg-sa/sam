@@ -242,8 +242,13 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
-fixtures = ["Client Script"]
+fixtures = [
+    {
+        "doctype": "Client Script",
+        "filters": [
+            ["name", "=", "PMT Boleta Buscar ID"]
+        ]
+    }
+]
 
 fixtures = ["Server Script"]
-
-
