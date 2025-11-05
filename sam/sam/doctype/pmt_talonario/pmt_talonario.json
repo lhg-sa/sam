@@ -81,7 +81,7 @@
    "fieldname": "talonario_detalle",
    "fieldtype": "Table",
    "label": "Talonario",
-   "options": "PMT Talonario Lista",
+   "options": "PMT Talonario Detalle",
    "read_only": 1
   },
   {
@@ -96,7 +96,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-04 10:04:11.003014",
+ "modified": "2025-11-04 19:23:44.967621",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Talonario",
