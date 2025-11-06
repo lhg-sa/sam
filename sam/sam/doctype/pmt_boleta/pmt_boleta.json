@@ -19,16 +19,17 @@
   "datos_del_vehiculo_section",
   "vehiculo_id",
   "fecha_infraccion",
+  "imagen_boleta",
   "column_break_zmnx",
   "marca_vehiculo",
   "propietario",
   "nit",
   "datos_del_conductor_section",
   "cui",
-  "column_break_kohq",
   "nombre_infractor",
-  "licencia",
-  "tipo_de_licencia",
+  "column_break_kohq",
+  "tipo_de_licencia_principal",
+  "licencia_principal",
   "datos_de_la_infracci\u00f3n_section",
   "articulo_codigo",
   "descripci\u00f3n_del_articulo",
@@ -58,7 +59,8 @@
    "fieldname": "agente",
    "fieldtype": "Link",
    "label": "Chapa / ID",
-   "options": "PMT Agente"
+   "options": "PMT Agente",
+   "read_only": 1
   },
   {
    "fieldname": "datos_del_vehiculo_section",
@@ -68,7 +70,9 @@
   {
    "fieldname": "vehiculo_id",
    "fieldtype": "Link",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Vehiculo/Placa",
    "options": "PMT Vehiculo",
    "reqd": 1
@@ -117,7 +121,7 @@
   {
    "fieldname": "cui",
    "fieldtype": "Link",
-   "label": "CUI",
+   "label": "CUI / Identificador",
    "options": "PMT Infractor"
   },
   {
@@ -175,28 +179,17 @@
   {
    "fieldname": "estado_boleta",
    "fieldtype": "Select",
+   "in_filter": 1,
+   "in_standard_filter": 1,
    "label": "Estado de Boleta",
    "options": "DISPONIBLE\nDIGITADA\nVALIDADA\nJUZGADO\nANULADA\nPAGADA"
-  },
-  {
-   "fetch_from": "cui.licencia_numero",
-   "fieldname": "licencia",
-   "fieldtype": "Data",
-   "label": "Numero de Licencia",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "cui.licencia_tipo",
-   "fieldname": "tipo_de_licencia",
-   "fieldtype": "Data",
-   "label": "Tipo de Licencia",
-   "read_only": 1
   },
   {
    "fetch_from": "agente.agente_nombre",
    "fieldname": "nombre_agente",
    "fieldtype": "Data",
-   "label": "Nombre del Agente"
+   "label": "Nombre del Agente",
+   "read_only": 1
   },
   {
    "fieldname": "datos_de_boleta_section",
@@ -218,12 +211,32 @@
   {
    "fieldname": "column_break_gaik",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "cui.licencia_tipo",
+   "fieldname": "tipo_de_licencia_principal",
+   "fieldtype": "Data",
+   "label": "Tipo de Licencia",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "cui.licencia_vehiculo",
+   "fieldname": "licencia_principal",
+   "fieldtype": "Data",
+   "label": "Numero de Licencia",
+   "read_only": 1
+  },
+  {
+   "fieldname": "imagen_boleta",
+   "fieldtype": "Attach Image",
+   "label": "Imagen de Boleta"
   }
  ],
  "grid_page_length": 50,
+ "image_field": "imagen_boleta",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-05 14:10:18.235061",
+ "modified": "2025-11-05 19:32:02.408511",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",
