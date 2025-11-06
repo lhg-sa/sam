@@ -40,8 +40,7 @@
  "fields": [
   {
    "fieldname": "datos_de_infracci\u00f3n_section",
-   "fieldtype": "Section Break",
-   "label": "<label style=\"color: RED;\">Datos de Infracci\u00f3n</label>"
+   "fieldtype": "Section Break"
   },
   {
    "bold": 1,
@@ -177,7 +176,7 @@
    "fieldname": "estado_boleta",
    "fieldtype": "Select",
    "label": "Estado de Boleta",
-   "options": "DISPONIBLE\nDIGITADA\nVERIFICACION\nJUZGADO\nANULADA\nPAGADA"
+   "options": "DISPONIBLE\nDIGITADA\nVALIDADA\nJUZGADO\nANULADA\nPAGADA"
   },
   {
    "fetch_from": "cui.licencia_numero",
@@ -224,7 +223,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-05 09:47:07.444087",
+ "modified": "2025-11-05 14:10:18.235061",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",
