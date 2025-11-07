@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "autoname": "field:placa_vehiculo",
+ "creation": "2025-11-06 13:25:48.447828",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "datos_del_vehiculo_section",
+  "tipo_de_vehiculo",
+  "proveedor",
+  "telefono_bot",
+  "column_break_yhtg",
+  "placa_vehiculo",
+  "foto_vehiculo",
+  "detalle_de_servicios_section",
+  "detalle_servicios_html"
+ ],
+ "fields": [
+  {
+   "fieldname": "datos_del_vehiculo_section",
+   "fieldtype": "Section Break",
+   "label": "Datos del Vehiculo"
+  },
+  {
+   "fieldname": "tipo_de_vehiculo",
+   "fieldtype": "Select",
+   "label": "Tipo de Vehiculo",
+   "options": "PIPA\nTRACTOR\nOTRO"
+  },
+  {
+   "fieldname": "column_break_yhtg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Placa sin espacios (P123ABC)",
+   "fieldname": "placa_vehiculo",
+   "fieldtype": "Data",
+   "label": "Placa",
+   "unique": 1
+  },
+  {
+   "fieldname": "proveedor",
+   "fieldtype": "Link",
+   "label": "Proveedor",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "foto_vehiculo",
+   "fieldtype": "Attach Image",
+   "label": "Foto del Vehiculo"
+  },
+  {
+   "description": "* Telegram",
+   "fieldname": "telefono_bot",
+   "fieldtype": "Data",
+   "label": "Usuario de Mensajes"
+  },
+  {
+   "fieldname": "detalle_de_servicios_section",
+   "fieldtype": "Section Break",
+   "label": "Detalle de Servicios"
+  },
+  {
+   "fieldname": "detalle_servicios_html",
+   "fieldtype": "HTML",
+   "is_virtual": 1,
+   "label": "Procesado"
+  }
+ ],
+ "grid_page_length": 50,
+ "image_field": "foto_vehiculo",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-07 12:24:57.906736",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "SP Trasporte",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

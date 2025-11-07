@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "autoname": "format:{YY}{MM}{DD}-{###}",
+ "creation": "2025-11-06 13:53:33.078572",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "datos_de_vehiculo_section",
+  "placa_vehiculo",
+  "estado_viaje",
+  "column_break_ulus",
+  "proveedor",
+  "datos_del_viaje_section",
+  "fecha_inicial",
+  "odometro_inicial",
+  "foto_inicio",
+  "ubicaci\u00f3n_inicial",
+  "column_break_udrm",
+  "fecha_final",
+  "odometro_final",
+  "foto_fin",
+  "ubicaci\u00f3n_final"
+ ],
+ "fields": [
+  {
+   "fieldname": "placa_vehiculo",
+   "fieldtype": "Link",
+   "label": "Placa del Vehiculo",
+   "options": "SP Trasporte"
+  },
+  {
+   "fieldname": "column_break_ulus",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "placa_vehiculo.proveedor",
+   "fieldname": "proveedor",
+   "fieldtype": "Data",
+   "label": "Proveedor"
+  },
+  {
+   "fieldname": "datos_del_viaje_section",
+   "fieldtype": "Section Break",
+   "label": "Datos del Viaje"
+  },
+  {
+   "fieldname": "fecha_inicial",
+   "fieldtype": "Datetime",
+   "label": "Fecha Inicial"
+  },
+  {
+   "fieldname": "column_break_udrm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fecha_final",
+   "fieldtype": "Datetime",
+   "label": "Fecha Final"
+  },
+  {
+   "description": "En Kil\u00f3metros",
+   "fieldname": "odometro_inicial",
+   "fieldtype": "Int",
+   "label": "Odometro Inicial"
+  },
+  {
+   "description": "En Kil\u00f3metros",
+   "fieldname": "odometro_final",
+   "fieldtype": "Int",
+   "label": "Odometro Final"
+  },
+  {
+   "fieldname": "foto_inicio",
+   "fieldtype": "Attach Image",
+   "label": "Foto Inicio"
+  },
+  {
+   "fieldname": "foto_fin",
+   "fieldtype": "Attach Image",
+   "label": "Foto Fin"
+  },
+  {
+   "fieldname": "ubicaci\u00f3n_inicial",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n Inicial"
+  },
+  {
+   "fieldname": "ubicaci\u00f3n_final",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n Final"
+  },
+  {
+   "fieldname": "estado_viaje",
+   "fieldtype": "Select",
+   "label": "Estado",
+   "options": "EN PROCESO\nFINALIZADO\nPAGADO"
+  },
+  {
+   "fieldname": "datos_de_vehiculo_section",
+   "fieldtype": "Section Break",
+   "label": "Datos de Vehiculo"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-07 10:53:09.687058",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "SP Trasporte Viaje",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
