@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class SPTrasporteViaje(Document):
+class SPTransporteViaje(Document):
 	pass

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Uf7Uz_p3xK\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Agua y Saneamiento</span>\",\"col\":12}},{\"id\":\"L9VXfIX2Os\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Licencias de Funcionamiento</b></span>\",\"col\":12}},{\"id\":\"Gd6EX5HL6g\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>R\u00f3tulos y Vallas</b></span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"Uf7Uz_p3xK\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Agua y Saneamiento</span>\",\"col\":12}},{\"id\":\"r3zHMl-7-Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Gesti\u00f3n de Trasporte\",\"col\":4}},{\"id\":\"L9VXfIX2Os\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Licencias de Funcionamiento</b></span>\",\"col\":12}},{\"id\":\"Gd6EX5HL6g\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>R\u00f3tulos y Vallas</b></span>\",\"col\":12}}]",
  "creation": "2025-09-04 13:43:52.755788",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,8 +12,38 @@
  "indicator_color": "",
  "is_hidden": 0,
  "label": "Servicios Publicos",
- "links": [],
- "modified": "2025-09-05 18:20:55.182554",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gesti\u00f3n de Trasporte",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Veh\u00edculo de Trasporte",
+   "link_count": 0,
+   "link_to": "SP Transporte",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Detalle de Viaje",
+   "link_count": 0,
+   "link_to": "SP Transporte Viaje",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-11-07 20:30:02.830675",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Servicios Publicos",

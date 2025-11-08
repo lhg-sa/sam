@@ -14,19 +14,19 @@
   "fecha_inicial",
   "odometro_inicial",
   "foto_inicio",
-  "ubicaci\u00f3n_inicial",
+  "ubicacion_inicial",
   "column_break_udrm",
   "fecha_final",
   "odometro_final",
   "foto_fin",
-  "ubicaci\u00f3n_final"
+  "ubicacion_final"
  ],
  "fields": [
   {
    "fieldname": "placa_vehiculo",
    "fieldtype": "Link",
-   "label": "Placa del Vehiculo",
-   "options": "SP Trasporte"
+   "label": "ID del Veh\u00edculo",
+   "options": "SP Transporte"
   },
   {
    "fieldname": "column_break_ulus",
@@ -36,7 +36,11 @@
    "fetch_from": "placa_vehiculo.proveedor",
    "fieldname": "proveedor",
    "fieldtype": "Data",
-   "label": "Proveedor"
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Proveedor",
+   "reqd": 1
   },
   {
    "fieldname": "datos_del_viaje_section",
@@ -46,6 +50,9 @@
   {
    "fieldname": "fecha_inicial",
    "fieldtype": "Datetime",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Fecha Inicial"
   },
   {
@@ -80,18 +87,11 @@
    "label": "Foto Fin"
   },
   {
-   "fieldname": "ubicaci\u00f3n_inicial",
-   "fieldtype": "Data",
-   "label": "Ubicaci\u00f3n Inicial"
-  },
-  {
-   "fieldname": "ubicaci\u00f3n_final",
-   "fieldtype": "Data",
-   "label": "Ubicaci\u00f3n Final"
-  },
-  {
    "fieldname": "estado_viaje",
    "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Estado",
    "options": "EN PROCESO\nFINALIZADO\nPAGADO"
   },
@@ -99,15 +99,25 @@
    "fieldname": "datos_de_vehiculo_section",
    "fieldtype": "Section Break",
    "label": "Datos de Vehiculo"
+  },
+  {
+   "fieldname": "ubicacion_inicial",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n Inicial"
+  },
+  {
+   "fieldname": "ubicacion_final",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n Final"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-07 10:53:09.687058",
+ "modified": "2025-11-07 20:35:27.326754",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "SP Trasporte Viaje",
+ "name": "SP Transporte Viaje",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

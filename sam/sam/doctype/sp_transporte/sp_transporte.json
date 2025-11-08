@@ -24,6 +24,9 @@
   {
    "fieldname": "tipo_de_vehiculo",
    "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Tipo de Vehiculo",
    "options": "PIPA\nTRACTOR\nOTRO"
   },
@@ -41,6 +44,9 @@
   {
    "fieldname": "proveedor",
    "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Proveedor",
    "options": "Supplier"
   },
@@ -71,10 +77,10 @@
  "image_field": "foto_vehiculo",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-07 12:24:57.906736",
+ "modified": "2025-11-07 20:32:58.964023",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "SP Trasporte",
+ "name": "SP Transporte",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

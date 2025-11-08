@@ -22,7 +22,7 @@ frappe.ui.form.on("SP Transporte", {
 
         frappe.db
             .get_list("SP Transporte Viaje", {
-                fields: ["name", "estado_viaje", "fecha_inicial", "fecha_final", "ubicación_inicial"],
+                fields: ["name", "estado_viaje", "fecha_inicial", "fecha_final", "ubicacion_inicial"],
                 filters: {
                     placa_vehiculo: frm.doc.name
                 },
@@ -32,7 +32,7 @@ frappe.ui.form.on("SP Transporte", {
             .then(records => {
                 if (!records?.length) {
                     wrapper.html(`
-                        <p>No existen registros en <strong>SP Transporte Viaje</strong> para el vehículo ${frappe.utils.escape_html(frm.doc.name || "")}.</p>
+                        <p>No existen registros de servicios para el vehículo ${frappe.utils.escape_html(frm.doc.name || "")}.</p>
                     `);
                     return;
                 }
@@ -67,7 +67,7 @@ frappe.ui.form.on("SP Transporte", {
                         }
                     }
 
-                    const ubicacionInicial = item["ubicación_inicial"] || "";
+                    const ubicacionInicial = item["ubicacion_inicial"] || "";
                     let ubicacionLink = frappe.utils.escape_html(ubicacionInicial);
                     if (ubicacionInicial) {
                         const coords = ubicacionInicial.split(",").map(coord => coord.trim());
