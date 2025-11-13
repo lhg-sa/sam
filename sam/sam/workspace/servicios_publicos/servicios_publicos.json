@@ -25,7 +25,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Veh\u00edculo de Trasporte",
+   "label": "Registro de Vehiculos",
    "link_count": 0,
    "link_to": "SP Transporte",
    "link_type": "DocType",
@@ -35,7 +35,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Detalle de Viaje",
+   "label": "Detalle de Viajes",
    "link_count": 0,
    "link_to": "SP Transporte Viaje",
    "link_type": "DocType",
@@ -43,7 +43,7 @@
    "type": "Link"
   }
  ],
- "modified": "2025-11-07 20:30:02.830675",
+ "modified": "2025-11-10 14:45:41.204082",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Servicios Publicos",

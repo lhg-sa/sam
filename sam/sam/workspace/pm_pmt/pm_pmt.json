@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"VACwdSMwrd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Policia Municipal</span>\",\"col\":12}},{\"id\":\"LWOkoyCCAJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Polic\u00eda Municipal de Tr\u00e1nsito<b></b></span>\",\"col\":12}},{\"id\":\"udkeqVNcRT\",\"type\":\"card\",\"data\":{\"card_name\":\"Gesti\u00f3n de Infracciones\",\"col\":4}},{\"id\":\"FigRhrN0sa\",\"type\":\"card\",\"data\":{\"card_name\":\"Catalogos\",\"col\":4}}]",
+ "content": "[{\"id\":\"VACwdSMwrd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Policia Municipal</span>\",\"col\":12}},{\"id\":\"LWOkoyCCAJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Polic\u00eda Municipal de Tr\u00e1nsito<b></b></span>\",\"col\":12}},{\"id\":\"udkeqVNcRT\",\"type\":\"card\",\"data\":{\"card_name\":\"Gesti\u00f3n de Infracciones\",\"col\":4}},{\"id\":\"FigRhrN0sa\",\"type\":\"card\",\"data\":{\"card_name\":\"Catalogos\",\"col\":4}},{\"id\":\"ZOAuFtOhgW\",\"type\":\"card\",\"data\":{\"card_name\":\"Reportes\",\"col\":4}}]",
  "creation": "2025-09-03 21:54:24.988483",
  "custom_blocks": [],
  "docstatus": 0,
@@ -76,7 +76,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Gesti\u00f3n de Infracciones",
-   "link_count": 3,
+   "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -84,9 +84,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Infractores",
+   "label": "Boletas",
    "link_count": 0,
-   "link_to": "PMT Infractor",
+   "link_to": "PMT Boleta",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -104,15 +104,44 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Boleta",
+   "label": "Infractores",
    "link_count": 0,
-   "link_to": "PMT Boleta",
+   "link_to": "PMT Infractor",
    "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Solvencias",
+   "link_count": 0,
+   "link_to": "PMT Solvencia",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reportes",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Inactive Customers",
+   "link_count": 0,
+   "link_to": "Inactive Customers",
+   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2025-10-10 21:31:57.354508",
+ "modified": "2025-11-12 20:46:20.825173",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PM-PMT",

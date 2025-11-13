@@ -34,13 +34,13 @@
    "fieldname": "licencia_tipo",
    "fieldtype": "Select",
    "label": "Licencia Veh\u00edculo",
-   "options": "A - Transporte Pesado y de pasajeros\nB Veh\u00edculos ligeros con remuneraci\u00f3n\nC Veh\u00edculos ligeros sin fines de lucro\nM Motocicletas\nE Maquinaria agr\u00edcola o industrial"
+   "options": "A - Transporte Pesado y de pasajeros\nB Veh\u00edculos ligeros con remuneraci\u00f3n\nC Veh\u00edculos ligeros sin fines de lucro\nM Motocicletas\nE Maquinaria agr\u00edcola o industrial\nNA"
   },
   {
    "fieldname": "tipo_de_otros_vehiculos",
    "fieldtype": "Select",
    "label": "Otros Vehiculos",
-   "options": "M Motocicletas\nE Maquinaria agr\u00edcola o industrial"
+   "options": "NA\nM Motocicletas\nE Maquinaria agr\u00edcola o industrial"
   },
   {
    "fieldname": "licencia_numero_otro",
@@ -56,7 +56,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-05 14:36:22.980037",
+ "modified": "2025-11-12 17:45:12.266909",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Infractor",
@@ -77,6 +77,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "search_fields": "nombre_infractor, licencia_vehiculo",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

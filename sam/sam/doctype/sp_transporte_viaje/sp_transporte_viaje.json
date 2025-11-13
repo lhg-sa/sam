@@ -15,6 +15,7 @@
   "odometro_inicial",
   "foto_inicio",
   "ubicacion_inicial",
+  "ruta_imagen_inicial",
   "column_break_udrm",
   "fecha_final",
   "odometro_final",
@@ -109,12 +110,17 @@
    "fieldname": "ubicacion_final",
    "fieldtype": "Data",
    "label": "Ubicaci\u00f3n Final"
+  },
+  {
+   "fieldname": "ruta_imagen_inicial",
+   "fieldtype": "Data",
+   "label": "Ruta de Imagen"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-07 20:35:27.326754",
+ "modified": "2025-11-08 20:48:03.315082",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "SP Transporte Viaje",
