@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2025-03-05 10:24:19.327911",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cc_descripcion",
+  "cc_vencimiento",
+  "cc_estado",
+  "cc_monto",
+  "cc_documento_tipo",
+  "cc_documento_numero"
+ ],
+ "fields": [
+  {
+   "fieldname": "cc_descripcion",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Descripcion"
+  },
+  {
+   "fieldname": "cc_vencimiento",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Vencimiento"
+  },
+  {
+   "fieldname": "cc_estado",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Estado",
+   "options": "\nPAGADO\nPOR PAGAR\nCONVENIDA\nANULADO"
+  },
+  {
+   "fieldname": "cc_monto",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Monto",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cc_documento_tipo",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tipo Documento"
+  },
+  {
+   "fieldname": "cc_documento_numero",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Numero Documento"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:24.510087",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "catastro_inmueble_cc",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

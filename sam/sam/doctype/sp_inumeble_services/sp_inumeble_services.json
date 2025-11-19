@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-02-12 01:59:51.005514",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sp_inmueble",
+  "item_code",
+  "ubicacion_servicio",
+  "total_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "sp_inmueble",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sp Inmueble",
+   "options": "sp_inmueble"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Codigo del Servicio",
+   "options": "Item"
+  },
+  {
+   "fieldname": "ubicacion_servicio",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ubicaci\u00f3n Alterna del Servicio"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:26.916384",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Sp Inumeble Services",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

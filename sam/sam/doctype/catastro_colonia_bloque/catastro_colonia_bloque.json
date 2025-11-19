@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:colonia_bloque",
+ "creation": "2024-05-19 15:51:58.134178",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "colonia_bloque",
+  "colonia_descripcion",
+  "column_break_ggjx"
+ ],
+ "fields": [
+  {
+   "description": "Colonia o bloque en formato \"###-##\". Ejemplo: '01-000' | '02-048'",
+   "fieldname": "colonia_bloque",
+   "fieldtype": "Data",
+   "label": "Id Colonia/Bloque",
+   "unique": 1
+  },
+  {
+   "fieldname": "colonia_descripcion",
+   "fieldtype": "Data",
+   "label": "Descripci\u00f3n"
+  },
+  {
+   "fieldname": "column_break_ggjx",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:31.618275",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "catastro_colonia_bloque",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "colonia_descripcion",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,294 @@
+{
+ "actions": [],
+ "autoname": "format:SP-{YY}-{#}",
+ "creation": "2024-12-28 18:19:35.142909",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "customer_type",
+  "column_break_rasm",
+  "representante_legal",
+  "section_break_dawd",
+  "ubicacion_servicio",
+  "zona_catastral",
+  "aldea_sector",
+  "colonia_bloque",
+  "column_break_rfnw",
+  "tarjeta_gl",
+  "image_base",
+  "fecha_inicio",
+  "fecha_fin",
+  "section_break_gpmg",
+  "item_code",
+  "custom_periodo_label",
+  "price_list",
+  "price_list_rate",
+  "territory",
+  "column_break_zqoi",
+  "multiplicador_item",
+  "mora_item",
+  "descripcion",
+  "section_break_zqka",
+  "total_del_servicio",
+  "ficha_del_servicio_tab",
+  "coordenada_gps",
+  "ubicacion_map",
+  "cuenta_corriente_tab",
+  "generated_invoices",
+  "qurately_invoice",
+  "yearly_invoice",
+  "section_break_ltzm",
+  "column_break_ssxo",
+  "saldo_actual",
+  "column_break_atdz",
+  "total_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Propietario Id",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_type",
+   "fieldname": "customer_type",
+   "fieldtype": "Read Only",
+   "label": "Tipo de Contribuyente"
+  },
+  {
+   "fieldname": "column_break_rasm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.customer_type==\"Company\"",
+   "fetch_from": "customer.custom_representante_legal",
+   "fieldname": "representante_legal",
+   "fieldtype": "Read Only",
+   "label": "Representante Legal",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_dawd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ubicacion_servicio",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n del Servicio"
+  },
+  {
+   "fieldname": "zona_catastral",
+   "fieldtype": "Link",
+   "label": "Zona",
+   "options": "sector_manzana"
+  },
+  {
+   "fieldname": "aldea_sector",
+   "fieldtype": "Link",
+   "label": "Aldea/Sector:",
+   "options": "sector_manzana"
+  },
+  {
+   "fieldname": "colonia_bloque",
+   "fieldtype": "Link",
+   "label": "Colonia/Bloque",
+   "options": "catastro_colonia_bloque"
+  },
+  {
+   "fieldname": "column_break_rfnw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tarjeta_gl",
+   "fieldtype": "Data",
+   "label": "Tarjeta GL"
+  },
+  {
+   "fieldname": "image_base",
+   "fieldtype": "Attach Image",
+   "label": "imagen_principal"
+  },
+  {
+   "description": "Fecha de Inicio del Servicio",
+   "fieldname": "fecha_inicio",
+   "fieldtype": "Date",
+   "label": "Fecha de Inicio",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fecha_fin",
+   "fieldtype": "Date",
+   "label": "Fecha de Finalizaci\u00f3n"
+  },
+  {
+   "fieldname": "section_break_gpmg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Codigo del Servicio",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item_code.custom_periodo",
+   "fetch_if_empty": 1,
+   "fieldname": "custom_periodo_label",
+   "fieldtype": "Read Only",
+   "label": "Periodo Asignado"
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Lista de Precios",
+   "options": "Item Price"
+  },
+  {
+   "fieldname": "price_list_rate",
+   "fieldtype": "Data",
+   "label": "Precio Base",
+   "read_only": 1
+  },
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territorio",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "column_break_zqoi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "description": "Ej: M2, Pajas de Agua",
+   "fieldname": "multiplicador_item",
+   "fieldtype": "Float",
+   "label": "Multiplicador",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "description": "Ejemplo: \"0.20\"",
+   "fieldname": "mora_item",
+   "fieldtype": "Float",
+   "label": "Cargo x Mora",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "descripcion",
+   "fieldtype": "Small Text",
+   "label": "Descripci\u00f3n del Servicio"
+  },
+  {
+   "fieldname": "section_break_zqka",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_del_servicio",
+   "fieldtype": "Read Only",
+   "label": "Total del Servicio",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ficha_del_servicio_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ficha Del Servicio"
+  },
+  {
+   "description": "Ejemplo: 14.1681, -90.8050",
+   "fieldname": "coordenada_gps",
+   "fieldtype": "Data",
+   "label": "Coordenada"
+  },
+  {
+   "fieldname": "ubicacion_map",
+   "fieldtype": "HTML",
+   "label": "Ubicaci\u00f3n",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cuenta_corriente_tab",
+   "fieldtype": "Tab Break",
+   "label": "Cuenta Corriente"
+  },
+  {
+   "fieldname": "generated_invoices",
+   "fieldtype": "Table",
+   "label": "Generated Invoices",
+   "options": "Generated Invoices",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "qurately_invoice",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Qurately invoice"
+  },
+  {
+   "default": "0",
+   "fieldname": "yearly_invoice",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Yearly Invoice"
+  },
+  {
+   "fieldname": "section_break_ltzm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ssxo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "saldo_actual",
+   "fieldtype": "HTML",
+   "label": "Saldo Actual"
+  },
+  {
+   "fieldname": "column_break_atdz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Importe total",
+   "read_only": 1
+  }
+ ],
+ "image_field": "image_base",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:28.432760",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "sp_persona",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

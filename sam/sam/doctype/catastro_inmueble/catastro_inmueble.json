@@ -1,0 +1,698 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:{#}",
+ "creation": "2024-05-19 12:10:16.844371",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "informaci\u00f3n_catastral_tab",
+  "datos_generales_section",
+  "propietario",
+  "direcci\u00f3n_de_notificacion",
+  "customer_name",
+  "nim_propietario",
+  "column_break_uski",
+  "direccion_representante_legal",
+  "representante_legal",
+  "sincroniza_to_gl",
+  "sincroniza_to_sam",
+  "location_gps",
+  "map_location",
+  "saldos_section",
+  "cargo",
+  "column_break_kogp",
+  "mora_",
+  "column_break_mnjt",
+  "cuotas",
+  "ubicaci\u00f3n_y_referencias_section",
+  "ubicacion_catastral",
+  "servicio_gl_id",
+  "grupo_fha",
+  "inmueble_estado",
+  "column_break_geyd",
+  "zona_catastral",
+  "sector_manzana",
+  "colonia_bloque",
+  "tarjeta",
+  "datos_del_inmueble_section",
+  "finca",
+  "folio",
+  "libro",
+  "ffl_unificado",
+  "registro",
+  "column_break_mora",
+  "valor_del_terreno",
+  "valor_de_construccion",
+  "valor_de_cultivo",
+  "valor_total",
+  "column_break_vhuf",
+  "area_del_terreno_en_m2",
+  "area_de_construcci\u00f3n_en_m2",
+  "area_de_cultivos_en_m2",
+  "estado_catastral",
+  "inmueble_copropietario_section",
+  "inmueble_copropietario",
+  "tab_break_mcsq",
+  "sp_inmueble_services",
+  "section_break_pxbf",
+  "column_break_jdal",
+  "column_break_guqo",
+  "total_amount",
+  "notas_de_servicios_section",
+  "nota_servicios",
+  "cuenta_corriente",
+  "cc_detalle_table",
+  "section_break_dsim",
+  "get_total",
+  "column_break_egim",
+  "coutas",
+  "total",
+  "ficha_catastral_tab",
+  "datos_del_terreno_section",
+  "inmueble_registro_m2",
+  "column_break_fidp",
+  "inmueble_zh",
+  "column_break_roxr",
+  "terreno_vzhusd",
+  "factores_de_terreno_section",
+  "inmueble_factor_ajuste_zh",
+  "terreno_frente",
+  "inmueble_forma",
+  "terreno_dtm",
+  "column_break_wlkh",
+  "inmueble_valor_gtq",
+  "terreno_fondo",
+  "terreno_dvpm",
+  "terreno_esquina_ma",
+  "column_break_ssyo",
+  "terreno_area_gis",
+  "terreno_pendiente",
+  "terreno_factor_sbn",
+  "terreno_interior_ma",
+  "catastro_colindancia_table_section",
+  "colindantes",
+  "detalle_catastro_licencia_tab",
+  "relacionado_catastro_licencia_section",
+  "html_licencia",
+  "detalle_catastro_inmueble_tab",
+  "relacionado_catastro_inmueble_section",
+  "html_inmueble",
+  "movimientos_tab",
+  "data_movimiento_section",
+  "movimiento",
+  "notas_generales_section",
+  "historico"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "informaci\u00f3n_catastral_tab",
+   "fieldtype": "Tab Break",
+   "label": "Informaci\u00f3n Catastral"
+  },
+  {
+   "fieldname": "datos_generales_section",
+   "fieldtype": "Section Break",
+   "label": "Datos Generales"
+  },
+  {
+   "fieldname": "propietario",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Propietario Id",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "direcci\u00f3n_de_notificacion",
+   "fieldtype": "Data",
+   "label": "Direcci\u00f3n de Notificaci\u00f3n",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fetch_from": "propietario.custom_matricula",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Matricula del Propietario",
+   "read_only": 1
+  },
+  {
+   "fieldname": "nim_propietario",
+   "fieldtype": "Data",
+   "label": "NIM Propietario"
+  },
+  {
+   "fieldname": "column_break_uski",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "direccion_representante_legal",
+   "fieldtype": "Data",
+   "label": "Direcci\u00f3n del Representante Legal",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "propietario.custom_representante_legal",
+   "fieldname": "representante_legal",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Representante Legal"
+  },
+  {
+   "default": "0",
+   "fieldname": "sincroniza_to_gl",
+   "fieldtype": "Check",
+   "label": "Sincronizar a GL"
+  },
+  {
+   "default": "0",
+   "fieldname": "sincroniza_to_sam",
+   "fieldtype": "Check",
+   "label": "Sincronizar a SAM"
+  },
+  {
+   "description": "Ejemplo: 14.4652,-90.4412",
+   "fieldname": "location_gps",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n GPS"
+  },
+  {
+   "fieldname": "map_location",
+   "fieldtype": "Button",
+   "label": "Mapa"
+  },
+  {
+   "fieldname": "saldos_section",
+   "fieldtype": "Section Break",
+   "label": "Saldos"
+  },
+  {
+   "default": "0",
+   "fieldname": "cargo",
+   "fieldtype": "Currency",
+   "label": "Cargo",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kogp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mora_",
+   "fieldtype": "Currency",
+   "label": "Mora"
+  },
+  {
+   "fieldname": "column_break_mnjt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cuotas",
+   "fieldtype": "Int",
+   "label": "Cuotas"
+  },
+  {
+   "fieldname": "ubicaci\u00f3n_y_referencias_section",
+   "fieldtype": "Section Break",
+   "label": "Ubicaci\u00f3n y Referencias"
+  },
+  {
+   "fieldname": "ubicacion_catastral",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n Catastral (Direcci\u00f3n)",
+   "length": 400,
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "servicio_gl_id",
+   "fieldtype": "Data",
+   "label": "C\u00f3digo de Inmueble GL"
+  },
+  {
+   "fieldname": "grupo_fha",
+   "fieldtype": "Link",
+   "label": "Grupo de FHA",
+   "options": "catastro_fha"
+  },
+  {
+   "bold": 1,
+   "default": "HABILITADO",
+   "fieldname": "inmueble_estado",
+   "fieldtype": "Select",
+   "label": "Estado del Inmueble",
+   "options": "HABILITADO\nBLOQUEADO\nEC FASE 1\nEC FASE 2\nEC MANDATARIO\nEN REVISION"
+  },
+  {
+   "fieldname": "column_break_geyd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "zona_catastral",
+   "fieldtype": "Link",
+   "label": "Zona",
+   "options": "catastro_zona"
+  },
+  {
+   "fieldname": "sector_manzana",
+   "fieldtype": "Link",
+   "label": "Sector/Manzana",
+   "options": "sector_manzana"
+  },
+  {
+   "fieldname": "colonia_bloque",
+   "fieldtype": "Link",
+   "label": "Colonia/Bloque",
+   "options": "catastro_colonia_bloque"
+  },
+  {
+   "fieldname": "tarjeta",
+   "fieldtype": "Data",
+   "label": "Tarjeta",
+   "read_only": 1
+  },
+  {
+   "fieldname": "datos_del_inmueble_section",
+   "fieldtype": "Section Break",
+   "label": "Datos del Inmueble"
+  },
+  {
+   "fieldname": "finca",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Finca",
+   "reqd": 1
+  },
+  {
+   "fieldname": "folio",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Folio",
+   "reqd": 1
+  },
+  {
+   "fieldname": "libro",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Libro",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ffl_unificado",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "FFL Unificado",
+   "read_only": 1
+  },
+  {
+   "default": "GUATEMALA",
+   "fieldname": "registro",
+   "fieldtype": "Select",
+   "label": "Registro",
+   "options": "GUATEMALA\nDERECHOS POSESORIOS\nSIN REGISTRO",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_mora",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "valor_del_terreno",
+   "fieldtype": "Currency",
+   "label": "Valor del Terreno",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "valor_de_construccion",
+   "fieldtype": "Currency",
+   "label": "Valor de Construcci\u00f3n",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "valor_de_cultivo",
+   "fieldtype": "Currency",
+   "label": "Valor de Cultivo",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "valor_total",
+   "fieldtype": "Currency",
+   "label": "Valor  Fiscal Afecto",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_vhuf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "area_del_terreno_en_m2",
+   "fieldtype": "Float",
+   "label": "Area del Terreno en M2",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "area_de_construcci\u00f3n_en_m2",
+   "fieldtype": "Float",
+   "label": "Area de Construcci\u00f3n en M2",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "area_de_cultivos_en_m2",
+   "fieldtype": "Float",
+   "label": "Area de Cultivos en M2",
+   "precision": "2"
+  },
+  {
+   "default": "SIN OPERAR",
+   "fieldname": "estado_catastral",
+   "fieldtype": "Select",
+   "label": "Estado Catastral",
+   "options": "CATASTRADO REGULAR\nCATASTRADO IRREGULAR\nEN PROCESO\nSIN OPERAR\nEN INVESTIGACION"
+  },
+  {
+   "fieldname": "inmueble_copropietario_section",
+   "fieldtype": "Section Break",
+   "label": "Inmueble Copropietario"
+  },
+  {
+   "fieldname": "inmueble_copropietario",
+   "fieldtype": "Table",
+   "label": "Inmueble Copropietario",
+   "options": "inmueble_copropietario"
+  },
+  {
+   "bold": 1,
+   "fieldname": "tab_break_mcsq",
+   "fieldtype": "Tab Break",
+   "label": "Servicios del Inmueble"
+  },
+  {
+   "fieldname": "sp_inmueble_services",
+   "fieldtype": "Table",
+   "label": "Servicios Asignados al Inmueble",
+   "options": "Sp Inumeble Services"
+  },
+  {
+   "fieldname": "section_break_pxbf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_jdal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_guqo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Adeudado",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notas_de_servicios_section",
+   "fieldtype": "Section Break",
+   "label": "Notas de Servicios"
+  },
+  {
+   "fieldname": "nota_servicios",
+   "fieldtype": "Small Text",
+   "label": "Observaciones"
+  },
+  {
+   "fieldname": "cuenta_corriente",
+   "fieldtype": "Tab Break",
+   "label": "Cuenta Corriente"
+  },
+  {
+   "fieldname": "cc_detalle_table",
+   "fieldtype": "Table",
+   "label": "Detalle",
+   "options": "catastro_inmueble_cc",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_dsim",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_total",
+   "fieldtype": "Button",
+   "label": "Get Total"
+  },
+  {
+   "fieldname": "column_break_egim",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "coutas",
+   "fieldtype": "Int",
+   "label": "Coutas",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Float",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "ficha_catastral_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ficha Catastral"
+  },
+  {
+   "fieldname": "datos_del_terreno_section",
+   "fieldtype": "Section Break",
+   "label": "Datos del Terreno"
+  },
+  {
+   "fieldname": "inmueble_registro_m2",
+   "fieldtype": "Float",
+   "label": "Area de Registro M2",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_fidp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "inmueble_zh",
+   "fieldtype": "Int",
+   "label": "Codigo ZH"
+  },
+  {
+   "fieldname": "column_break_roxr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "terreno_vzhusd",
+   "fieldtype": "Currency",
+   "label": "Valor de ZH/M2/USD",
+   "precision": "2"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "factores_de_terreno_section",
+   "fieldtype": "Section Break",
+   "label": "Factores de Terreno"
+  },
+  {
+   "fieldname": "inmueble_factor_ajuste_zh",
+   "fieldtype": "Float",
+   "label": "Factor de Ajuste ZH",
+   "precision": "2"
+  },
+  {
+   "fieldname": "terreno_frente",
+   "fieldtype": "Float",
+   "label": "Frente",
+   "precision": "2"
+  },
+  {
+   "default": "SIN ASIGNAR FORMA",
+   "fieldname": "inmueble_forma",
+   "fieldtype": "Select",
+   "label": "Factor de Forma",
+   "options": "SIN ASIGNAR FORMA\nREGULAR\nIRREGULAR\nMUY IRREGULAR\nTRIANGULO DELTA\nTRIANGULO NABLA"
+  },
+  {
+   "fieldname": "terreno_dtm",
+   "fieldtype": "Int",
+   "label": "D. T. M."
+  },
+  {
+   "fieldname": "column_break_wlkh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "inmueble_valor_gtq",
+   "fieldtype": "Currency",
+   "label": "Valor del Terreno en GTQ",
+   "precision": "2"
+  },
+  {
+   "fieldname": "terreno_fondo",
+   "fieldtype": "Float",
+   "label": "Fondo",
+   "precision": "2"
+  },
+  {
+   "default": "SIN ASIGNAR",
+   "fieldname": "terreno_dvpm",
+   "fieldtype": "Select",
+   "label": "D. V. P. (M)",
+   "options": "SIN ASIGNAR\n1\n2\n3\n4\n5\n6\n7"
+  },
+  {
+   "default": "OTROS USOS",
+   "fieldname": "terreno_esquina_ma",
+   "fieldtype": "Select",
+   "label": "Esquita MA",
+   "options": "OTROS USOS\nUSO COMERCIAL"
+  },
+  {
+   "fieldname": "column_break_ssyo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "terreno_area_gis",
+   "fieldtype": "Float",
+   "label": "Area GIS",
+   "precision": "2"
+  },
+  {
+   "default": "SIN ASIGNACION",
+   "fieldname": "terreno_pendiente",
+   "fieldtype": "Select",
+   "label": "Pendiente en %",
+   "options": "SIN ASIGNACION\n0.0 - 5.0\n5.1  - 10.0\n10.1 - 30.0\n30.1 O MAS"
+  },
+  {
+   "default": "SIN ASIGNAR FACTOR",
+   "fieldname": "terreno_factor_sbn",
+   "fieldtype": "Select",
+   "label": "Factor S/B Nivel",
+   "options": "SIN ASIGNAR FACTOR\nSOBRE NIVEL\nBAJO NIVEL"
+  },
+  {
+   "default": "OTROS (AGREGAR)",
+   "fieldname": "terreno_interior_ma",
+   "fieldtype": "Select",
+   "label": "Interior Ma",
+   "options": "5.00 - 5.00\n5.00 - 10.00\nOTROS (AGREGAR)"
+  },
+  {
+   "fieldname": "catastro_colindancia_table_section",
+   "fieldtype": "Section Break",
+   "label": "Catastro Colindancia Table"
+  },
+  {
+   "fieldname": "colindantes",
+   "fieldtype": "Table",
+   "label": "Catastro Colindancia",
+   "options": "catastro_colindancia"
+  },
+  {
+   "bold": 1,
+   "fieldname": "detalle_catastro_licencia_tab",
+   "fieldtype": "Tab Break",
+   "label": "Licencias"
+  },
+  {
+   "fieldname": "relacionado_catastro_licencia_section",
+   "fieldtype": "Section Break",
+   "label": "Relacionado Catastro Licencia"
+  },
+  {
+   "fieldname": "html_licencia",
+   "fieldtype": "HTML",
+   "label": "Html Licencia"
+  },
+  {
+   "fieldname": "detalle_catastro_inmueble_tab",
+   "fieldtype": "Tab Break",
+   "label": "Otros Inmuebles"
+  },
+  {
+   "fieldname": "relacionado_catastro_inmueble_section",
+   "fieldtype": "Section Break",
+   "label": "Relacionado Catastro Inmueble"
+  },
+  {
+   "fieldname": "html_inmueble",
+   "fieldtype": "HTML",
+   "label": "Html Inmueble"
+  },
+  {
+   "fieldname": "movimientos_tab",
+   "fieldtype": "Tab Break",
+   "label": "Movimientos"
+  },
+  {
+   "fieldname": "data_movimiento_section",
+   "fieldtype": "Section Break",
+   "label": "Movimientos Realizados al Inmueble"
+  },
+  {
+   "fieldname": "movimiento",
+   "fieldtype": "HTML",
+   "label": "Movimiento"
+  },
+  {
+   "fieldname": "notas_generales_section",
+   "fieldtype": "Tab Break",
+   "label": "Observaciones Generales"
+  },
+  {
+   "fieldname": "historico",
+   "fieldtype": "Text",
+   "label": "Notas del inmueble"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:23.350697",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "catastro_inmueble",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "ubicacion_catastral, ffl_unificado, propietario",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

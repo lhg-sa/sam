@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2024-09-12 03:49:55.872380",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "id_catastro",
+  "castastro_detalles_trimestre_descripcion",
+  "castastro_detalles_trimestre_fecha",
+  "castastro_detalles_trimestre_estado",
+  "column_break_jkdi",
+  "castastro_detalles_trimestre_monto",
+  "castastro_detalles_trimestre_tipo_documento",
+  "castastro_detalles_trimestre_numero_documento",
+  "detalle_catastro_movimiento_tab",
+  "relacionado_castastro_movimiento_section",
+  "castastro_movimiento"
+ ],
+ "fields": [
+  {
+   "fieldname": "id_catastro",
+   "fieldtype": "Link",
+   "label": "ID Inmueble de Catastro:",
+   "options": "catastro_inmueble"
+  },
+  {
+   "fieldname": "castastro_detalles_trimestre_descripcion",
+   "fieldtype": "Data",
+   "label": "Descripcion"
+  },
+  {
+   "fieldname": "castastro_detalles_trimestre_fecha",
+   "fieldtype": "Date",
+   "label": "Fecha"
+  },
+  {
+   "fieldname": "castastro_detalles_trimestre_estado",
+   "fieldtype": "Select",
+   "label": "Estado",
+   "options": "PAGADO\nPOR_PAGAR"
+  },
+  {
+   "fieldname": "column_break_jkdi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "castastro_detalles_trimestre_monto",
+   "fieldtype": "Currency",
+   "label": "Monto",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "castastro_detalles_trimestre_tipo_documento",
+   "fieldtype": "Data",
+   "label": "Tipo Documento"
+  },
+  {
+   "fieldname": "castastro_detalles_trimestre_numero_documento",
+   "fieldtype": "Data",
+   "label": "Numero Documento"
+  },
+  {
+   "fieldname": "detalle_catastro_movimiento_tab",
+   "fieldtype": "Tab Break",
+   "label": "Detalle Catastro Movimiento"
+  },
+  {
+   "fieldname": "relacionado_castastro_movimiento_section",
+   "fieldtype": "Section Break",
+   "label": "Relacionado Castastro Movimiento"
+  },
+  {
+   "fieldname": "castastro_movimiento",
+   "fieldtype": "HTML",
+   "label": "Castastro Movimiento"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:29.918574",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "castastro_detalles_trimestre",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

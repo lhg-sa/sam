@@ -1,0 +1,334 @@
+{
+ "actions": [],
+ "autoname": "format:MC-{######}",
+ "creation": "2024-09-11 12:14:46.320776",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "movimientos_section",
+  "catastro_movimiento_tipo",
+  "column_break_csti",
+  "fecha_operacion",
+  "section_break_wc65",
+  "column_break_earq",
+  "propietario",
+  "new_tarjeta",
+  "column_break_grhk",
+  "custom_matricula",
+  "new_catastro_inmueble",
+  "datos_generale_section",
+  "id_catastro",
+  "tarjeta",
+  "licencia_numero",
+  "column_break_vvax",
+  "inmueble_propietario",
+  "matricula_de_propietario",
+  "actualizaci\u00f3n_de_valor_section",
+  "valor_del_terreno",
+  "valor_de_construccion",
+  "column_break_tvwi",
+  "valor_de_cultivo",
+  "valor_total",
+  "datos_de_notario_section",
+  "movimiento_colegiado",
+  "column_break_evcd",
+  "movimiento_notario_nombre",
+  "catastro_inmueble_section",
+  "ubicaci\u00f3n_catastral_direcci\u00f3n",
+  "area_del_terreno_en_m2",
+  "area_de_construcci\u00f3n_en_m2",
+  "area_de_cultivos_en_m2",
+  "column_break_vofx",
+  "finca",
+  "folio",
+  "libro",
+  "registro",
+  "observaciones_generales_section",
+  "movimiento_nota"
+ ],
+ "fields": [
+  {
+   "fieldname": "movimientos_section",
+   "fieldtype": "Section Break",
+   "label": "Movimientos"
+  },
+  {
+   "bold": 1,
+   "default": "9-OTRO",
+   "fieldname": "catastro_movimiento_tipo",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tipo de Movimiento / Procedencia",
+   "options": "1-INSCRIPCION NUEVA\n2-DESMEMBRACION\n3-TRASPASO\n4-ACTUALIZACION DE VALOR\n5-UNIFICACION\n6-REGISTRO DE LICENCIA\n9-OTRO",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_csti",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fecha_operacion",
+   "fieldtype": "Date",
+   "label": "Fecha Operacion",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.catastro_movimiento_tipo == \"1-INSCRIPCION NUEVA\"\n \n",
+   "fieldname": "section_break_wc65",
+   "fieldtype": "Section Break",
+   "label": "Datos Generales"
+  },
+  {
+   "fieldname": "column_break_earq",
+   "fieldtype": "Column Break",
+   "read_only_depends_on": "eval: doc.catastro_movimiento_tipo == \"4-ACTUALIZACION DE VALOR\"\n"
+  },
+  {
+   "fieldname": "propietario",
+   "fieldtype": "Link",
+   "label": "Propietario",
+   "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "new_tarjeta",
+   "fieldtype": "Data",
+   "label": "New Tarjeta"
+  },
+  {
+   "fieldname": "column_break_grhk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "propietario.custom_matricula",
+   "fieldname": "custom_matricula",
+   "fieldtype": "Data",
+   "label": "Matricula del Propietario",
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_catastro_inmueble",
+   "fieldtype": "Link",
+   "label": "New Catastro Inmueble",
+   "options": "catastro_inmueble",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.catastro_movimiento_tipo == \"4-ACTUALIZACION DE VALOR\"\n",
+   "fieldname": "datos_generale_section",
+   "fieldtype": "Section Break",
+   "label": "Datos Generale"
+  },
+  {
+   "fieldname": "id_catastro",
+   "fieldtype": "Link",
+   "label": "ID Inmueble de Catastro:",
+   "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"4-ACTUALIZACION DE VALOR\"",
+   "options": "catastro_inmueble"
+  },
+  {
+   "fetch_from": "id_catastro.tarjeta",
+   "fieldname": "tarjeta",
+   "fieldtype": "Data",
+   "label": "Tarjeta",
+   "read_only": 1
+  },
+  {
+   "fieldname": "licencia_numero",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Numero de Licencia"
+  },
+  {
+   "depends_on": "eval:doc.catastro_movimiento_tipo == \"1-INSCRIPCION NUEVA\" || doc.catastro_movimiento_tipo == \"4-ACTUALIZACION DE VALOR\"\n",
+   "fieldname": "column_break_vvax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "id_catastro.propietario",
+   "fieldname": "inmueble_propietario",
+   "fieldtype": "Data",
+   "label": "Inmueble Propietario",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "id_catastro.customer_name",
+   "fieldname": "matricula_de_propietario",
+   "fieldtype": "Data",
+   "label": "Matricula de Propietario",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.catastro_movimiento_tipo == \"1-INSCRIPCION NUEVA\" || doc.catastro_movimiento_tipo == \"4-ACTUALIZACION DE VALOR\"\n",
+   "fieldname": "actualizaci\u00f3n_de_valor_section",
+   "fieldtype": "Section Break",
+   "label": "Actualizaci\u00f3n de Valor"
+  },
+  {
+   "default": "0",
+   "fetch_from": "id_catastro.valor_del_terreno",
+   "fetch_if_empty": 1,
+   "fieldname": "valor_del_terreno",
+   "fieldtype": "Currency",
+   "label": "Valor del Terreno",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fetch_from": "id_catastro.valor_de_construccion",
+   "fetch_if_empty": 1,
+   "fieldname": "valor_de_construccion",
+   "fieldtype": "Currency",
+   "label": "Valor de Construcci\u00f3n",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_tvwi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fetch_from": "id_catastro.valor_de_cultivo",
+   "fetch_if_empty": 1,
+   "fieldname": "valor_de_cultivo",
+   "fieldtype": "Currency",
+   "label": "Valor de Cultivo",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fetch_from": "id_catastro.valor_total",
+   "fieldname": "valor_total",
+   "fieldtype": "Currency",
+   "label": "Valor  Fiscal Afecto",
+   "non_negative": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n\n",
+   "fieldname": "datos_de_notario_section",
+   "fieldtype": "Section Break",
+   "label": "Datos de Notario"
+  },
+  {
+   "fieldname": "movimiento_colegiado",
+   "fieldtype": "Int",
+   "label": "Colegiado"
+  },
+  {
+   "fieldname": "column_break_evcd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "movimiento_notario_nombre",
+   "fieldtype": "Data",
+   "label": "Nombre"
+  },
+  {
+   "depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n\n",
+   "fieldname": "catastro_inmueble_section",
+   "fieldtype": "Section Break",
+   "label": "Catastro Inmueble"
+  },
+  {
+   "fieldname": "ubicaci\u00f3n_catastral_direcci\u00f3n",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n Catastral (Direcci\u00f3n)",
+   "length": 400,
+   "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n"
+  },
+  {
+   "fieldname": "area_del_terreno_en_m2",
+   "fieldtype": "Float",
+   "label": "Area del Terreno en M2",
+   "precision": "2"
+  },
+  {
+   "fieldname": "area_de_construcci\u00f3n_en_m2",
+   "fieldtype": "Float",
+   "label": "Area de Construcci\u00f3n en M2",
+   "precision": "2"
+  },
+  {
+   "fieldname": "area_de_cultivos_en_m2",
+   "fieldtype": "Float",
+   "label": "Area de Cultivos en M2",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_vofx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "finca",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Finca",
+   "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n"
+  },
+  {
+   "fieldname": "folio",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Folio",
+   "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n"
+  },
+  {
+   "fieldname": "libro",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Libro",
+   "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n"
+  },
+  {
+   "depends_on": "eval:doc.catastro_movimiento_tipo==\"1-INSCRIPCION NUEVA\"\n",
+   "fieldname": "registro",
+   "fieldtype": "Select",
+   "label": "Registro",
+   "options": "GUATEMALA\nDERECHOS POSESORIOS\nSIN REGISTRO"
+  },
+  {
+   "fieldname": "observaciones_generales_section",
+   "fieldtype": "Section Break",
+   "label": "Observaciones Generales"
+  },
+  {
+   "fieldname": "movimiento_nota",
+   "fieldtype": "Small Text",
+   "label": "Anotaciones"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:25.770982",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "catastro_movimiento",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

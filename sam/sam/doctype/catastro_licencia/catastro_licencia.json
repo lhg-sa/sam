@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:LC-{YY}-{####}",
+ "creation": "2024-05-19 18:55:15.948580",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "datos_generales_tab",
+  "datos_generales_section",
+  "id_catastro",
+  "inmueble_propietario_id",
+  "propietario_inmueble",
+  "representante_legal",
+  "column_break_rdcs",
+  "fecha_solicitud",
+  "fecha_emicion",
+  "fecha_finaliza",
+  "section_break_ynky",
+  "licencia_tipo",
+  "column_break_bmsw",
+  "licencia_valor",
+  "licencia_por_operar",
+  "licencia_operada",
+  "section_break_rvpt",
+  "licencia_descripcion",
+  "detalle_de_licencia_tab",
+  "licencia_area_construccion",
+  "licencia_niveles",
+  "column_break_xzbk",
+  "licencia_factor",
+  "licencia_categoria",
+  "detalle_tab",
+  "relacionado_catasro_licencia_section",
+  "html_inmueble"
+ ],
+ "fields": [
+  {
+   "fieldname": "datos_generales_tab",
+   "fieldtype": "Tab Break",
+   "label": "Datos Generales"
+  },
+  {
+   "fieldname": "datos_generales_section",
+   "fieldtype": "Section Break",
+   "label": "Datos Generales"
+  },
+  {
+   "fieldname": "id_catastro",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "ID Inmueble de Catastro",
+   "options": "catastro_inmueble",
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "fetch_from": "id_catastro.propietario",
+   "fieldname": "inmueble_propietario_id",
+   "fieldtype": "Data",
+   "label": "Inmueble Propietario Id",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fetch_from": "id_catastro.customer_name",
+   "fieldname": "propietario_inmueble",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Inmueble Matricula del Propietario",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fetch_from": "id_catastro.representante_legal",
+   "fieldname": "representante_legal",
+   "fieldtype": "Data",
+   "label": "Representante Legal",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_rdcs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fecha_solicitud",
+   "fieldtype": "Date",
+   "label": "Fecha de Solicitud"
+  },
+  {
+   "fieldname": "fecha_emicion",
+   "fieldtype": "Date",
+   "label": "Fecha de Emisi\u00f3n"
+  },
+  {
+   "fieldname": "fecha_finaliza",
+   "fieldtype": "Date",
+   "label": "Fecha de Finalizaci\u00f3n"
+  },
+  {
+   "fieldname": "section_break_ynky",
+   "fieldtype": "Section Break",
+   "label": "Datos de Valuaci\u00f3n"
+  },
+  {
+   "default": "VIVIENDA FORMAL",
+   "fieldname": "licencia_tipo",
+   "fieldtype": "Select",
+   "label": "Tipo de Construcci\u00f3n",
+   "options": "VIVIENDA MINIMA\nVIVIENDA FORMAL\nURBANIZCION\nOTRO"
+  },
+  {
+   "fieldname": "column_break_bmsw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "licencia_valor",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Valor Total de la Licencia",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "licencia_por_operar",
+   "fieldtype": "Check",
+   "label": "Operar en Catastro",
+   "options": "0"
+  },
+  {
+   "default": "0",
+   "fieldname": "licencia_operada",
+   "fieldtype": "Check",
+   "label": "Licencia Operada"
+  },
+  {
+   "fieldname": "section_break_rvpt",
+   "fieldtype": "Section Break",
+   "label": "Datos Generales:"
+  },
+  {
+   "fieldname": "licencia_descripcion",
+   "fieldtype": "Small Text",
+   "label": "Descripci\u00f3n"
+  },
+  {
+   "fieldname": "detalle_de_licencia_tab",
+   "fieldtype": "Tab Break",
+   "label": "Detalle de Licencia"
+  },
+  {
+   "default": "0",
+   "fieldname": "licencia_area_construccion",
+   "fieldtype": "Float",
+   "label": "\u00c1rea de Construcci\u00f3n (M2)",
+   "precision": "2"
+  },
+  {
+   "default": "1",
+   "fieldname": "licencia_niveles",
+   "fieldtype": "Int",
+   "label": "Niveles"
+  },
+  {
+   "fieldname": "column_break_xzbk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "SIN FACTOR EDAD",
+   "fieldname": "licencia_factor",
+   "fieldtype": "Select",
+   "label": "Categor\u00eda/Factor",
+   "options": "SIN FACTOR EDAD"
+  },
+  {
+   "default": "TIPO \"A\"",
+   "fieldname": "licencia_categoria",
+   "fieldtype": "Select",
+   "label": "Tipo",
+   "options": "TIPO \"A\"\nTIPO \"B\"\nTIPO \"C\""
+  },
+  {
+   "fieldname": "detalle_tab",
+   "fieldtype": "Tab Break",
+   "label": "Detalle Catastro Inmueble"
+  },
+  {
+   "fieldname": "relacionado_catasro_licencia_section",
+   "fieldtype": "Section Break",
+   "label": "Relacionado Catastro Inmueble"
+  },
+  {
+   "fieldname": "html_inmueble",
+   "fieldtype": "HTML",
+   "label": "html_inmueble"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:26.397479",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "catastro_licencia",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
