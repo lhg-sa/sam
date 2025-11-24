@@ -1,12 +1,16 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:marca_vehiculo",
  "creation": "2025-10-08 13:11:04.968163",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "marca_vehiculo"
+  "column_break_txvs",
+  "column_break_wijl",
+  "marca_vehiculo",
+  "column_break_azge"
  ],
  "fields": [
   {
@@ -14,12 +18,24 @@
    "fieldtype": "Data",
    "label": "Marca",
    "unique": 1
+  },
+  {
+   "fieldname": "column_break_txvs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wijl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_azge",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-08 16:22:30.361919",
+ "modified": "2025-11-23 23:01:04.335591",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Marca Vehiculo",
@@ -40,7 +56,10 @@
   }
  ],
  "row_format": "Dynamic",
+ "search_fields": "marca_vehiculo",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "marca_vehiculo"
 }

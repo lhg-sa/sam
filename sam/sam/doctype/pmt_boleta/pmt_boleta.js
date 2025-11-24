@@ -1,134 +1,193 @@
 // Copyright (c) 2025, Lidar Holding Group S. A. and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on("PMT Boleta", {
-    refresh: function(frm) {
-        // === Estilo para el campo 'boleta_id' (input) ===
-        $(frm.fields_dict.boleta_id.wrapper).find('input').css({
+const FIELD_STYLE_CONFIG = {
+    boleta_id: {
+        input: {
             'font-size': '26px',
             'text-align': 'center',
-            'border': '2px solid red',
+            border: '2px solid red',
             'border-radius': '6px',
-            'padding': '8px'
-        });
-
-        // Estilo para la etiqueta (label) de 'boleta_id'
-        $(frm.fields_dict.boleta_id.label_area).css({
-            'color': 'green',
+            padding: '8px'
+        },
+        label: {
+            color: 'green',
             'text-align': 'center',
-            'width': '100%',
+            width: '100%',
             'font-size': '20px',
             'font-weight': 'bold'
-        });
-
-        // === Centrar el campo SELECT 'estado_boleta' ===
-        $(frm.fields_dict.estado_boleta.wrapper).find('select').css({
+        }
+    },
+    estado_boleta: {
+        select: {
             'text-align': 'center',
             'text-align-last': 'center',
             '-moz-text-align-last': 'center',
             'font-size': '10px',
-            'border': '2px solid green',
+            border: '2px solid green',
             'border-radius': '6px',
-            'padding': '6px'
-        });
-
-        // Estilo para la etiqueta (label) de 'estado_boleta'
-        $(frm.fields_dict.estado_boleta.label_area).css({
-            'color': 'green',
+            padding: '6px'
+        },
+        label: {
+            color: 'green',
             'text-align': 'center',
-            'width': '100%',
+            width: '100%',
             'font-size': '12px',
             'font-weight': 'bold'
-        });
-
-        // === Agregar borde azul a la columna que comienza en 'column_break_mvvo' ===
-        const colBreak = frm.fields_dict.column_break_mvvo?.wrapper;
-        if (colBreak) {
-            const columnContainer = $(colBreak).closest('.form-column');
-            if (columnContainer.length) {
-                columnContainer.css({
-                    'border-left': '3px solid green',
-                    'padding-left': '15px',
-                    'padding-right': '15px',
-                    'border-radius': '4px'
-                });
-            }
         }
+    }
+};
 
-        // Add "Guardar y Crear Nueva" button only for new documents
-        if (frm.is_new()) {
-            frm.page.add_inner_button(__('Guardar y Crear Nueva'), function() {
-                frm.save(null, null, () => {
-                    frappe.new_doc('PMT Boleta');
-                });
-            });
-        }
+const COLUMN_BORDER_CONFIG = {
+    column_break_mvvo: {
+        'border-left': '3px solid green',
+        'padding-left': '15px',
+        'padding-right': '15px',
+        'border-radius': '4px'
+    }
+};
 
-        // === Establecer fecha de ayer en 'fecha_infraccion' (solo en documentos nuevos y si está vacío) ===
-        if (frm.is_new() && !frm.doc.fecha_infraccion) {
-            const today = new Date();
-            const yesterday = new Date(today);
-            yesterday.setDate(today.getDate() - 1);
+const FIELDS_TO_TOGGLE = ['agente', 'vehiculo_id', 'fecha_infraccion', 'cui', 'articulo_codigo', 'fecha_infraccion_descuento'];
+const INTEREST_RATE = 0.20; // 20% anual
+const INTEREST_GRACE_DAYS = 6; // días hábiles antes de aplicar interés
+const DISCOUNT_RATE = 0.25; // 25% de descuento
+const DISCOUNT_BUSINESS_DAYS = 5; // primeros 5 días hábiles
 
-            const yyyy = yesterday.getFullYear();
-            const mm = String(yesterday.getMonth() + 1).padStart(2, '0');
-            const dd = String(yesterday.getDate()).padStart(2, '0');
-
-            frm.set_value('fecha_infraccion', `${yyyy}-${mm}-${dd}`);
-        }
-        
-        // Check estado_boleta to set fields as read-only
+// -------------------------------
+// Form lifecycle
+// -------------------------------
+frappe.ui.form.on('PMT Boleta', {
+    refresh(frm) {
+        applyFieldStyles(frm);
+        applyColumnStyles(frm);
+        ensureQuickCreateButton(frm);
+        ensureDefaultFechaInfraccion(frm);
         toggleFieldsBasedOnEstadoBoleta(frm);
+        calculateInfraccionSaldo(frm);
     },
 
-    // 🔁 Se ejecuta cuando cambia "fecha_infraccion"
-    fecha_infraccion: function(frm) {
-        if (frm.doc.fecha_infraccion) {
-            const startDate = frappe.datetime.str_to_obj(frm.doc.fecha_infraccion);
-            const dueDate = addBusinessDays(startDate, 5);
-            frm.set_value('fecha_infraccion_descuento', frappe.datetime.obj_to_str(dueDate));
-        } else {
-            // Si se borra la fecha, limpiar el campo de descuento
-            frm.set_value('fecha_infraccion_descuento', '');
+    fecha_infraccion(frm) {
+        updateFechaInfraccionDescuento(frm);
+        calculateInfraccionSaldo(frm);
+    },
+
+    boleta_id(frm) {
+        if (!frm.doc.boleta_id) {
+            return;
         }
+
+        frappe.call({
+            method: 'sam.sam.pmt_utils.obtener_datos_boleta',
+            args: { boleta_id: frm.doc.boleta_id }
+        }).then(r => {
+            if (!r.message) {
+                return;
+            }
+
+            const { estado_boleta, agente_asignado_detalle } = r.message;
+            frm.set_value('estado_boleta', estado_boleta || '');
+            frm.set_value('agente', agente_asignado_detalle || '');
+            focusFieldInput(frm, 'vehiculo_id');
+        });
     },
 
-    boleta_id: function(frm) {
-        if (frm.doc.boleta_id) {
-            frappe.call({
-                method: 'sam.sam.pmt_utils.obtener_datos_boleta',
-                args: { boleta_id: frm.doc.boleta_id }
-            }).then(r => {
-                if (r.message) {
-                    const { estado_boleta, agente_asignado_detalle, talonario_id } = r.message;
-                    frm.set_value('estado_boleta', estado_boleta || '');
-                    frm.set_value('agente', agente_asignado_detalle || '');
-                    // Set focus to vehiculo_id field when search returns valid data
-                    frm.fields_dict.vehiculo_id?.df.fieldname && frm.fields_dict.vehiculo_id.$input?.focus();
-                }
-            });
-        }
+    vehiculo_id(frm) {
+        focusFieldInput(frm, 'cui');
     },
 
-    // Add focus change to cui field when vehiculo_id changes
-    vehiculo_id: function(frm) {
-        // Set focus to cui field when vehiculo_id value changes
-        frm.fields_dict.cui?.df.fieldname && frm.fields_dict.cui.$input?.focus();
+    cui(frm) {
+        focusFieldInput(frm, 'articulo_codigo');
     },
 
-    // Add focus change to articulo_codigo field when cui changes
-    cui: function(frm) {
-        // Set focus to articulo_codigo field when cui value changes
-        frm.fields_dict.articulo_codigo?.df.fieldname && frm.fields_dict.articulo_codigo.$input?.focus();
+    articulo_valor(frm) {
+        calculateInfraccionSaldo(frm);
     },
-    
-    // Handle estado_boleta changes to toggle fields read-only status
-    estado_boleta: function(frm) {
+
+    estado_boleta(frm) {
         toggleFieldsBasedOnEstadoBoleta(frm);
     }
 });
 
-// 📅 Función auxiliar: sumar N días hábiles (lunes-viernes)
+// -------------------------------
+// Styling helpers
+// -------------------------------
+function applyFieldStyles(frm) {
+    Object.entries(FIELD_STYLE_CONFIG).forEach(([fieldname, config]) => {
+        const field = frm.get_field(fieldname);
+        if (!field) {
+            return;
+        }
+
+        if (config.input && field.$input) {
+            field.$input.css(config.input);
+        }
+
+        if (config.select) {
+            field.$wrapper?.find('select').css(config.select);
+        }
+
+        if (config.label) {
+            const labelElement = field.$wrapper?.find('.control-label');
+            if (labelElement && labelElement.length) {
+                labelElement.css(config.label);
+                labelElement.parent().css('text-align', config.label['text-align'] || '');
+            }
+        }
+    });
+}
+
+function applyColumnStyles(frm) {
+    Object.entries(COLUMN_BORDER_CONFIG).forEach(([fieldname, cssRules]) => {
+        const wrapper = frm.fields_dict[fieldname]?.wrapper;
+        if (!wrapper) {
+            return;
+        }
+        const columnContainer = $(wrapper).closest('.form-column');
+        if (columnContainer.length) {
+            columnContainer.css(cssRules);
+        }
+    });
+}
+
+function ensureQuickCreateButton(frm) {
+    if (!frm.is_new()) {
+        return;
+    }
+    frm.page.add_inner_button(__('Guardar y Crear Nueva'), () => {
+        frm.save(null, null, () => frappe.new_doc('PMT Boleta'));
+    });
+}
+
+// -------------------------------
+// Date helpers
+// -------------------------------
+function ensureDefaultFechaInfraccion(frm) {
+    if (!frm.is_new() || frm.doc.fecha_infraccion) {
+        return;
+    }
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const yyyy = yesterday.getFullYear();
+    const mm = String(yesterday.getMonth() + 1).padStart(2, '0');
+    const dd = String(yesterday.getDate()).padStart(2, '0');
+
+    frm.set_value('fecha_infraccion', `${yyyy}-${mm}-${dd}`);
+}
+
+function updateFechaInfraccionDescuento(frm) {
+    const fecha = frm.doc.fecha_infraccion;
+    if (!fecha) {
+        frm.set_value('fecha_infraccion_descuento', '');
+        return;
+    }
+    const startDate = frappe.datetime.str_to_obj(fecha);
+    const dueDate = addBusinessDays(startDate, 5);
+    frm.set_value('fecha_infraccion_descuento', frappe.datetime.obj_to_str(dueDate));
+}
+
+// 📅 Suma n días hábiles (lunes a viernes)
 function addBusinessDays(date, days) {
     let result = new Date(date);
     let addedDays = 0;
@@ -136,7 +195,6 @@ function addBusinessDays(date, days) {
     while (addedDays < days) {
         result.setDate(result.getDate() + 1);
         const day = result.getDay();
-        // 0 = domingo, 6 = sábado → solo contar lunes (1) a viernes (5)
         if (day !== 0 && day !== 6) {
             addedDays++;
         }
@@ -144,19 +202,148 @@ function addBusinessDays(date, days) {
     return result;
 }
 
-// Function to toggle fields read-only status based on estado_boleta value
+// -------------------------------
+// Field state helpers
+// -------------------------------
 function toggleFieldsBasedOnEstadoBoleta(frm) {
-    // Fields to toggle read-only status
-    const fieldsToToggle = ['agente', 'vehiculo_id', 'fecha_infraccion', 'cui', 'articulo_codigo', 'fecha_infraccion_descuento'];
-    
-    // Check if estado_boleta is NOT "DISPONIBLE" or "DIGITADA"
-    const readOnlyStatus = !(frm.doc.estado_boleta === "DISPONIBLE" || frm.doc.estado_boleta === "DIGITADA");
-    
-    // Set read-only status for each field
-    fieldsToToggle.forEach(field => {
-        if (frm.fields_dict[field]) {
-            frm.fields_dict[field].df.read_only = readOnlyStatus ? 1 : 0;
-            frm.fields_dict[field].refresh();
+    const readOnlyStatus = !(frm.doc.estado_boleta === 'DISPONIBLE' || frm.doc.estado_boleta === 'VERIFICACION');
+    FIELDS_TO_TOGGLE.forEach(fieldname => {
+        const field = frm.fields_dict[fieldname];
+        if (!field) {
+            return;
         }
+        field.df.read_only = readOnlyStatus ? 1 : 0;
+        field.refresh();
     });
+}
+
+function focusFieldInput(frm, fieldname) {
+    const field = frm.get_field(fieldname);
+    if (field && field.$input) {
+        frappe.after_ajax(() => setTimeout(() => field.$input.focus(), 0));
+    }
+}
+
+// -------------------------------
+// Financial helpers
+// -------------------------------
+function calculateInfraccionSaldo(frm) {
+    const principal = parseFloat(frm.doc.articulo_valor) || 0;
+    const fechaInfraccion = frm.doc.fecha_infraccion;
+
+    if (!principal) {
+        updateInfraccionSaldoField(frm, 0);
+        return;
+    }
+
+    if (!fechaInfraccion) {
+        updateInfraccionSaldoField(frm, principal);
+        return;
+    }
+
+    const startDate = frappe.datetime.str_to_obj(fechaInfraccion);
+    if (!startDate) {
+        updateInfraccionSaldoField(frm, principal);
+        return;
+    }
+
+    const todayStr = frappe.datetime.get_today();
+    const today = frappe.datetime.str_to_obj(todayStr);
+    const discountDeadline = addBusinessDays(startDate, DISCOUNT_BUSINESS_DAYS);
+    const accrualStartDate = addBusinessDays(startDate, INTEREST_GRACE_DAYS);
+
+    if (!discountDeadline || !accrualStartDate || !today) {
+        updateInfraccionSaldoField(frm, principal);
+        return;
+    }
+
+    if (today <= discountDeadline) {
+        const discountedAmount = principal * (1 - DISCOUNT_RATE);
+        updateInfraccionSaldoField(frm, Number(discountedAmount.toFixed(2)));
+        return;
+    }
+
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const elapsedDays = Math.max(0, Math.floor((today - accrualStartDate) / msPerDay));
+    const interest = principal * INTEREST_RATE * (elapsedDays / 365);
+    const saldo = principal + interest;
+
+    updateInfraccionSaldoField(frm, Number(saldo.toFixed(2)));
+}
+
+function updateInfraccionSaldoField(frm, amount) {
+    const roundedAmount = Number((amount || 0).toFixed(2));
+    const formattedAmount = formatAsQuetzal(roundedAmount);
+    const field = frm.get_field('infraccion_saldo');
+
+    if (!field) {
+        frm.set_value('infraccion_saldo', roundedAmount);
+        return;
+    }
+
+    if (field.df.fieldtype === 'HTML') {
+        const controlWrapper = field.$wrapper.find('.frappe-control');
+        const parentContainer = controlWrapper.length ? controlWrapper : field.$wrapper;
+        let valueContainer = parentContainer.find('.infraccion-saldo-display');
+
+        if (!valueContainer.length) {
+            valueContainer = $('<div class="infraccion-saldo-display control-value"></div>').appendTo(parentContainer);
+        }
+
+        valueContainer
+            .html(formattedAmount)
+            .css({
+                'text-align': 'right',
+                color: 'red',
+                'font-weight': 'bold',
+                'font-size': '18px',
+                'border': '2px solid yellow',
+                'border-radius': '6px',
+                padding: '8px',
+                'pointer-events': 'none',
+                'user-select': 'none'
+            })
+            .attr('contenteditable', 'false');
+    } else {
+        frm.set_value('infraccion_saldo', roundedAmount);
+        if (field.$input && field.$input.length) {
+            field.$input.css({
+                'text-align': 'right',
+                color: 'red',
+                'font-weight': 'bold',
+                'font-size': '18px',
+                'border': '2px solid yellow',
+                'border-radius': '6px',
+                padding: '8px'
+            });
+        }
+        field.$wrapper?.find('.control-value').css({
+            'text-align': 'right',
+            color: 'red',
+            'font-weight': 'bold',
+            'font-size': '18px',
+            'border': '2px solid yellow',
+            'border-radius': '6px',
+            padding: '8px'
+        });
+    }
+}
+
+function formatAsQuetzal(value) {
+    const amount = typeof value === 'number' ? value : parseFloat(value) || 0;
+    if (frappe.format_value) {
+        try {
+            const formatted = frappe.format_value(amount, {
+                fieldtype: 'Currency',
+                options: 'GTQ'
+            });
+            if (formatted) {
+                return formatted;
+            }
+        } catch (err) {
+            // fallback manual format
+        }
+    }
+
+    return `Q ${amount.toFixed(2)}`;
 }

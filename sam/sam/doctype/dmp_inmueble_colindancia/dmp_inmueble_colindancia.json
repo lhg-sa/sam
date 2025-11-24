@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-09-11 14:42:48.837855",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "id_catastro",
+  "colindancia_tipo",
+  "column_break_bbuo",
+  "colindancia_posicion"
+ ],
+ "fields": [
+  {
+   "fieldname": "id_catastro",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Id Catastro",
+   "options": "DMP Inmueble"
+  },
+  {
+   "default": "REGULAR",
+   "fieldname": "colindancia_tipo",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tipo",
+   "options": "REGULAR\nDERECHO DE PASO\nCALLE"
+  },
+  {
+   "fieldname": "column_break_bbuo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "OTROS",
+   "fieldname": "colindancia_posicion",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Posicion",
+   "options": "NORTE\nSUR\nESTE\nOESTE\nOTROS"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-18 21:49:33.985661",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "DMP Inmueble Colindancia",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

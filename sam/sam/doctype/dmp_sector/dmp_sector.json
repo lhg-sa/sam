@@ -1,0 +1,51 @@
+{
+ "actions": [],
+ "autoname": "format:SM-{###}",
+ "creation": "2024-05-19 15:44:00.084351",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sector_nombre",
+  "sector_nota"
+ ],
+ "fields": [
+  {
+   "description": "Nombre del sector o \u00e1rea",
+   "fieldname": "sector_nombre",
+   "fieldtype": "Data",
+   "label": "Nombre del sector"
+  },
+  {
+   "fieldname": "sector_nota",
+   "fieldtype": "Small Text",
+   "label": "Notas del Sector"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 18:13:32.492141",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "DMP Sector",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "sector_nombre",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

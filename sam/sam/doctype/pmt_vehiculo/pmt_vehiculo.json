@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "format:{placa_tipo}{placa_numero}",
  "creation": "2025-10-08 15:24:11.187762",
  "doctype": "DocType",
@@ -13,10 +14,12 @@
   "registro_unificado_de_vecino",
   "nit_del_propietario",
   "propietario",
+  "tarjeta_circulacion",
   "datos_generales_section",
   "vehiculo_linea",
   "ano_fabricacion",
   "color",
+  "tipo_vehiculo",
   "column_break_vtxi",
   "motor",
   "codigo",
@@ -68,7 +71,7 @@
    "allow_in_quick_entry": 1,
    "fieldname": "marca_vehiculo",
    "fieldtype": "Link",
-   "label": "Marca del Vehiculo",
+   "label": "ID de Marca",
    "options": "PMT Marca Vehiculo"
   },
   {
@@ -89,8 +92,9 @@
   },
   {
    "fieldname": "color",
-   "fieldtype": "Data",
-   "label": "Color"
+   "fieldtype": "Link",
+   "label": "Color",
+   "options": "PMT Vehiculo Color"
   },
   {
    "fieldname": "column_break_vtxi",
@@ -116,12 +120,23 @@
    "fieldname": "propietario",
    "fieldtype": "Data",
    "label": "Nombre del Propietario"
+  },
+  {
+   "fieldname": "tarjeta_circulacion",
+   "fieldtype": "Data",
+   "label": "Tarjeta de Circulaci\u00f3n"
+  },
+  {
+   "fieldname": "tipo_vehiculo",
+   "fieldtype": "Link",
+   "label": "Tipo de Vehiculo",
+   "options": "PMT Vehiculo Tipo"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-12 17:33:44.654431",
+ "modified": "2025-11-23 16:19:40.596729",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Vehiculo",

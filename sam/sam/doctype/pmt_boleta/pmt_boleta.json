@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "field:boleta_id",
  "creation": "2025-10-10 20:45:43.319313",
  "doctype": "DocType",
@@ -10,6 +11,7 @@
   "column_break_mvvo",
   "boleta_id",
   "estado_boleta",
+  "imagen_boleta",
   "column_break_gaik",
   "datos_de_infracci\u00f3n_section",
   "column_break_hnlb",
@@ -19,11 +21,11 @@
   "datos_del_vehiculo_section",
   "vehiculo_id",
   "fecha_infraccion",
-  "imagen_boleta",
   "column_break_zmnx",
   "marca_vehiculo",
   "propietario",
   "nit",
+  "vehiculo_descripcion_marca",
   "datos_del_conductor_section",
   "cui",
   "nombre_infractor",
@@ -33,10 +35,14 @@
   "datos_de_la_infracci\u00f3n_section",
   "articulo_codigo",
   "descripci\u00f3n_del_articulo",
+  "ubicacion_infraccion",
+  "firmo_boleta",
   "column_break_frix",
+  "observaciones",
   "articulo_valor",
   "fecha_infraccion_descuento",
-  "infraccion_saldo"
+  "infraccion_saldo",
+  "fecha_pago"
  ],
  "fields": [
   {
@@ -46,7 +52,7 @@
   {
    "bold": 1,
    "fieldname": "boleta_id",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "in_filter": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
@@ -92,7 +98,7 @@
    "fetch_from": "vehiculo_id.marca_vehiculo",
    "fieldname": "marca_vehiculo",
    "fieldtype": "Data",
-   "label": "Marca",
+   "label": "ID Marca",
    "read_only": 1
   },
   {
@@ -121,7 +127,7 @@
   {
    "fieldname": "cui",
    "fieldtype": "Link",
-   "label": "CUI / Identificador",
+   "label": "Licencia / Identificador",
    "options": "PMT Infractor"
   },
   {
@@ -174,15 +180,18 @@
   {
    "fieldname": "infraccion_saldo",
    "fieldtype": "HTML",
-   "label": "Saldo Actual"
+   "label": "Saldo Actual",
+   "precision": "2",
+   "read_only": 1
   },
   {
    "fieldname": "estado_boleta",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_filter": 1,
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Estado de Boleta",
-   "options": "DISPONIBLE\nDIGITADA\nVALIDADA\nJUZGADO\nANULADA\nPAGADA"
+   "options": "PMT Boleta Estado"
   },
   {
    "fetch_from": "agente.agente_nombre",
@@ -230,13 +239,42 @@
    "fieldname": "imagen_boleta",
    "fieldtype": "Attach Image",
    "label": "Imagen de Boleta"
+  },
+  {
+   "fieldname": "ubicacion_infraccion",
+   "fieldtype": "Small Text",
+   "label": "Direcci\u00f3n de Infracci\u00f3n"
+  },
+  {
+   "fieldname": "observaciones",
+   "fieldtype": "Small Text",
+   "label": "Observaciones"
+  },
+  {
+   "fieldname": "fecha_pago",
+   "fieldtype": "Date",
+   "label": "Fecha de Pago",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "firmo_boleta",
+   "fieldtype": "Check",
+   "label": "Firmo Boleta"
+  },
+  {
+   "fetch_from": "vehiculo_id.marca_vehiculo",
+   "fieldname": "vehiculo_descripcion_marca",
+   "fieldtype": "Data",
+   "label": "Marca de Vehiculo",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "image_field": "imagen_boleta",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-05 19:32:02.408511",
+ "modified": "2025-11-23 23:25:50.307130",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",
