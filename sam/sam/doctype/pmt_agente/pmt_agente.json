@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "id_agente",
-  "agente_nombre"
+  "agente_nombre",
+  "chapa_id"
  ],
  "fields": [
   {
@@ -23,12 +24,18 @@
    "fieldtype": "Data",
    "label": "Nombre del Agente",
    "read_only": 1
+  },
+  {
+   "fieldname": "chapa_id",
+   "fieldtype": "Data",
+   "label": "C\u00f3digo de Chapa",
+   "unique": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-10 20:52:43.709502",
+ "modified": "2025-11-26 11:58:52.379311",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Agente",

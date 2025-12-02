@@ -1,0 +1,44 @@
+{
+ "aggregate_function_based_on": "infraccion_saldo",
+ "based_on": "",
+ "chart_name": "Infracciones x Estado",
+ "chart_type": "Group By",
+ "creation": "2025-12-01 20:24:06.263223",
+ "currency": "",
+ "custom_options": "{\r\n  \"scales\": {\r\n    \"y\": {\r\n      \"ticks\": {\r\n        \"callback\": \"function(value){ return 'Q' + value; }\"\r\n      }\r\n    }\r\n  },\r\n  \"plugins\": {\r\n    \"tooltip\": {\r\n      \"callbacks\": {\r\n        \"label\": \"function(context){ return 'Q' + context.parsed.y; }\"\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "document_type": "PMT Boleta",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[]",
+ "group_by_based_on": "estado_boleta",
+ "group_by_type": "Sum",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "last_synced_on": "2025-12-01 20:30:13.240858",
+ "modified": "2025-12-01 20:33:54.343393",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "Infracciones x Estado",
+ "number_of_groups": 5,
+ "owner": "Administrator",
+ "parent_document_type": "",
+ "roles": [
+  {
+   "role": "PMT Administrador"
+  },
+  {
+   "role": "Juzgado Administrador"
+  }
+ ],
+ "show_values_over_chart": 0,
+ "source": "",
+ "time_interval": "Daily",
+ "timeseries": 0,
+ "timespan": "Last Month",
+ "type": "Bar",
+ "use_report_chart": 0,
+ "value_based_on": "",
+ "y_axis": []
+}

@@ -1,6 +1,11 @@
 {
- "charts": [],
- "content": "[{\"id\":\"VACwdSMwrd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Policia Municipal</span>\",\"col\":12}},{\"id\":\"LWOkoyCCAJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Polic\u00eda Municipal de Tr\u00e1nsito<b></b></span>\",\"col\":12}},{\"id\":\"udkeqVNcRT\",\"type\":\"card\",\"data\":{\"card_name\":\"Gesti\u00f3n de Infracciones\",\"col\":4}},{\"id\":\"FigRhrN0sa\",\"type\":\"card\",\"data\":{\"card_name\":\"Catalogos\",\"col\":4}},{\"id\":\"ZOAuFtOhgW\",\"type\":\"card\",\"data\":{\"card_name\":\"Reportes\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "Monto x Estado",
+   "label": "Monto x Estado"
+  }
+ ],
+ "content": "[{\"id\":\"VACwdSMwrd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Policia Municipal</span>\",\"col\":12}},{\"id\":\"LWOkoyCCAJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Polic\u00eda Municipal de Tr\u00e1nsito<b></b></span>\",\"col\":12}},{\"id\":\"udkeqVNcRT\",\"type\":\"card\",\"data\":{\"card_name\":\"Gesti\u00f3n de Infracciones\",\"col\":4}},{\"id\":\"FigRhrN0sa\",\"type\":\"card\",\"data\":{\"card_name\":\"Catalogos\",\"col\":4}},{\"id\":\"00vla6LjdE\",\"type\":\"card\",\"data\":{\"card_name\":\"Reportes\",\"col\":4}},{\"id\":\"FICZPCu5sq\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Monto x Estado\",\"col\":12}},{\"id\":\"oIrmkHfChd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Anal\u00edtica General\",\"col\":3}}]",
  "creation": "2025-09-03 21:54:24.988483",
  "custom_blocks": [],
  "docstatus": 0,
@@ -17,7 +22,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Catalogos",
-   "link_count": 5,
+   "link_count": 7,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -75,8 +80,28 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Gesti\u00f3n de Infracciones",
-   "link_count": 4,
+   "label": "Catalogo de Colores",
+   "link_count": 0,
+   "link_to": "PMT Vehiculo Color",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Catalogo de Tipos",
+   "link_count": 0,
+   "link_to": "PMT Vehiculo Tipo",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reportes",
+   "link_count": 1,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -87,6 +112,35 @@
    "label": "Boletas",
    "link_count": 0,
    "link_to": "PMT Boleta",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gesti\u00f3n de Infracciones",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Boletas",
+   "link_count": 0,
+   "link_to": "PMT Boleta",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Desplegados",
+   "link_count": 0,
+   "link_to": "PMT Desplegado",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -116,32 +170,13 @@
    "is_query_report": 0,
    "label": "Solvencias",
    "link_count": 0,
-   "link_to": "PMT Solvencia",
+   "link_to": "PMT Vehiculo Solvencia",
    "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reportes",
-   "link_count": 1,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Inactive Customers",
-   "link_count": 0,
-   "link_to": "Inactive Customers",
-   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2025-11-12 20:46:20.825173",
+ "modified": "2025-12-01 20:20:40.223821",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PM-PMT",
@@ -152,6 +187,14 @@
  "quick_lists": [],
  "roles": [],
  "sequence_id": 44.0,
- "shortcuts": [],
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Anal\u00edtica General",
+   "link_to": "Policia Municipal de Transito",
+   "type": "Dashboard"
+  }
+ ],
  "title": "PM-PMT"
 }

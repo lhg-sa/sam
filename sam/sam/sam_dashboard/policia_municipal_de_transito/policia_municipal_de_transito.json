@@ -8,6 +8,14 @@
   {
    "chart": "Monto x Estado",
    "width": "Full"
+  },
+  {
+   "chart": "Infracciones x Estado",
+   "width": "Half"
+  },
+  {
+   "chart": "Total Adeudado con Intereses",
+   "width": "Half"
   }
  ],
  "creation": "2025-11-23 22:25:26.527105",
@@ -17,7 +25,7 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2025-11-23 22:30:57.078845",
+ "modified": "2025-12-01 20:27:38.321404",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Policia Municipal de Transito",

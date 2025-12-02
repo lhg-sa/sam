@@ -1,0 +1,102 @@
+{
+ "actions": [],
+ "autoname": "format:SLV-{YY}-{#}",
+ "creation": "2025-11-27 09:36:12.049957",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "column_break_xerc",
+  "column_break_uclb",
+  "placa_vehiculo_buscar",
+  "marca_vehiculo",
+  "recibo_pago",
+  "recibo_pago_imagen",
+  "es_solvente",
+  "column_break_omwy",
+  "section_break_slch",
+  "detalle_multas",
+  "multas_db"
+ ],
+ "fields": [
+  {
+   "fieldname": "placa_vehiculo_buscar",
+   "fieldtype": "Data",
+   "label": "PLACA"
+  },
+  {
+   "fieldname": "marca_vehiculo",
+   "fieldtype": "Data",
+   "label": "Marca"
+  },
+  {
+   "fieldname": "recibo_pago",
+   "fieldtype": "Int",
+   "label": "Recibo de Pago"
+  },
+  {
+   "fieldname": "es_solvente",
+   "fieldtype": "Data",
+   "label": "Estado de Solvencia"
+  },
+  {
+   "fieldname": "section_break_slch",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "detalle_multas",
+   "fieldtype": "HTML",
+   "label": "Multas Pendientes"
+  },
+  {
+   "fieldname": "multas_db",
+   "fieldtype": "Small Text",
+   "label": "Detalle HTML"
+  },
+  {
+   "fieldname": "column_break_xerc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_uclb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "recibo_pago_imagen",
+   "fieldtype": "Attach Image",
+   "label": "Imagen de Recibo"
+  },
+  {
+   "fieldname": "column_break_omwy",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "image_field": "recibo_pago_imagen",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-29 10:48:29.588763",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "PMT Vehiculo Solvencia",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

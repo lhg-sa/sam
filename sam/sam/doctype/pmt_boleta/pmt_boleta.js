@@ -48,23 +48,47 @@ const COLUMN_BORDER_CONFIG = {
 };
 
 const FIELDS_TO_TOGGLE = ['agente', 'vehiculo_id', 'fecha_infraccion', 'cui', 'articulo_codigo', 'fecha_infraccion_descuento'];
-const INTEREST_RATE = 0.20; // 20% anual
-const INTEREST_GRACE_DAYS = 6; // días hábiles antes de aplicar interés
-const DISCOUNT_RATE = 0.25; // 25% de descuento
-const DISCOUNT_BUSINESS_DAYS = 5; // primeros 5 días hábiles
+const LOCKED_STATES = ['PAGADA', 'ANULADA-JUZGADO'];
+const ESTADO_PRESETS = ['PENDIENTE-PAGO', 'ANULADA-AGENTE', 'DISPUTA', 'VERIFICACION', 'ANULADA-JUZGADO'];
+const ESTADO_PRESET_STYLES = {
+    'PENDIENTE-PAGO': { background: '#f6c23e', color: '#1f1f1f' },
+    'ANULADA-AGENTE': { background: '#e74a3b', color: '#fff' },
+    'DISPUTA': { background: '#4e73df', color: '#fff' },
+    'VERIFICACION': { background: '#36b9cc', color: '#fff' },
+    'ANULADA-JUZGADO': { background: '#858796', color: '#fff' }
+};
+
+function getAvailableEstadoPresets() {
+    const roles = frappe?.user_roles || [];
+    if (roles.includes('System Manager') || roles.includes('Juzgado Administrador')) {
+        return ESTADO_PRESETS;
+    }
+
+    if (roles.includes('PMT Administrador')) {
+        return ['ANULADA-AGENTE', 'VERIFICACION', 'PENDIENTE-PAGO'].filter((preset) =>
+            ESTADO_PRESETS.includes(preset)
+        );
+    }
+
+    return [];
+}
+
+const ALERT_TIMEOUT_SECONDS = 5;
 
 // -------------------------------
 // Form lifecycle
 // -------------------------------
 frappe.ui.form.on('PMT Boleta', {
-    refresh(frm) {
-        applyFieldStyles(frm);
-        applyColumnStyles(frm);
-        ensureQuickCreateButton(frm);
-        ensureDefaultFechaInfraccion(frm);
-        toggleFieldsBasedOnEstadoBoleta(frm);
-        calculateInfraccionSaldo(frm);
-    },
+	refresh(frm) {
+		applyFieldStyles(frm);
+		applyColumnStyles(frm);
+		ensureQuickCreateButton(frm);
+		ensureDefaultFechaInfraccion(frm);
+		toggleFieldsBasedOnEstadoBoleta(frm);
+		calculateInfraccionSaldo(frm);
+		enforceLockedState(frm);
+		renderEstadoPresetButtons(frm);
+	},
 
     fecha_infraccion(frm) {
         updateFechaInfraccionDescuento(frm);
@@ -76,20 +100,31 @@ frappe.ui.form.on('PMT Boleta', {
             return;
         }
 
-        frappe.call({
-            method: 'sam.sam.pmt_utils.obtener_datos_boleta',
-            args: { boleta_id: frm.doc.boleta_id }
-        }).then(r => {
-            if (!r.message) {
+        checkExistingBoleta(frm).then((exists) => {
+            if (exists) {
                 return;
             }
 
-            const { estado_boleta, agente_asignado_detalle } = r.message;
-            frm.set_value('estado_boleta', estado_boleta || '');
-            frm.set_value('agente', agente_asignado_detalle || '');
-            focusFieldInput(frm, 'vehiculo_id');
-        });
-    },
+			frappe.call({
+				method: 'sam.sam.pmt_utils.obtener_datos_boleta',
+				args: { boleta_id: frm.doc.boleta_id }
+			}).then(r => {
+				if (!r.message) {
+					return;
+				}
+
+				const { estado_boleta, agente_asignado_detalle } = r.message;
+				const nextState = frm.is_new()
+					? 'VERIFICACION'
+					: estado_boleta || frm.doc.estado_boleta || '';
+				if (nextState) {
+					frm.set_value('estado_boleta', nextState);
+				}
+				frm.set_value('agente', agente_asignado_detalle || '');
+				focusFieldInput(frm, 'vehiculo_id');
+			});
+		});
+	},
 
     vehiculo_id(frm) {
         focusFieldInput(frm, 'cui');
@@ -105,6 +140,15 @@ frappe.ui.form.on('PMT Boleta', {
 
     estado_boleta(frm) {
         toggleFieldsBasedOnEstadoBoleta(frm);
+        enforceLockedState(frm);
+    },
+
+    validate(frm) {
+        if (!frm.is_new() && LOCKED_STATES.includes(frm.doc.estado_boleta)) {
+            frappe.throw(
+                __('No puede guardar una boleta en estado {0}.', [frm.doc.estado_boleta])
+            );
+        }
     }
 });
 
@@ -137,16 +181,15 @@ function applyFieldStyles(frm) {
 }
 
 function applyColumnStyles(frm) {
-    Object.entries(COLUMN_BORDER_CONFIG).forEach(([fieldname, cssRules]) => {
-        const wrapper = frm.fields_dict[fieldname]?.wrapper;
-        if (!wrapper) {
-            return;
-        }
-        const columnContainer = $(wrapper).closest('.form-column');
-        if (columnContainer.length) {
-            columnContainer.css(cssRules);
-        }
-    });
+	Object.entries(COLUMN_BORDER_CONFIG).forEach(([fieldname, cssRules]) => {
+		const wrapper = frm.fields_dict[fieldname]?.wrapper;
+		if (!wrapper) {
+			return;
+		}
+		$(wrapper)
+			.closest('.form-column')
+			.css(cssRules);
+	});
 }
 
 function ensureQuickCreateButton(frm) {
@@ -217,6 +260,114 @@ function toggleFieldsBasedOnEstadoBoleta(frm) {
     });
 }
 
+function enforceLockedState(frm) {
+	const isLocked = !frm.is_new() && LOCKED_STATES.includes(frm.doc.estado_boleta);
+	if (isLocked) {
+		frm.disable_save();
+		if (!frm.__locked_state_alert_shown) {
+			showAlert(__('No puede modificar una boleta en estado {0}.', [frm.doc.estado_boleta]), 'orange');
+			frm.__locked_state_alert_shown = true;
+		}
+		return;
+	}
+
+	frm.enable_save();
+	frm.__locked_state_alert_shown = false;
+}
+
+function renderEstadoPresetButtons(frm) {
+	if (!frm.page) {
+		return;
+	}
+
+	if (frm.estadoPresetButtons?.length) {
+		frm.estadoPresetButtons.forEach(($btn) => $btn.remove());
+	}
+	frm.estadoPresetButtons = [];
+
+	if (frm.is_new()) {
+		return;
+	}
+
+	const isAnuladaJuzgado = frm.doc.estado_boleta === 'ANULADA-JUZGADO';
+	if (isAnuladaJuzgado) {
+		// No presentar botones preset cuando la boleta tiene estado bloqueado.
+		return;
+	}
+
+	const visiblePresets = getAvailableEstadoPresets();
+	if (!visiblePresets.length) {
+		return;
+	}
+
+	visiblePresets.forEach((label) => {
+		const isCurrentState = frm.doc.estado_boleta === label;
+		const $btn = frm.page.add_inner_button(
+			label,
+			() => {
+				if (frm.doc.estado_boleta === label) {
+					showAlert(__('Boleta ya en estado {0}.', [label]), 'blue');
+					return;
+				}
+
+				frm.set_value('estado_boleta', label);
+				frm.save().then(() => {
+					showAlert(__('Estado actualizado a {0}.', [label]), 'green');
+				}).catch(() => {
+					showAlert(__('No se pudo guardar el estado seleccionado.'), 'red');
+				});
+			},
+		);
+		const presetStyle = ESTADO_PRESET_STYLES[label] || {};
+		if (presetStyle.background) {
+			$btn.css({
+				'background-color': presetStyle.background,
+				color: presetStyle.color || 'inherit',
+				'border-color': presetStyle.background
+			});
+		} else if (presetStyle.color) {
+			$btn.css('color', presetStyle.color);
+		}
+		if (isCurrentState) {
+			$btn.css({
+				visibility: 'hidden',
+				'pointer-events': 'none'
+			});
+		}
+		frm.estadoPresetButtons.push($btn);
+	});
+}
+
+function checkExistingBoleta(frm) {
+	if (!frm.doc.boleta_id) {
+		return Promise.resolve(false);
+	}
+
+	return frappe.db
+		.get_value("PMT Boleta", { name: frm.doc.boleta_id }, "name")
+		.then((result) => {
+			const existingName = result?.message?.name;
+			if (!existingName) {
+				return false;
+			}
+
+			frappe.msgprint({
+				title: __("Atención"),
+				message: __("Registro Ya Existente"),
+				indicator: "orange",
+			});
+
+			if (frm.is_dirty()) {
+				frm.discard();
+			}
+
+			frm.clear();
+			frm.refresh();
+			focusFieldInput(frm, "boleta_id");
+			return true;
+		});
+}
+
 function focusFieldInput(frm, fieldname) {
     const field = frm.get_field(fieldname);
     if (field && field.$input) {
@@ -228,122 +379,34 @@ function focusFieldInput(frm, fieldname) {
 // Financial helpers
 // -------------------------------
 function calculateInfraccionSaldo(frm) {
-    const principal = parseFloat(frm.doc.articulo_valor) || 0;
-    const fechaInfraccion = frm.doc.fecha_infraccion;
-
-    if (!principal) {
-        updateInfraccionSaldoField(frm, 0);
-        return;
-    }
-
-    if (!fechaInfraccion) {
-        updateInfraccionSaldoField(frm, principal);
-        return;
-    }
-
-    const startDate = frappe.datetime.str_to_obj(fechaInfraccion);
-    if (!startDate) {
-        updateInfraccionSaldoField(frm, principal);
-        return;
-    }
-
-    const todayStr = frappe.datetime.get_today();
-    const today = frappe.datetime.str_to_obj(todayStr);
-    const discountDeadline = addBusinessDays(startDate, DISCOUNT_BUSINESS_DAYS);
-    const accrualStartDate = addBusinessDays(startDate, INTEREST_GRACE_DAYS);
-
-    if (!discountDeadline || !accrualStartDate || !today) {
-        updateInfraccionSaldoField(frm, principal);
-        return;
-    }
-
-    if (today <= discountDeadline) {
-        const discountedAmount = principal * (1 - DISCOUNT_RATE);
-        updateInfraccionSaldoField(frm, Number(discountedAmount.toFixed(2)));
-        return;
-    }
-
-    const msPerDay = 1000 * 60 * 60 * 24;
-    const elapsedDays = Math.max(0, Math.floor((today - accrualStartDate) / msPerDay));
-    const interest = principal * INTEREST_RATE * (elapsedDays / 365);
-    const saldo = principal + interest;
-
-    updateInfraccionSaldoField(frm, Number(saldo.toFixed(2)));
+    updateInfraccionSaldoField(frm);
 }
 
-function updateInfraccionSaldoField(frm, amount) {
-    const roundedAmount = Number((amount || 0).toFixed(2));
-    const formattedAmount = formatAsQuetzal(roundedAmount);
+function updateInfraccionSaldoField(frm) {
     const field = frm.get_field('infraccion_saldo');
 
     if (!field) {
-        frm.set_value('infraccion_saldo', roundedAmount);
         return;
     }
 
-    if (field.df.fieldtype === 'HTML') {
-        const controlWrapper = field.$wrapper.find('.frappe-control');
-        const parentContainer = controlWrapper.length ? controlWrapper : field.$wrapper;
-        let valueContainer = parentContainer.find('.infraccion-saldo-display');
+    frm.refresh_field('infraccion_saldo');
 
-        if (!valueContainer.length) {
-            valueContainer = $('<div class="infraccion-saldo-display control-value"></div>').appendTo(parentContainer);
-        }
+    const style = {
+        'text-align': 'right',
+        color: 'red',
+        'font-weight': 'bold',
+        'font-size': '18px',
+        'border': '2px solid yellow',
+        'border-radius': '6px',
+        padding: '8px'
+    };
 
-        valueContainer
-            .html(formattedAmount)
-            .css({
-                'text-align': 'right',
-                color: 'red',
-                'font-weight': 'bold',
-                'font-size': '18px',
-                'border': '2px solid yellow',
-                'border-radius': '6px',
-                padding: '8px',
-                'pointer-events': 'none',
-                'user-select': 'none'
-            })
-            .attr('contenteditable', 'false');
-    } else {
-        frm.set_value('infraccion_saldo', roundedAmount);
-        if (field.$input && field.$input.length) {
-            field.$input.css({
-                'text-align': 'right',
-                color: 'red',
-                'font-weight': 'bold',
-                'font-size': '18px',
-                'border': '2px solid yellow',
-                'border-radius': '6px',
-                padding: '8px'
-            });
-        }
-        field.$wrapper?.find('.control-value').css({
-            'text-align': 'right',
-            color: 'red',
-            'font-weight': 'bold',
-            'font-size': '18px',
-            'border': '2px solid yellow',
-            'border-radius': '6px',
-            padding: '8px'
-        });
-    }
+	if (field.$input && field.$input.length) {
+		field.$input.css(style);
+	}
+	field.$wrapper?.find('.control-value').css(style);
 }
 
-function formatAsQuetzal(value) {
-    const amount = typeof value === 'number' ? value : parseFloat(value) || 0;
-    if (frappe.format_value) {
-        try {
-            const formatted = frappe.format_value(amount, {
-                fieldtype: 'Currency',
-                options: 'GTQ'
-            });
-            if (formatted) {
-                return formatted;
-            }
-        } catch (err) {
-            // fallback manual format
-        }
-    }
-
-    return `Q ${amount.toFixed(2)}`;
+function showAlert(message, indicator = 'blue') {
+	frappe.show_alert({ message, indicator }, ALERT_TIMEOUT_SECONDS);
 }

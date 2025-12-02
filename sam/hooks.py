@@ -148,23 +148,13 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"sam.tasks.all"
-# 	],
-# 	"daily": [
-# 		"sam.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"sam.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"sam.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"sam.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"cron": {
+		"0 1 * * *": [
+			"sam.sam.tasks.pmt_boleta.update_infraccion_saldos",
+		],
+	},
+}
 
 # Testing
 # -------
@@ -248,7 +238,12 @@ fixtures = [
         "filters": [
             ["name", "=", "PMT Boleta Buscar ID"]
         ]
-    }
+    },
+    {
+        "doctype": "Role",
+        "filters": [
+            ["is_custom", "=", 1]
+        ]
+    },
+    "Server Script",
 ]
-
-fixtures = ["Server Script"]

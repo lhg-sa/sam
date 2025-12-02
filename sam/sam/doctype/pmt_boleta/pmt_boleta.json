@@ -150,7 +150,8 @@
    "fieldname": "articulo_codigo",
    "fieldtype": "Link",
    "label": "Articulo Infringido ",
-   "options": "PMT Articulo"
+   "options": "PMT Articulo",
+   "reqd": 1
   },
   {
    "fetch_from": "articulo_codigo.articulo_descripcion",
@@ -179,19 +180,22 @@
   },
   {
    "fieldname": "infraccion_saldo",
-   "fieldtype": "HTML",
+   "fieldtype": "Currency",
    "label": "Saldo Actual",
+   "non_negative": 1,
    "precision": "2",
    "read_only": 1
   },
   {
+   "default": "VERIFICACION",
    "fieldname": "estado_boleta",
    "fieldtype": "Link",
    "in_filter": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Estado de Boleta",
-   "options": "PMT Boleta Estado"
+   "options": "PMT Boleta Estado",
+   "read_only": 1
   },
   {
    "fetch_from": "agente.agente_nombre",
@@ -274,7 +278,7 @@
  "image_field": "imagen_boleta",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-23 23:25:50.307130",
+ "modified": "2025-11-28 20:46:33.047009",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",

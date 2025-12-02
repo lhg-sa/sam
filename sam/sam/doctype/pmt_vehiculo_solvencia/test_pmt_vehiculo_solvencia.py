@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestPMTSolvencia(FrappeTestCase):
+class TestPMTVehiculoSolvencia(FrappeTestCase):
 	pass
