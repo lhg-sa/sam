@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "field:talonario_id",
+ "autoname": "format:NTL-{#}",
  "creation": "2025-10-08 13:49:49.399862",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -24,7 +24,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Talonario ID",
-   "reqd": 1,
    "unique": 1
   },
   {
@@ -96,11 +95,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-04 19:23:44.967621",
+ "modified": "2025-12-04 11:16:28.959727",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Talonario",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

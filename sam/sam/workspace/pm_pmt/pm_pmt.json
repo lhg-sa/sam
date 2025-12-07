@@ -100,27 +100,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reportes",
-   "link_count": 1,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Boletas",
-   "link_count": 0,
-   "link_to": "PMT Boleta",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Gesti\u00f3n de Infracciones",
-   "link_count": 5,
+   "link_count": 6,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -174,9 +155,48 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Registro de Pago",
+   "link_count": 0,
+   "link_to": "PMT Boleta Pago",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reportes",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Boletas",
+   "link_count": 0,
+   "link_to": "PMT Boleta",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Corte de Boletas",
+   "link_count": 0,
+   "link_to": "PMT Corte Boleta",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-12-01 20:20:40.223821",
+ "modified": "2025-12-06 18:33:03.451513",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PM-PMT",
@@ -185,7 +205,20 @@
  "parent_page": "SAM",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "PMT Administrador"
+  },
+  {
+   "role": "PMT Digitador"
+  },
+  {
+   "role": "Juzgado Administrador"
+  },
+  {
+   "role": "All"
+  }
+ ],
  "sequence_id": 44.0,
  "shortcuts": [
   {

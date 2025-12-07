@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "autoname": "field:boleta_id",
+ "creation": "2025-12-03 07:39:01.724476",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "column_break_qymr",
+  "column_break_obqf",
+  "boleta_id",
+  "placa_id",
+  "estado_boleta_detalle",
+  "saldo_actual",
+  "recibo_id",
+  "fecha_pago",
+  "column_break_lgnn"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_obqf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "boleta_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Boleta",
+   "link_filters": "[[\"PMT Boleta\",\"estado_boleta\",\"in\",[\"VERIFICACION\",\"PENDIENTE-PAGO\"]]]",
+   "options": "PMT Boleta",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "recibo_id",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "No. de Recibo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fecha_pago",
+   "fieldtype": "Date",
+   "label": "Fecha de Pago"
+  },
+  {
+   "fieldname": "column_break_lgnn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_qymr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "boleta_id.vehiculo_id",
+   "fieldname": "placa_id",
+   "fieldtype": "Data",
+   "label": "Placa",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "boleta_id.infraccion_saldo",
+   "fetch_if_empty": 1,
+   "fieldname": "saldo_actual",
+   "fieldtype": "Currency",
+   "label": "Saldo Actual",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "boleta_id.estado_boleta",
+   "fieldname": "estado_boleta_detalle",
+   "fieldtype": "Data",
+   "label": "Estado de Boleta",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-06 17:56:34.073991",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "PMT Boleta Pago",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,5 +1,5 @@
 {
- "based_on": "fecha_infraccion",
+ "based_on": "creation",
  "chart_name": "Monto x Estado",
  "chart_type": "Sum",
  "color": "#B4CD29",
@@ -11,11 +11,11 @@
  "dynamic_filters_json": "[]",
  "filters_json": "[[\"PMT Boleta\",\"estado_boleta\",\"=\",\"PENDIENTE-PAGO\",false],[\"PMT Boleta\",\"estado_boleta\",\"=\",\"VERIFICACION\",false]]",
  "group_by_type": "Count",
- "idx": 2,
- "is_public": 0,
+ "idx": 3,
+ "is_public": 1,
  "is_standard": 1,
- "last_synced_on": "2025-11-28 19:35:48.340754",
- "modified": "2025-11-28 19:36:23.720983",
+ "last_synced_on": "2025-12-03 07:46:06.644048",
+ "modified": "2025-12-03 07:46:28.805560",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Monto x Estado",
@@ -25,15 +25,21 @@
  "roles": [
   {
    "role": "All"
+  },
+  {
+   "role": "PMT Digitador"
+  },
+  {
+   "role": "Juzgado Administrador"
   }
  ],
- "show_values_over_chart": 1,
+ "show_values_over_chart": 0,
  "source": "",
  "time_interval": "Monthly",
  "timeseries": 1,
  "timespan": "Last Year",
  "type": "Bar",
  "use_report_chart": 0,
- "value_based_on": "infraccion_saldo",
+ "value_based_on": "articulo_valor",
  "y_axis": []
 }

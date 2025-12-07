@@ -260,10 +260,14 @@ function toggleFieldsBasedOnEstadoBoleta(frm) {
     });
 }
 
+function isLockedBoleta(frm) {
+    return !frm.is_new() && LOCKED_STATES.includes(frm.doc.estado_boleta);
+}
+
 function enforceLockedState(frm) {
-	const isLocked = !frm.is_new() && LOCKED_STATES.includes(frm.doc.estado_boleta);
+	const isLocked = isLockedBoleta(frm);
 	if (isLocked) {
-		frm.disable_save();
+		frm.disable_form();
 		if (!frm.__locked_state_alert_shown) {
 			showAlert(__('No puede modificar una boleta en estado {0}.', [frm.doc.estado_boleta]), 'orange');
 			frm.__locked_state_alert_shown = true;
@@ -289,8 +293,7 @@ function renderEstadoPresetButtons(frm) {
 		return;
 	}
 
-	const isAnuladaJuzgado = frm.doc.estado_boleta === 'ANULADA-JUZGADO';
-	if (isAnuladaJuzgado) {
+	if (isLockedBoleta(frm)) {
 		// No presentar botones preset cuando la boleta tiene estado bloqueado.
 		return;
 	}

@@ -74,7 +74,7 @@
  "image_field": "recibo_pago_imagen",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-29 10:48:29.588763",
+ "modified": "2025-12-06 09:21:35.627275",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Vehiculo Solvencia",
@@ -90,6 +90,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Juzgado Administrador",
    "share": 1,
    "write": 1
   }

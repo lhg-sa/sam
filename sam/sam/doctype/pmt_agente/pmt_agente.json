@@ -22,8 +22,7 @@
    "fetch_if_empty": 1,
    "fieldname": "agente_nombre",
    "fieldtype": "Data",
-   "label": "Nombre del Agente",
-   "read_only": 1
+   "label": "Nombre del Agente"
   },
   {
    "fieldname": "chapa_id",
@@ -35,7 +34,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-26 11:58:52.379311",
+ "modified": "2025-12-05 09:46:24.745698",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Agente",
@@ -56,6 +55,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "search_fields": "agente_nombre, chapa_id",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
