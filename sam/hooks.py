@@ -235,16 +235,13 @@ scheduler_events = {
 
 fixtures = [
     {
-        "doctype": "Client Script",
+        "dt": "Client Script",
         "filters": [
             ["name", "=", "PMT Boleta Buscar ID"]
         ]
     },
     {
-        "doctype": "Role",
-        "filters": [
-            ["is_custom", "=", 1]
-        ]
+        "dt": "Role"
     },
     "Server Script",
 ]
