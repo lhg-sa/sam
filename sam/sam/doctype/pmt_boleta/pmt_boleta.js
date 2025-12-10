@@ -57,6 +57,7 @@ const ESTADO_PRESET_STYLES = {
     'VERIFICACION': { background: '#36b9cc', color: '#fff' },
     'ANULADA-JUZGADO': { background: '#858796', color: '#fff' }
 };
+const INFRACCION_SALDO_EDIT_ROLES = ['Juzgado Administrador'];
 
 function getAvailableEstadoPresets() {
     const roles = frappe?.user_roles || [];
@@ -85,6 +86,7 @@ frappe.ui.form.on('PMT Boleta', {
 		ensureQuickCreateButton(frm);
 		ensureDefaultFechaInfraccion(frm);
 		toggleFieldsBasedOnEstadoBoleta(frm);
+		toggleInfraccionSaldoAccess(frm);
 		calculateInfraccionSaldo(frm);
 		enforceLockedState(frm);
 		renderEstadoPresetButtons(frm);
@@ -258,6 +260,14 @@ function toggleFieldsBasedOnEstadoBoleta(frm) {
         field.df.read_only = readOnlyStatus ? 1 : 0;
         field.refresh();
     });
+}
+
+function toggleInfraccionSaldoAccess(frm) {
+	const canEdit = (frappe?.user_roles || []).some((role) =>
+		INFRACCION_SALDO_EDIT_ROLES.includes(role)
+	);
+	frm.set_df_property('infraccion_saldo', 'read_only', canEdit ? 0 : 1);
+	frm.refresh_field('infraccion_saldo');
 }
 
 function isLockedBoleta(frm) {

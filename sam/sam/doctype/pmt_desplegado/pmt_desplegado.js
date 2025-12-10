@@ -31,6 +31,15 @@ const FIELD_STYLE_CONFIG = {
 			float: "none",
 		},
 	},
+	nombre_infractor: {
+		input: { "text-align": "center" },
+		label: {
+			display: "block",
+			width: "100%",
+			"text-align": "center",
+			float: "none",
+		},
+	},
 	es_solvente: {
 		input: {
 			"font-size": "18px",
@@ -56,6 +65,10 @@ const MULTA_FIELDS = [
 	"articulo_valor",
 	"infraccion_saldo",
 	"estado_boleta",
+	"marca_vehiculo",
+	"nombre_infractor",
+	"ubicacion_infraccion",
+	"observaciones",
 ];
 const EDITABLE_FIELDS = ["placa_vehiculo_buscar"];
 const MESSAGE_PALETTE = {
@@ -65,6 +78,7 @@ const MESSAGE_PALETTE = {
 	danger: { text: "#842029", border: "#f5c2c7", bg: "#f8d7da" },
 };
 const LOOKUP_STATE_KEY = Symbol("vehiculo_solvencia_lookup_state");
+const SUMMARY_FIELDNAMES = ["marca_vehiculo", "nombre_infractor"];
 
 /**
  * Returns true when the doc is still in editable/new state.
@@ -200,6 +214,66 @@ function getLookupState(frm) {
 	return frm[LOOKUP_STATE_KEY];
 }
 
+async function clearSummaryFields(frm) {
+	const updates = SUMMARY_FIELDNAMES.filter((fieldname) => frm.doc?.[fieldname])
+		.map((fieldname) => {
+			if (frm.get_field(fieldname)) {
+				return frm.set_value(fieldname, "");
+			}
+			return null;
+		})
+		.filter(Boolean);
+
+	if (!updates.length) {
+		return;
+	}
+
+	try {
+		await Promise.all(updates);
+	} catch (error) {
+		console.warn("No se pudieron limpiar los campos del resumen:", error);
+	}
+}
+
+async function syncSummaryFieldsFromRecords(frm, records) {
+	if (!Array.isArray(records) || !records.length) {
+		await clearSummaryFields(frm);
+		return { marca: "", infractor: "" };
+	}
+
+	const [firstRecord] = records;
+	const summary = {
+		marca: firstRecord?.marca_vehiculo || frm.doc?.marca_vehiculo || "",
+		infractor: firstRecord?.nombre_infractor || frm.doc?.nombre_infractor || "",
+	};
+
+	const updates = [];
+	if (
+		firstRecord?.marca_vehiculo &&
+		firstRecord.marca_vehiculo !== frm.doc?.marca_vehiculo &&
+		frm.get_field("marca_vehiculo")
+	) {
+		updates.push(frm.set_value("marca_vehiculo", firstRecord.marca_vehiculo));
+	}
+	if (
+		firstRecord?.nombre_infractor &&
+		firstRecord.nombre_infractor !== frm.doc?.nombre_infractor &&
+		frm.get_field("nombre_infractor")
+	) {
+		updates.push(frm.set_value("nombre_infractor", firstRecord.nombre_infractor));
+	}
+
+	if (updates.length) {
+		try {
+			await Promise.all(updates);
+		} catch (error) {
+			console.warn("No se pudieron sincronizar los campos del resumen:", error);
+		}
+	}
+
+	return summary;
+}
+
 /**
  * Renders the detalle_multas HTML, avoiding unnecessary DOM writes.
  */
@@ -328,18 +402,20 @@ async function attachArticuloDescriptions(records) {
  * Renders the detail table using stored saldo values.
  */
 function buildMultasTable(records, placa) {
-	const header = __(
-		"{0} boleta(s) pendiente(s) para la placa {1}.",
-		[records.length, placa]
-	);
 	let totalSaldoRegistrado = 0;
 	const rows = records
 		.map((record) => {
 			const boleta = record.boleta_id || record.name || "-";
 			const fecha = formatDate(record.fecha_infraccion);
+			const infractor =
+				record.nombre_infractor || __("Sin nombre registrado");
 			const articulo = record.articulo_codigo || __("Sin artículo");
 			const articuloDescripcion =
 				record.articulo_descripcion || __("Sin descripción");
+			const ubicacion = record.ubicacion_infraccion || __(
+				"Sin ubicación registrada"
+			);
+			const observaciones = record.observaciones || __("Sin observaciones");
 			const principal = Number(record.articulo_valor) || 0;
 			const cargoOriginal = formatCurrency(principal);
 			const saldoRegistrado = Number(
@@ -348,18 +424,23 @@ function buildMultasTable(records, placa) {
 			totalSaldoRegistrado += saldoRegistrado;
 			const saldoFormatted = formatCurrency(saldoRegistrado);
 			return `<tr>
-				<td>${escapeHtml(String(boleta))}</td>
-				<td>${escapeHtml(fecha)}</td>
-				<td>${escapeHtml(articulo)}</td>
-				<td>${escapeHtml(articuloDescripcion)}</td>
-				<td>${escapeHtml(cargoOriginal)}</td>
-				<td>${escapeHtml(saldoFormatted)}</td>
+				<td style="vertical-align:top;">${escapeHtml(String(boleta))}</td>
+				<td style="vertical-align:top;">${escapeHtml(fecha)}</td>
+				<td style="vertical-align:top;">${escapeHtml(infractor)}</td>
+				<td style="vertical-align:top;">
+					<div style="font-weight:600;">${escapeHtml(articulo)}</div>
+					<div style="font-size:11px;color:#6c757d;">${escapeHtml(articuloDescripcion)}</div>
+				</td>
+				<td style="vertical-align:top;">${escapeHtml(ubicacion)}</td>
+				<td style="vertical-align:top;">${escapeHtml(observaciones)}</td>
+				<td style="vertical-align:top;">${escapeHtml(cargoOriginal)}</td>
+				<td style="vertical-align:top;">${escapeHtml(saldoFormatted)}</td>
 			</tr>`;
 		})
 		.join("");
 	const totalRow = `
 		<tr>
-			<td colspan="5" style="text-align:right;font-weight:600;border-top:2px solid #dee2e6;">
+			<td colspan="7" style="text-align:right;font-weight:600;border-top:2px solid #dee2e6;">
 				${escapeHtml(__("Total Saldo Registrado"))}
 			</td>
 			<td style="color:#dc3545;font-weight:700;border-top:2px solid #dee2e6;">
@@ -367,17 +448,17 @@ function buildMultasTable(records, placa) {
 			</td>
 		</tr>
 	`;
-
 	return `
-		<div style="margin-bottom:8px;font-weight:600;">${escapeHtml(header)}</div>
-		<div class="table-responsive">
-			<table class="table table-sm table-bordered">
+		<div class="table-responsive" style="max-height:60vh;overflow:auto;">
+			<table class="table table-sm table-bordered" style="font-size:12px;table-layout:fixed;word-break:break-word;">
 				<thead>
 					<tr>
 						<th>${__("Boleta")}</th>
 						<th>${__("Fecha de infracción")}</th>
-						<th>${__("Artículo")}</th>
-						<th>${__("Detalle artículo")}</th>
+						<th>${__("Nombre del infractor")}</th>
+						<th>${__("Artículo y Detalle")}</th>
+						<th>${__("Ubicación de infracción")}</th>
+						<th>${__("Observaciones")}</th>
 						<th>${__("Cargo Original")}</th>
 						<th>${__("Saldo Registrado")}</th>
 					</tr>
@@ -462,6 +543,7 @@ async function buscarMultasPendientes(frm) {
 		state.lastRequestId += 1;
 		state.activePlaca = null;
 		state.activeRequest = null;
+		await clearSummaryFields(frm);
 		setDetalleMultasHTML(
 			frm,
 			renderMessage(
@@ -502,6 +584,7 @@ async function buscarMultasPendientes(frm) {
 			}
 
 			if (!records.length) {
+				await clearSummaryFields(frm);
 				setDetalleMultasHTML(
 					frm,
 					renderMessage(
@@ -521,6 +604,7 @@ async function buscarMultasPendientes(frm) {
 				return;
 			}
 
+			await syncSummaryFieldsFromRecords(frm, enrichedRecords);
 			setDetalleMultasHTML(frm, buildMultasTable(enrichedRecords, placa));
 			await updateEsSolventeStatus(frm, "insolvente");
 		} catch (error) {
@@ -637,6 +721,7 @@ function addNuevaConsultaButton(frm) {
 			const fieldsToClear = [
 				"placa_vehiculo_buscar",
 				"marca_vehiculo",
+				"nombre_infractor",
 				"es_solvente",
 				"detalle_multas",
 				"multas_db",
@@ -667,6 +752,7 @@ frappe.ui.form.on("PMT Desplegado", {
 		applyFieldStyles(frm);
 		frm.set_df_property("es_solvente", "hidden", 0);
 		frm.toggle_enable("marca_vehiculo", false);
+		frm.toggle_enable("nombre_infractor", false);
 		frm.toggle_enable("es_solvente", false);
 		frm.toggle_enable("detalle_multas", false);
 		frm.set_df_property("multas_db", "hidden", 1);

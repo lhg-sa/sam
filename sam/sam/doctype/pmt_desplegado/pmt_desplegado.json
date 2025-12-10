@@ -9,6 +9,7 @@
   "column_break_uclb",
   "placa_vehiculo_buscar",
   "marca_vehiculo",
+  "nombre_infractor",
   "es_solvente",
   "column_break_omwy",
   "section_break_slch",
@@ -33,6 +34,11 @@
    "fieldname": "marca_vehiculo",
    "fieldtype": "Data",
    "label": "Marca"
+  },
+  {
+   "fieldname": "nombre_infractor",
+   "fieldtype": "Data",
+   "label": "Nombre Infractor"
   },
   {
    "fieldname": "es_solvente",
