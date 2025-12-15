@@ -13,6 +13,10 @@ frappe.ui.form.on('Estudio Socio Economico', {
         frm.set_df_property('total_ingresos', 'read_only', 1);
         frm.set_df_property('total_gastos', 'read_only', 1);
         frm.set_df_property('diferencia_ingreso_gasto', 'read_only', 1); // 🔹 Nuevo
+
+        style_cui_dpi_label(frm);
+        lock_cui_dpi_if_saved(frm);
+        focus_cui_dpi(frm);
     },
 
     cui_dpi: function(frm) {
@@ -49,6 +53,12 @@ frappe.ui.form.on('Estudio Socio Economico', {
         });
     },
 
+    turno_ticket: function(frm) {
+        if (frm.doc.turno_ticket) {
+            frappe.model.set_value(frm.doc.doctype, frm.doc.name, 'turno_ticket', frm.doc.turno_ticket.toUpperCase());
+        }
+    },
+
     refresh: function(frm) {
         // Recalculate on load/refresh
         calculate_total_ingresos(frm);
@@ -62,6 +72,10 @@ frappe.ui.form.on('Estudio Socio Economico', {
 
         // Add "Guardar y Crear" button
         add_save_and_new_button(frm);
+
+        style_cui_dpi_label(frm);
+        lock_cui_dpi_if_saved(frm);
+        focus_cui_dpi(frm);
     }
 });
 
@@ -163,3 +177,66 @@ function calculate_diferencia(frm) {
     frm.set_value('diferencia_ingreso_gasto', ingresos - gastos);
 }
 
+// Apply custom styling to cui_dpi label
+function style_cui_dpi_label(frm) {
+    const field = frm.get_field('cui_dpi');
+    if (!field || !field.$wrapper) {
+        return;
+    }
+
+    const label = field.$wrapper.find('.control-label');
+    const input = field.$input || field.$wrapper.find('input');
+
+    if (label.length) {
+        label.css({
+            color: '#0d6efd',
+            padding: '2px 6px',
+            'font-size': '18px',
+            display: 'inline-block',
+            width: '100%',
+            'text-align': 'center'
+        });
+    }
+
+    if (input && input.length) {
+        input.css({
+            border: '2px solid #dc3545',
+            'text-align': 'center',
+            'font-weight': 'bold',
+            'border-radius': '4px'
+        });
+
+        // Center the field block itself
+        input.closest('.control-input').css({
+            display: 'flex',
+            'justify-content': 'center'
+        });
+    }
+
+    field.$wrapper.css({
+        display: 'flex',
+        'flex-direction': 'column',
+        'align-items': 'center'
+    });
+}
+
+function focus_cui_dpi(frm) {
+    const field = frm.get_field('cui_dpi');
+    if (!field) {
+        return;
+    }
+
+    const input = field.$input || field.$wrapper.find('input');
+    if (!input || !input.length) {
+        return;
+    }
+
+    setTimeout(() => {
+        input[0].focus();
+    }, 0);
+}
+
+function lock_cui_dpi_if_saved(frm) {
+    const should_lock = !frm.doc.__islocal && frm.doc.name;
+    frm.set_df_property('cui_dpi', 'read_only', should_lock ? 1 : 0);
+}

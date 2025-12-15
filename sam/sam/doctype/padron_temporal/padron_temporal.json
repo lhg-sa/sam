@@ -9,6 +9,7 @@
  "field_order": [
   "cui_temporal",
   "nombre_temporal",
+  "apellido_temporal",
   "nota_temporal"
  ],
  "fields": [
@@ -23,18 +24,23 @@
   {
    "fieldname": "nombre_temporal",
    "fieldtype": "Data",
-   "label": "Nombre"
+   "label": "Nombre(s)"
   },
   {
    "fieldname": "nota_temporal",
    "fieldtype": "Data",
    "label": "Nota"
+  },
+  {
+   "fieldname": "apellido_temporal",
+   "fieldtype": "Data",
+   "label": "Apellido(s)"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-06 13:46:30.218524",
+ "modified": "2025-12-14 18:18:24.566865",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "Padron Temporal",
