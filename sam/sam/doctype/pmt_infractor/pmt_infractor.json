@@ -8,7 +8,7 @@
   "infractor_id",
   "nombre_infractor",
   "column_break_hqtf",
-  "licencia_tipo",
+  "licencia_tipo_persona",
   "licencia_vehiculo",
   "tipo_de_otros_vehiculos",
   "licencia_numero_otro"
@@ -34,12 +34,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "licencia_tipo",
-   "fieldtype": "Link",
-   "label": "Licencia Veh\u00edculo",
-   "options": "PMT Licencia Vehiculo Tipo"
-  },
-  {
    "fieldname": "tipo_de_otros_vehiculos",
    "fieldtype": "Link",
    "label": "Otros Vehiculos",
@@ -54,12 +48,18 @@
    "fieldname": "licencia_vehiculo",
    "fieldtype": "Data",
    "label": "Numero de Licencia Vehiculo"
+  },
+  {
+   "fieldname": "licencia_tipo_persona",
+   "fieldtype": "Link",
+   "label": "Licencia Veh\u00edculo",
+   "options": "PMT Licencia Vehiculo Tipo"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-03 15:48:43.608942",
+ "modified": "2026-01-03 16:10:07.078388",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Infractor",
