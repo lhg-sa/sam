@@ -37,6 +37,7 @@
   "descripci\u00f3n_del_articulo",
   "ubicacion_infraccion",
   "firmo_boleta",
+  "se_nego_a_firmar",
   "column_break_frix",
   "observaciones",
   "articulo_valor",
@@ -155,9 +156,9 @@
   },
   {
    "fetch_from": "articulo_codigo.articulo_descripcion",
+   "fetch_if_empty": 1,
    "fieldname": "descripci\u00f3n_del_articulo",
    "fieldtype": "Small Text",
-   "is_virtual": 1,
    "label": "Descripci\u00f3n del Articulo",
    "read_only": 1
   },
@@ -226,7 +227,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "cui.licencia_tipo",
+   "fetch_from": "cui.licencia_tipo_persona",
    "fieldname": "tipo_de_licencia_principal",
    "fieldtype": "Data",
    "label": "Tipo de Licencia",
@@ -272,13 +273,19 @@
    "fieldtype": "Data",
    "label": "Marca de Vehiculo",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "se_nego_a_firmar",
+   "fieldtype": "Check",
+   "label": "Se nego a firmar"
   }
  ],
  "grid_page_length": 50,
  "image_field": "imagen_boleta",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-02 03:11:25.633630",
+ "modified": "2026-01-07 14:51:22.649699",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Boleta",

@@ -10,6 +10,7 @@
   "column_break_txvs",
   "column_break_wijl",
   "marca_vehiculo",
+  "id_marca_vehiculo",
   "column_break_azge"
  ],
  "fields": [
@@ -30,12 +31,17 @@
   {
    "fieldname": "column_break_azge",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "id_marca_vehiculo",
+   "fieldtype": "Data",
+   "label": "ID"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-23 23:01:04.335591",
+ "modified": "2026-01-03 18:48:22.590362",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Marca Vehiculo",

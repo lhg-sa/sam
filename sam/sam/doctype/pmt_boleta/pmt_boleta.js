@@ -146,6 +146,9 @@ frappe.ui.form.on('PMT Boleta', {
     },
 
     validate(frm) {
+        if (frm.is_new()) {
+            calculateInfraccionSaldo(frm);
+        }
         if (!frm.is_new() && LOCKED_STATES.includes(frm.doc.estado_boleta)) {
             frappe.throw(
                 __('No puede guardar una boleta en estado {0}.', [frm.doc.estado_boleta])
@@ -392,6 +395,39 @@ function focusFieldInput(frm, fieldname) {
 // Financial helpers
 // -------------------------------
 function calculateInfraccionSaldo(frm) {
+    if (!frm.is_new()) {
+        // Solo calcular automáticamente en registros nuevos; para existentes solo mantener estilo.
+        updateInfraccionSaldoField(frm);
+        return;
+    }
+
+    const principal = Number(frm.doc.articulo_valor) || 0;
+    const fechaInfraccion = frm.doc.fecha_infraccion;
+    if (!principal || !fechaInfraccion) {
+        frm.set_value('infraccion_saldo', null);
+        updateInfraccionSaldoField(frm);
+        return;
+    }
+
+    const today = frappe.datetime.str_to_obj(frappe.datetime.get_today());
+    const infraccionDate = frappe.datetime.str_to_obj(fechaInfraccion);
+    const discountDeadline = addBusinessDays(infraccionDate, 5); // DISCOUNT_BUSINESS_DAYS
+    const accrualStart = addBusinessDays(infraccionDate, 6); // INTEREST_GRACE_DAYS
+
+    let saldo = principal;
+
+    if (today <= discountDeadline) {
+        saldo = principal * (1 - 0.25); // DISCOUNT_RATE
+    } else if (today > accrualStart) {
+        const elapsedDays = Math.max(
+            0,
+            Math.floor((today - accrualStart) / (1000 * 60 * 60 * 24))
+        );
+        const interest = principal * 0.20 * (elapsedDays / 365); // INTEREST_RATE
+        saldo = principal + interest;
+    }
+
+    frm.set_value('infraccion_saldo', Number(saldo.toFixed(2)));
     updateInfraccionSaldoField(frm);
 }
 
