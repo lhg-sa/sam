@@ -246,4 +246,12 @@ fixtures = [
         "dt": "Role"
     },
     "Server Script",
+
+    # --- agregado para exportar todos los custom fields y cambios de customize form ---
+    "Custom Field",
+    "Property Setter",
+
+    # --- opcionales (si también quieres versionar estos tipos de personalización) ---
+    "Custom DocPerm",
+    "DocType Layout",
 ]
