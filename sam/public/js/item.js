@@ -37,30 +37,34 @@ frappe.ui.form.on("Item", {
 
         frm.catalogo_dialog.build_table = (rows, page, total) => {
           const headers = [
-            __("ID"),
+            __("Codigo"),
             __("Nombre"),
             __("Renglon"),
-            __("Presentacion"),
-            __("UDM"),
+            __("Activo fijo"),
+            __("Clase"),
+            __("Caracteristicas"),
             __("Accion")
           ];
           let html = "<table class='table table-bordered'>";
           html += "<thead><tr>";
-          headers.forEach((header) => {
+          headers.forEach((header, index) => {
+            if (index === 0) {
+              html += `<th style="width: 140px;">${header}</th>`;
+              return;
+            }
             html += `<th>${header}</th>`;
           });
           html += "</tr></thead><tbody>";
           if (!rows || rows.length === 0) {
-            html += `<tr><td colspan="5">${__("Sin resultados")}</td></tr>`;
+            html += `<tr><td colspan="${headers.length}">${__("Sin resultados")}</td></tr>`;
           } else {
             rows.forEach((row) => {
               html += "<tr>";
               const caracteristicas = frappe.utils.escape_html(
                 row.caracteristicas || ""
               );
-              html += `<td title="${caracteristicas}">${frappe.utils.escape_html(
-                `${row.name || ""}`
-              )}</td>`;
+              html += `<td title="${caracteristicas}" style="width: 140px;">` +
+                `${frappe.utils.escape_html(`${row.name || ""}`)}</td>`;
               html += `<td>${frappe.utils.escape_html(
                 row.nombre_insumo || ""
               )}</td>`;
@@ -68,23 +72,23 @@ frappe.ui.form.on("Item", {
                 row.renglon_presupuestario || ""
               )}</td>`;
               html += `<td>${frappe.utils.escape_html(
-                row.presentacion || ""
+                row.es_activo_fijo || ""
               )}</td>`;
               html += `<td>${frappe.utils.escape_html(
-                row.udm_insumo || ""
+                row.clase || ""
+              )}</td>`;
+              html += `<td>${frappe.utils.escape_html(
+                row.caracteristicas || ""
               )}</td>`;
               html += `<td><button class="btn btn-xs btn-primary catalogo-select"` +
                 ` data-name="${frappe.utils.escape_html(row.name || "")}"` +
                 ` data-codigo="${frappe.utils.escape_html(
                   `${row.codigo_insumo || ""}`
                 )}"` +
-                ` data-codigo-presentacion="${frappe.utils.escape_html(
-                  `${row.codigo_presentacion || ""}`
-                )}"` +
                 ` data-nombre="${frappe.utils.escape_html(row.nombre_insumo || "")}"` +
                 ` data-renglon="${frappe.utils.escape_html(row.renglon_presupuestario || "")}"` +
-                ` data-presentacion="${frappe.utils.escape_html(row.presentacion || "")}"` +
-                ` data-udm="${frappe.utils.escape_html(row.udm_insumo || "")}"` +
+                ` data-activo-fijo="${frappe.utils.escape_html(row.es_activo_fijo || "")}"` +
+                ` data-clase="${frappe.utils.escape_html(row.clase || "")}"` +
                 ` data-caracteristicas="${frappe.utils.escape_html(row.caracteristicas || "")}">` +
                 `${__("Importar ID")}</button></td>`;
               html += "</tr>";
@@ -126,11 +130,10 @@ frappe.ui.form.on("Item", {
               fields: [
                 "name",
                 "codigo_insumo",
-                "codigo_presentacion",
                 "nombre_insumo",
                 "renglon_presupuestario",
-                "presentacion",
-                "udm_insumo",
+                "es_activo_fijo",
+                "clase",
                 "caracteristicas"
               ],
               filters: texto
@@ -201,16 +204,21 @@ frappe.ui.form.on("Item", {
           const rowName = button.data("name");
           if (rowName) {
             frm.set_value("item_code", rowName);
-            frm.set_value("custom_codigo_insumo", button.data("codigo") || "");
-            frm.set_value(
-              "custom_codigo_presentacion",
-              button.data("codigo-presentacion") || ""
-            );
             frm.set_value("item_name", button.data("nombre") || "");
             frm.set_value("custom_renglon", button.data("renglon") || "");
-            frm.set_value("custom_presentacion", button.data("presentacion") || "");
-            frm.set_value("stock_uom", button.data("udm") || "");
-            frm.set_value("custom_caracteristicas", button.data("caracteristicas") || "");
+            const activoFijo = button.data("activo-fijo") || "";
+            frm.set_value("custom_activo_fijo", activoFijo);
+            frm.set_value("custom_clase", button.data("clase") || "");
+            frm.set_value(
+              "custom_caracteristicas",
+              button.data("caracteristicas") || ""
+            );
+            const activoFijoNormalized = String(activoFijo)
+              .trim()
+              .toUpperCase();
+            if (activoFijoNormalized === "BIEN" || activoFijoNormalized === "SI") {
+              frm.set_value("is_fixed_asset", 1);
+            }
             frm.catalogo_dialog.hide();
           }
         });

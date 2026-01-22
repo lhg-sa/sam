@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "format:{codigo_insumo}-{codigo_presentacion}-{renglon_presupuestario}",
+ "autoname": "format:{codigo_insumo}-{renglon_presupuestario}",
  "creation": "2026-01-18 18:52:30.374982",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,6 +10,8 @@
   "renglon_presupuestario",
   "presentacion",
   "udm_insumo",
+  "es_activo_fijo",
+  "clase",
   "column_break_pdrd",
   "caracteristicas",
   "codigo_presentacion"
@@ -59,12 +61,22 @@
    "fieldname": "codigo_presentacion",
    "fieldtype": "Int",
    "label": "C\u00f3digo de Presentaci\u00f3n"
+  },
+  {
+   "fieldname": "es_activo_fijo",
+   "fieldtype": "Data",
+   "label": "Activo Fijo"
+  },
+  {
+   "fieldname": "clase",
+   "fieldtype": "Data",
+   "label": "Clase"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-19 17:28:43.076361",
+ "modified": "2026-01-21 20:27:25.701577",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "DAFIM Catalogo Insumos",
