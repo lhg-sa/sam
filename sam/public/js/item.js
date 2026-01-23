@@ -11,7 +11,7 @@ frappe.ui.form.on("Item", {
             {
               fieldtype: "Data",
               fieldname: "buscar_insumo",
-              label: __("Buscar insumo"),
+              label: __("Buscar Insumo"),
               reqd: 0
             },
             {
@@ -28,7 +28,7 @@ frappe.ui.form.on("Item", {
           .find(".modal-dialog")
           .css("max-width", "1100px");
 
-        const pageSize = 10;
+        const pageSize = 8;
         frm.catalogo_dialog.catalogo_state = {
           page: 0,
           total: 0,
@@ -77,7 +77,7 @@ frappe.ui.form.on("Item", {
               html += `<td>${frappe.utils.escape_html(
                 row.clase || ""
               )}</td>`;
-              html += `<td>${frappe.utils.escape_html(
+              html += `<td style="font-size:11px;">${frappe.utils.escape_html(
                 row.caracteristicas || ""
               )}</td>`;
               html += `<td><button class="btn btn-xs btn-primary catalogo-select"` +
@@ -124,34 +124,25 @@ frappe.ui.form.on("Item", {
             __("Buscando en el catalogo...")
           );
           frappe.call({
-            method: "frappe.client.get_list",
+            method: "sam.catalogo_api.search_catalogo",
             args: {
-              doctype: "DAFIM Catalogo Insumos",
-              fields: [
-                "name",
-                "codigo_insumo",
-                "nombre_insumo",
-                "renglon_presupuestario",
-                "es_activo_fijo",
-                "clase",
-                "caracteristicas"
-              ],
-              filters: texto
-                ? [["nombre_insumo", "like", `%${texto}%`]]
-                : [],
-              limit_start: page * pageSize,
-              limit_page_length: pageSize
+              texto: texto,
+              page: page,
+              page_size: pageSize
             },
             callback: (response) => {
-              const rows = response && response.message ? response.message : [];
+              const message = response && response.message ? response.message : {};
+              const rows = message.data || [];
+              const total =
+                message && typeof message.total === "number"
+                  ? message.total
+                  : 0;
               frm.catalogo_dialog.catalogo_state.page = page;
+              frm.catalogo_dialog.catalogo_state.total = total;
+              update_label();
               frm.catalogo_dialog.set_value(
                 "catalogo_table",
-                frm.catalogo_dialog.build_table(
-                  rows,
-                  page,
-                  frm.catalogo_dialog.catalogo_state.total
-                )
+                frm.catalogo_dialog.build_table(rows, page, total)
               );
             }
           });
@@ -159,9 +150,10 @@ frappe.ui.form.on("Item", {
 
         const update_label = () => {
           const valor = frm.catalogo_dialog.get_value("buscar_insumo") || "";
+          const total = frm.catalogo_dialog.catalogo_state.total || 0;
           frm.catalogo_dialog.set_value(
             "buscar_insumo_label",
-            `Buscar insumo: ${frappe.utils.escape_html(valor)}`
+            `Valor Buscado: ${frappe.utils.escape_html(valor)} (${total})`
           );
         };
 
@@ -178,23 +170,7 @@ frappe.ui.form.on("Item", {
                 "catalogo_table",
                 __("Buscando en el catalogo...")
               );
-              frappe.call({
-                method: "frappe.client.get_count",
-                args: {
-                  doctype: "DAFIM Catalogo Insumos",
-                  filters: texto
-                    ? [["nombre_insumo", "like", `%${texto}%`]]
-                    : [],
-                },
-                callback: (response) => {
-                  const total =
-                    response && typeof response.message === "number"
-                      ? response.message
-                      : 0;
-                  frm.catalogo_dialog.catalogo_state.total = total;
-                  frm.catalogo_dialog.load_page(0);
-                }
-              });
+              frm.catalogo_dialog.load_page(0);
             }
           }
         );
