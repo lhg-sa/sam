@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5l13eN3N3H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Agua y Saneamiento</span>\",\"col\":12}},{\"id\":\"1b57Iod081\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>R\u00f3tulos y Vallas</b></span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"5l13eN3N3H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Agua y Saneamiento</span>\",\"col\":12}},{\"id\":\"spMenuCard\",\"type\":\"card\",\"data\":{\"card_name\":\"Servicios-Publicos\",\"col\":4}},{\"id\":\"1b57Iod081\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>R\u00f3tulos y Vallas</b></span>\",\"col\":12}}]",
  "creation": "2025-11-26 11:55:10.431174",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,27 @@
  "indicator_color": "green",
  "is_hidden": 0,
  "label": "Servicios-Publicos",
- "links": [],
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Servicios-Publicos",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Invoice Log",
+   "link_count": 0,
+   "link_to": "Sales Invoice Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
  "modified": "2025-11-26 11:57:22.284272",
  "modified_by": "Administrator",
  "module": "SAM",

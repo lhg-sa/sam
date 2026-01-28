@@ -35,14 +35,14 @@
    "fieldname": "colindancia_posicion",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Posicion",
+   "label": "Posici\u00f3n",
    "options": "NORTE\nSUR\nESTE\nOESTE\nOTROS"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-18 18:13:30.406484",
+ "modified": "2026-01-26 21:49:12.007399",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "catastro_colindancia",
