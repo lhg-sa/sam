@@ -1,0 +1,535 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-16 12:31:20.319719",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "informaci\u00f3n_general_tab",
+  "datos_generales_propietario_section",
+  "nombre_del_propietario",
+  "direcci\u00f3n_del_propietario",
+  "column_break_wxps",
+  "tel\u00e9fono_del_propietario",
+  "correo_electr\u00f3nico_propietario",
+  "nit",
+  "datos_del_inmueble_section",
+  "finca",
+  "column_break_rhfw",
+  "folio",
+  "column_break_ywah",
+  "libro",
+  "de",
+  "datos_responsables_de_obra_section",
+  "nombre_proyectista",
+  "tel\u00e9fono_del_proyectista",
+  "profesi\u00f3n_proyectista",
+  "n\u00famero_de_colegiado_activo",
+  "direcci\u00f3n_proyectista",
+  "correo_electr\u00f3nico_proyectista",
+  "column_break_mliq",
+  "nobre_del_constructor__ejecutor",
+  "tel\u00e9fono_del_constructor__ejecutor",
+  "profesi\u00f3n_constructor__ejecutor",
+  "n\u00famero_de_colegiado_activo_constructor__ejecutor",
+  "direcci\u00f3n_constructor__ejecutor",
+  "correo_electr\u00f3nico_constructor__ejecutor",
+  "datos_generales_de_la_obra_section",
+  "tipo_de_obra",
+  "column_break_zrgw",
+  "destino_de_la_obra",
+  "column_break_ghos",
+  "altura",
+  "column_break_nndl",
+  "materialidas",
+  "tipo_de_licencia_section",
+  "select_jftl",
+  "cambios_section",
+  "notificaci\u00f3n_cambio_de_constructor",
+  "modificaci\u00f3n_planos_aprobados",
+  "column_break_glzu",
+  "suspensi\u00f3n_temporal",
+  "suspensi\u00f3n_definitiva",
+  "documentos_generales_tab",
+  "documentos_a_adjuntar_para_todas_las_clases_de_licencias_section",
+  "formulario_de_solicitud",
+  "fotocopia_escritura",
+  "certificaci\u00f3n_catastral_actualizada",
+  "fotocopia_de_solvencia_municipal_del_inmueble",
+  "column_break_dqma",
+  "presupuesto_detallado_de_obra",
+  "fotocopia_dpi_propietario",
+  "fotocopia_legalizada_del_t\u00edtulo_de_agua",
+  "formulario_de_autoevaluaci\u00f3n",
+  "documentos_espec\u00edficos_tab",
+  "licencia_ordinaria_section",
+  "planos_arquitectonicos",
+  "planos_estructurales_b\u00e1sicos",
+  "column_break_bkdm",
+  "esp_t\u00e9cnicas_generales",
+  "resoluci\u00f3n_marn_ord",
+  "licenica_mayor_o_especial_section",
+  "plan_maestro",
+  "planos_arquitectonicos_detallados",
+  "planos_estructurales",
+  "planos_de_instalaci\u00f3nes",
+  "estudio_de_suelos",
+  "column_break_wrqz",
+  "garant\u00eda_de_cumplimiento",
+  "resoluci\u00f3n_marn",
+  "dictamen_impacto_vial",
+  "estudio_hidrol\u00f3gico",
+  "estudio_topogr\u00e1fico",
+  "licencia_especial_emergencia_section",
+  "fotos",
+  "boleta_inspecci\u00f3n_municipal",
+  "dictamen",
+  "licencia_de_demolici\u00f3n_section",
+  "plano_de_cuantificaci\u00f3n"
+ ],
+ "fields": [
+  {
+   "fieldname": "datos_generales_propietario_section",
+   "fieldtype": "Section Break",
+   "label": "DATOS GENERALES PROPIETARIO"
+  },
+  {
+   "fieldname": "nombre_del_propietario",
+   "fieldtype": "Data",
+   "label": "Nombre del Propietario"
+  },
+  {
+   "fieldname": "direcci\u00f3n_del_propietario",
+   "fieldtype": "Data",
+   "label": "Direcci\u00f3n del Propietario"
+  },
+  {
+   "fieldname": "column_break_wxps",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tel\u00e9fono_del_propietario",
+   "fieldtype": "Data",
+   "label": "Tel\u00e9fono del Propietario"
+  },
+  {
+   "fieldname": "correo_electr\u00f3nico_propietario",
+   "fieldtype": "Data",
+   "label": "Correo electr\u00f3nico Propietario"
+  },
+  {
+   "fieldname": "nit",
+   "fieldtype": "Data",
+   "label": "NIT"
+  },
+  {
+   "fieldname": "datos_del_inmueble_section",
+   "fieldtype": "Section Break",
+   "label": "DATOS DEL INMUEBLE"
+  },
+  {
+   "fieldname": "finca",
+   "fieldtype": "Data",
+   "label": "Finca"
+  },
+  {
+   "fieldname": "column_break_rhfw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "folio",
+   "fieldtype": "Data",
+   "label": "Folio"
+  },
+  {
+   "fieldname": "column_break_ywah",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "libro",
+   "fieldtype": "Data",
+   "label": "Libro"
+  },
+  {
+   "fieldname": "de",
+   "fieldtype": "Data",
+   "label": "De"
+  },
+  {
+   "fieldname": "datos_responsables_de_obra_section",
+   "fieldtype": "Section Break",
+   "label": "DATOS RESPONSABLES DE OBRA"
+  },
+  {
+   "fieldname": "nombre_proyectista",
+   "fieldtype": "Data",
+   "label": "Nombre Proyectista "
+  },
+  {
+   "fieldname": "tel\u00e9fono_del_proyectista",
+   "fieldtype": "Data",
+   "label": "Tel\u00e9fono del Proyectista"
+  },
+  {
+   "fieldname": "profesi\u00f3n_proyectista",
+   "fieldtype": "Data",
+   "label": "Profesi\u00f3n Proyectista"
+  },
+  {
+   "fieldname": "n\u00famero_de_colegiado_activo",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00famero de Colegiado Activo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "direcci\u00f3n_proyectista",
+   "fieldtype": "Data",
+   "label": "Direcci\u00f3n Proyectista"
+  },
+  {
+   "fieldname": "correo_electr\u00f3nico_proyectista",
+   "fieldtype": "Data",
+   "label": "Correo electr\u00f3nico Proyectista"
+  },
+  {
+   "fieldname": "column_break_mliq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nobre_del_constructor__ejecutor",
+   "fieldtype": "Data",
+   "label": "Nobre del Constructor / Ejecutor"
+  },
+  {
+   "fieldname": "tel\u00e9fono_del_constructor__ejecutor",
+   "fieldtype": "Data",
+   "label": "Tel\u00e9fono del Constructor / Ejecutor"
+  },
+  {
+   "fieldname": "profesi\u00f3n_constructor__ejecutor",
+   "fieldtype": "Data",
+   "label": "Profesi\u00f3n Constructor / Ejecutor"
+  },
+  {
+   "fieldname": "n\u00famero_de_colegiado_activo_constructor__ejecutor",
+   "fieldtype": "Data",
+   "label": "N\u00famero de Colegiado Activo Constructor / Ejecutor"
+  },
+  {
+   "fieldname": "direcci\u00f3n_constructor__ejecutor",
+   "fieldtype": "Data",
+   "label": "Direcci\u00f3n Constructor / Ejecutor"
+  },
+  {
+   "fieldname": "correo_electr\u00f3nico_constructor__ejecutor",
+   "fieldtype": "Data",
+   "label": "Correo electr\u00f3nico Constructor / Ejecutor"
+  },
+  {
+   "fieldname": "datos_generales_de_la_obra_section",
+   "fieldtype": "Section Break",
+   "label": "DATOS GENERALES DE LA OBRA"
+  },
+  {
+   "fieldname": "tipo_de_obra",
+   "fieldtype": "Select",
+   "label": "Tipo de obra",
+   "options": "Nueva\nAmpliaci\u00f3n\nModificaci\u00f3n\nReparaciones Mayores\nDemolici\u00f3n"
+  },
+  {
+   "fieldname": "column_break_zrgw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "destino_de_la_obra",
+   "fieldtype": "Select",
+   "label": "Destino de la obra",
+   "options": "Edificaci\u00f3n Residencial\nEdificaci\u00f3n Comercial\nEdificaci\u00f3n Industrial y otros usos\nEdificaci\u00f3n Autoservicios"
+  },
+  {
+   "fieldname": "column_break_ghos",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "altura",
+   "fieldtype": "Select",
+   "label": "Altura",
+   "options": "Baja Altura (2 niv. 7mts)\nMedina Altura (3-5 niv. 7-17 mts)\nGran Altura (5 niv. superior a 17mts)"
+  },
+  {
+   "fieldname": "column_break_nndl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "materialidas",
+   "fieldtype": "Select",
+   "label": "Materialidas",
+   "options": "Tradicional (block, concreto, acero)\nMixta (tradicional y alternativo)\nAlternativa (mat. no trad. aprobados)"
+  },
+  {
+   "fieldname": "tipo_de_licencia_section",
+   "fieldtype": "Section Break",
+   "label": "TIPO DE LICENCIA"
+  },
+  {
+   "fieldname": "select_jftl",
+   "fieldtype": "Select",
+   "label": "Tipo de Licencia",
+   "options": "Ordinaria (200mts o menos)\nMayor (mayor a 200mts)\nEspecial (alto impacto, urbanizaciones, lotificaciones, obras p\u00fablicas, antenas, r\u00f3tulos, vallas)\nEspecial EMERGENCIA\nDemolici\u00f3n\n1\u00b0 Ampliaci\u00f3n de Licencia\n2\u00b0 Ampliaci\u00f3n de Licencia\n3\u00b0 Ampliaci\u00f3n de Licencia"
+  },
+  {
+   "fieldname": "informaci\u00f3n_general_tab",
+   "fieldtype": "Tab Break",
+   "label": "INFORMACI\u00d3N GENERAL"
+  },
+  {
+   "fieldname": "documentos_generales_tab",
+   "fieldtype": "Tab Break",
+   "label": "DOCUMENTOS GENERALES "
+  },
+  {
+   "fieldname": "documentos_a_adjuntar_para_todas_las_clases_de_licencias_section",
+   "fieldtype": "Section Break",
+   "label": "DOCUMENTOS A ADJUNTAR (PARA TODAS LAS CLASES DE LICENCIAS)"
+  },
+  {
+   "description": "con timbre fiscal de Q0.50",
+   "fieldname": "formulario_de_solicitud",
+   "fieldtype": "Attach",
+   "label": "Formulario de Solicitud "
+  },
+  {
+   "description": "Fotocopia legalizada Escritura P\u00fablica Propiedad del Inmueble o Certificac\u00f3n RGP menor a 6 meses",
+   "fieldname": "fotocopia_escritura",
+   "fieldtype": "Attach",
+   "label": "Fotocopia Escritura"
+  },
+  {
+   "fieldname": "certificaci\u00f3n_catastral_actualizada",
+   "fieldtype": "Attach",
+   "label": "Certificaci\u00f3n Catastral Actualizada"
+  },
+  {
+   "fieldname": "fotocopia_de_solvencia_municipal_del_inmueble",
+   "fieldtype": "Attach Image",
+   "label": "Fotocopia de Solvencia Municipal del Inmueble"
+  },
+  {
+   "fieldname": "column_break_dqma",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "presupuesto_detallado_de_obra",
+   "fieldtype": "Attach",
+   "label": "Presupuesto detallado de Obra"
+  },
+  {
+   "fieldname": "fotocopia_dpi_propietario",
+   "fieldtype": "Attach",
+   "label": "Fotocopia DPI Propietario"
+  },
+  {
+   "description": "(cuando aplique)",
+   "fieldname": "fotocopia_legalizada_del_t\u00edtulo_de_agua",
+   "fieldtype": "Attach",
+   "label": "Fotocopia Legalizada del T\u00edtulo de Agua "
+  },
+  {
+   "description": "del inmueble, lleno y firmado por propietario",
+   "fieldname": "formulario_de_autoevaluaci\u00f3n",
+   "fieldtype": "Attach",
+   "label": "Formulario de Autoevaluaci\u00f3n "
+  },
+  {
+   "fieldname": "documentos_espec\u00edficos_tab",
+   "fieldtype": "Tab Break",
+   "label": "DOCUMENTOS ESPEC\u00cdFICOS"
+  },
+  {
+   "fieldname": "licencia_ordinaria_section",
+   "fieldtype": "Section Break",
+   "label": "LICENCIA ORDINARIA"
+  },
+  {
+   "fieldname": "planos_arquitectonicos",
+   "fieldtype": "Attach",
+   "label": "Planos Arquitectonicos"
+  },
+  {
+   "fieldname": "planos_estructurales_b\u00e1sicos",
+   "fieldtype": "Attach",
+   "label": "Planos Estructurales b\u00e1sicos"
+  },
+  {
+   "fieldname": "cambios_section",
+   "fieldtype": "Section Break",
+   "label": "CAMBIOS"
+  },
+  {
+   "default": "0",
+   "fieldname": "notificaci\u00f3n_cambio_de_constructor",
+   "fieldtype": "Check",
+   "label": "Notificaci\u00f3n Cambio de Constructor"
+  },
+  {
+   "default": "0",
+   "fieldname": "modificaci\u00f3n_planos_aprobados",
+   "fieldtype": "Check",
+   "label": "Modificaci\u00f3n Planos Aprobados"
+  },
+  {
+   "fieldname": "column_break_glzu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "suspensi\u00f3n_temporal",
+   "fieldtype": "Check",
+   "label": "Suspensi\u00f3n Temporal"
+  },
+  {
+   "default": "0",
+   "fieldname": "suspensi\u00f3n_definitiva",
+   "fieldtype": "Check",
+   "label": "Suspensi\u00f3n Definitiva"
+  },
+  {
+   "fieldname": "column_break_bkdm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "esp_t\u00e9cnicas_generales",
+   "fieldtype": "Attach",
+   "label": "Esp T\u00e9cnicas Generales"
+  },
+  {
+   "fieldname": "resoluci\u00f3n_marn_ord",
+   "fieldtype": "Attach",
+   "label": "Resoluci\u00f3n MARN ord"
+  },
+  {
+   "fieldname": "licenica_mayor_o_especial_section",
+   "fieldtype": "Section Break",
+   "label": "LICENICA MAYOR o ESPECIAL"
+  },
+  {
+   "description": "Planificaci\u00f3n General del Proyecto",
+   "fieldname": "plan_maestro",
+   "fieldtype": "Attach",
+   "label": "Plan Maestro"
+  },
+  {
+   "fieldname": "planos_arquitectonicos_detallados",
+   "fieldtype": "Attach",
+   "label": "Planos Arquitectonicos Detallados"
+  },
+  {
+   "description": "completos con memoria de c\u00e1lculo",
+   "fieldname": "planos_estructurales",
+   "fieldtype": "Attach",
+   "label": "Planos Estructurales"
+  },
+  {
+   "description": "el\u00e9ctricos, sanitarios, h\u00eddricos",
+   "fieldname": "planos_de_instalaci\u00f3nes",
+   "fieldtype": "Attach",
+   "label": "Planos de Instalaci\u00f3nes"
+  },
+  {
+   "description": "para construcciones de median a o gran altura (mayor a 3 niveles)",
+   "fieldname": "estudio_de_suelos",
+   "fieldtype": "Attach",
+   "label": "Estudio de Suelos"
+  },
+  {
+   "fieldname": "column_break_wrqz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "(cuando aplique)",
+   "fieldname": "garant\u00eda_de_cumplimiento",
+   "fieldtype": "Attach",
+   "label": "Garant\u00eda de Cumplimiento"
+  },
+  {
+   "fieldname": "resoluci\u00f3n_marn",
+   "fieldtype": "Attach",
+   "label": "Resoluci\u00f3n MARN"
+  },
+  {
+   "description": "(cuando corresponda)",
+   "fieldname": "dictamen_impacto_vial",
+   "fieldtype": "Attach",
+   "label": "Dictamen Impacto Vial"
+  },
+  {
+   "fieldname": "estudio_hidrol\u00f3gico",
+   "fieldtype": "Attach",
+   "label": "Estudio Hidrol\u00f3gico"
+  },
+  {
+   "fieldname": "estudio_topogr\u00e1fico",
+   "fieldtype": "Attach",
+   "label": "Estudio Topogr\u00e1fico"
+  },
+  {
+   "fieldname": "licencia_especial_emergencia_section",
+   "fieldtype": "Section Break",
+   "label": "LICENCIA ESPECIAL EMERGENCIA"
+  },
+  {
+   "fieldname": "fotos",
+   "fieldtype": "Attach Image",
+   "label": "Fotos"
+  },
+  {
+   "fieldname": "boleta_inspecci\u00f3n_municipal",
+   "fieldtype": "Attach",
+   "label": "Boleta Inspecci\u00f3n Municipal"
+  },
+  {
+   "description": "Por instituci\u00f3n de gobierno",
+   "fieldname": "dictamen",
+   "fieldtype": "Attach",
+   "label": "Dictamen"
+  },
+  {
+   "fieldname": "licencia_de_demolici\u00f3n_section",
+   "fieldtype": "Section Break",
+   "label": "LICENCIA DE DEMOLICI\u00d3N"
+  },
+  {
+   "fieldname": "plano_de_cuantificaci\u00f3n",
+   "fieldtype": "Attach",
+   "label": "Plano de Cuantificaci\u00f3n"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-02-16 13:43:52.355916",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "LICENCIAS V1",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

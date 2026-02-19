@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class PMTTalonarioDetalle(Document):
+class DTWF(Document):
 	pass

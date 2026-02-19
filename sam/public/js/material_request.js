@@ -5,11 +5,53 @@ frappe.ui.form.on("Material Request", {
   },
   refresh(frm) {
     set_custom_unidad_filter(frm);
+    add_print_solicitud_button(frm);
+    add_generar_solicitud_button(frm);
   },
   async before_save(frm) {
     await run_before_save_hooks(frm);
   },
 });
+
+function add_print_solicitud_button(frm) {
+  if (frm.is_new()) {
+    return;
+  }
+
+  frm.add_custom_button(__("Imprimir Solicitud"), () => {
+    const printFormat = "Material Request Recepcion Bienes";
+    const url = frappe.urllib.get_full_url(
+      `/api/method/frappe.utils.print_format.download_pdf?doctype=${encodeURIComponent(
+        frm.doc.doctype
+      )}&name=${encodeURIComponent(frm.doc.name)}&format=${encodeURIComponent(printFormat)}`
+    );
+
+    const w = window.open(url);
+    if (!w) {
+      frappe.msgprint(__("Please enable pop-ups"));
+    }
+  });
+}
+
+function add_generar_solicitud_button(frm) {
+  if (frm.is_new()) {
+    return;
+  }
+
+  frm.add_custom_button(__("Generar Solicitud"), () => {
+    const printFormat = "Material Request Solicitud Bienes";
+    const url = frappe.urllib.get_full_url(
+      `/api/method/frappe.utils.print_format.download_pdf?doctype=${encodeURIComponent(
+        frm.doc.doctype
+      )}&name=${encodeURIComponent(frm.doc.name)}&format=${encodeURIComponent(printFormat)}`
+    );
+
+    const w = window.open(url);
+    if (!w) {
+      frappe.msgprint(__("Please enable pop-ups"));
+    }
+  });
+}
 
 function set_custom_unidad_filter(frm) {
   if (!frm.fields_dict.custom_unidad) {
