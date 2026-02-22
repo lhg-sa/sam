@@ -568,6 +568,31 @@ function restoreDetalleMultasFromDb(frm) {
 	setDetalleMultasHTML(frm, savedHtml);
 }
 
+function addSolvenciaPdfButton(frm) {
+	if (frm.is_new()) {
+		return;
+	}
+
+	const estado = (frm.doc.es_solvente || "").trim().toUpperCase();
+	if (estado !== "SOLVENTE") {
+		return;
+	}
+
+	frm.add_custom_button(__("Generar PDF"), () => {
+		const printFormat = "PMT Vehiculo Solvencia Base";
+		const url = frappe.urllib.get_full_url(
+			`/api/method/frappe.utils.print_format.download_pdf?doctype=${encodeURIComponent(
+				frm.doc.doctype
+			)}&name=${encodeURIComponent(frm.doc.name)}&format=${encodeURIComponent(printFormat)}`
+		);
+
+		const w = window.open(url);
+		if (!w) {
+			frappe.msgprint(__("Please enable pop-ups"));
+		}
+	});
+}
+
 // ------------------------------ Form lifecycle ------------------------------
 frappe.ui.form.on("PMT Vehiculo Solvencia", {
 	refresh(frm) {
@@ -579,6 +604,7 @@ frappe.ui.form.on("PMT Vehiculo Solvencia", {
 		frm.set_df_property("multas_db", "hidden", 1);
 		toggleEditableFields(frm, isFormEditable(frm));
 		restoreDetalleMultasFromDb(frm);
+		addSolvenciaPdfButton(frm);
 		void buscarMultasPendientes(frm);
 	},
 	placa_vehiculo_buscar(frm) {

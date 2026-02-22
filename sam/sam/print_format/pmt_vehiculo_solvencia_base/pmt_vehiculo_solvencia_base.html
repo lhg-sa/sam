@@ -1,0 +1,207 @@
+
+{% set css %}
+<style>
+    body {
+        background: #f4f6fb;
+    }
+    .solvencia-wrapper {
+        font-family: "Helvetica", "Arial", sans-serif;
+        color: #1c1c1c;
+        padding: 10px;
+    }
+    .solvencia-card {
+        border-radius: 18px;
+        background: #ffffff;
+        border: 2px solid #1d4b8f;
+        padding: 14px;
+        max-width: 780px;
+        margin: 0 auto;
+        box-shadow: 0 12px 24px rgba(23, 54, 93, 0.12);
+    }
+    .solvencia-header {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    .logo-wrap {
+        margin-bottom: 12px;
+    }
+    .logo-wrap img {
+        max-height: 120px;
+        width: auto;
+        max-width: 520px;
+    }
+    .solvencia-header h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #0f2f5f;
+        text-transform: uppercase;
+    }
+    .solvencia-header h3 {
+        margin: 8px 0 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #0f2f5f;
+        text-transform: uppercase;
+    }
+    .solvencia-body {
+        margin-bottom: 18px;
+        text-align: center;
+        line-height: 1.6;
+    }
+    .solvencia-body p {
+        margin: 10px 0;
+        font-size: 14px;
+    }
+    .solvencia-body strong {
+        font-size: 25px;
+        letter-spacing: 1px;
+        color: #1c1c1c;
+    }
+    .highlight-row {
+        margin-top: 12px;
+        padding: 16px 22px;
+        border: 1px dashed #1d4b8f;
+        border-radius: 12px;
+        background: rgba(29, 75, 143, 0.05);
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    .solvency-status {
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 32px;
+        text-align: center;
+    }
+    .solvency-status-row {
+        margin-top: 18px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .solvency-status-cell {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 0 7px;
+    }
+    .solvency-qr {
+        width: 60px;
+        height: 60px;
+        display: block;
+    }
+    .solvency-status-solvente {
+        color: #1b7f33;
+    }
+    .solvency-status-insolvente {
+        color: #c82333;
+    }
+    .solvencia-footer-table {
+        width: 100%;
+        margin-top: 24px;
+        font-size: 13px;
+        color: #1c1c1c;
+        border-collapse: separate;
+        border-spacing: 16px 0;
+    }
+    .solvencia-footer-table td {
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 14px 16px;
+        border: 1px solid #e2e7f3;
+        min-height: 70px;
+        vertical-align: top;
+    }
+    .solvencia-footer-table strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #4a4a4a;
+    }
+</style>
+{% endset %}
+
+{{ css | safe }}
+
+{% set placa_display = (doc.placa_vehiculo_buscar or doc.placa or '') | upper() %}
+{% set solvency_status = 'SOLVENTE' if (doc.es_solvente or '').upper() == 'SOLVENTE' else 'INSOLVENTE' %}
+{% set solvency_class = 'solvency-status-solvente' if solvency_status == 'SOLVENTE' else 'solvency-status-insolvente' %}
+{% set generation = frappe.utils.get_datetime(doc.fecha_generacion) if doc.fecha_generacion else frappe.utils.now_datetime() %}
+{% set due_date = frappe.utils.add_months(generation, 1) %}
+{% set sam_globals = frappe.get_all("SAM Global", fields=["nombre_municipalidad", "logo_municipalidad", "url_solvencia"], limit=1) or [] %}
+{% set sam_global = sam_globals[0] if sam_globals else {} %}
+{% set nombre_municipalidad = sam_global.get("nombre_municipalidad") or "MUNICIPALIDAD" %}
+{% set logo_municipalidad = sam_global.get("logo_municipalidad") or "/files/Logomunicipal.jpeg" %}
+{% set solvencia_base_url = sam_global.get("url_solvencia") or "" %}
+{% if "{name}" in solvencia_base_url %}
+    {% set solvencia_url = solvencia_base_url.replace("{name}", doc.name) %}
+{% else %}
+    {% set solvencia_url = (solvencia_base_url.rstrip("/")) ~ "/" ~ doc.name if solvencia_base_url else doc.name %}
+{% endif %}
+
+<div class="solvencia-wrapper">
+    <div class="solvencia-card">
+        <div class="solvencia-header">
+            <div class="logo-wrap">
+                <img src="{{ frappe.utils.get_url(logo_municipalidad) }}" alt="Logo Municipal" />
+            </div>            
+            <h3>Policía Municipal de Tránsito</h3>
+            <h2>{{ nombre_municipalidad }}</h2>
+        </div>
+        <div class="solvencia-body">
+            <p>
+                La Policía Municipal de Tránsito de {{ nombre_municipalidad }} certifica que,
+                conforme a los registros oficiales, el vehículo descrito abajo se encuentra al día con sus
+                obligaciones de tránsito.
+            </p>
+            <strong>PLACA: {{ doc.tipo_placa or "" }} - {{ placa_display }}</strong>
+            <h3><p><strong>Recibo de Pago: {{ doc.recibo_pago   }} </p></h3>
+            <p>
+                No tiene multas pendientes de pago en materia de tránsito, motivo por el cual se extiende la presente
+                constancia de solvencia.
+            </p>
+            
+            
+        </div>
+        <div class="solvency-status-row">
+            <div class="solvency-status-cell">
+                <div class="solvency-status {{ solvency_class }}">{{ solvency_status }}</div>
+            </div>
+            <div class="solvency-status-cell">
+                <img class="solvency-qr"
+                     src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data={{ solvencia_url | urlencode }}"
+                     alt="QR Code">
+            </div>
+        </div>
+        <div class="highlight-row">SOLVENCIA DE TRÁNSITO - {{ doc.name }}</div>
+
+        <table class="solvencia-footer-table">
+            <tr>
+                <td>
+                    <strong>Fecha de generación</strong>
+                    {{ frappe.utils.format_datetime(generation) }}
+                </td>
+                <td>
+                    <strong>Vigente hasta</strong>
+                    {{ frappe.utils.format_date(due_date) }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="text-align: center; margin-top: 50px;">
+    <div style="display: inline-block; text-align: center;">
+        <div>
+            F. _____________________________________
+        </div>
+        <div style="margin-top: 5px;">
+            Juzgado de Asuntos Municipales y de Tránsito
+        </div>
+    </div>
+</div>
+</div>

@@ -51,7 +51,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Inmueble Id",
-   "options": "catastro_inmueble",
+   "options": "DMP Inmueble",
    "reqd": 1
   },
   {
@@ -274,11 +274,11 @@
  "image_field": "image_base",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-18 18:13:27.789307",
+ "modified": "2026-02-22 14:09:48.404381",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "sp_inmueble",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
