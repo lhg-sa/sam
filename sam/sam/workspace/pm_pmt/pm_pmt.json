@@ -100,8 +100,37 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Reportes",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Boletas",
+   "link_count": 0,
+   "link_to": "PMT Boleta",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Corte de Boletas",
+   "link_count": 0,
+   "link_to": "PMT Corte Boleta",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Gesti\u00f3n de Infracciones",
-   "link_count": 6,
+   "link_count": 7,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -169,34 +198,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reportes",
-   "link_count": 2,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Boletas",
+   "label": "Hist\u00f3rico",
    "link_count": 0,
-   "link_to": "PMT Boleta",
+   "link_to": "PMT Historico",
    "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Corte de Boletas",
-   "link_count": 0,
-   "link_to": "PMT Corte Boleta",
-   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2025-12-06 18:33:03.451513",
+ "modified": "2026-02-24 14:03:50.084345",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PM-PMT",

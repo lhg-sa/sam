@@ -48,7 +48,9 @@
   "dpi",
   "idtipolicencia",
   "nlicencia",
-  "cedula"
+  "cedula",
+  "articulo_valido",
+  "consolidado"
  ],
  "fields": [
   {
@@ -161,11 +163,12 @@
   },
   {
    "fieldname": "status",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_filter": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Status"
+   "label": "Status",
+   "options": "PENDIENTE-PAGO\nPAGADA"
   },
   {
    "fieldname": "veh\u00edculo_section",
@@ -255,6 +258,17 @@
    "label": "Fecha Opera"
   },
   {
+   "fieldname": "articulo_valido",
+   "fieldtype": "Data",
+   "label": "Articulo Valido"
+  },
+  {
+   "fieldname": "consolidado",
+   "fieldtype": "Long Text",
+   "label": "Consolidado",
+   "read_only": 1
+  },
+  {
    "fieldname": "column_break_3zhz",
    "fieldtype": "Column Break"
   },
@@ -278,7 +292,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-23 21:45:14.087259",
+ "modified": "2026-02-24 14:21:32.624891",
  "modified_by": "Administrator",
  "module": "SAM",
  "name": "PMT Historico",
