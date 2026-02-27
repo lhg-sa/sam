@@ -33,11 +33,13 @@
   "status",
   "veh\u00edculo_section",
   "placa",
+    "placa_unificada",
   "tcirculacion",
   "idmarca",
   "column_break_cdbm",
   "idtipovehiculo",
   "tipo_placa",
+  "tipo_placa_id",
   "color",
   "conductor_section",
   "nitconductor",
@@ -183,6 +185,11 @@
    "in_standard_filter": 1,
    "label": "Placa"
   },
+    {
+     "fieldname": "placa_unificada",
+     "fieldtype": "Data",
+     "label": "Placa Unificada"
+    },
   {
    "fieldname": "tcirculacion",
    "fieldtype": "Data",
@@ -206,6 +213,11 @@
    "in_standard_filter": 1,
    "label": "Tipo Placa",
    "options": "PARTICULAR\nCOMERCIAL\nAUTOMOVIL\nBUS\nCAMIONETILLA\nMOTO\nCAMION\nALQUILER\nOFICIALES\nU Bus Urbano\nAPACHE\nEXTRANJERO"
+  },
+  {
+   "fieldname": "tipo_placa_id",
+   "fieldtype": "Data",
+   "label": "Tipo Placa ID"
   },
   {
    "fieldname": "idmarca",

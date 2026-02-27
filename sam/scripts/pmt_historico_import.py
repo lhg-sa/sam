@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import csv
 import re
+import unicodedata
 from datetime import datetime
 from typing import Iterable
 
 import frappe
 
 
-CSV_PATH = "/home/frappe/frappe-bench/frappe-bench/sites/v15.local/public/files/datos_pmt.csv"
+CSV_PATH = "/home/frappe/frappe-bench/sites/sam.mdf.lan/public/files/PMT Historico.csv"
 
 DATE_FIELDS = {"fecha", "fechalimite", "fechaopera"}
 TIME_FIELDS = {"hora"}
@@ -57,10 +58,12 @@ FIELDS = [
     # Section: Vehiculo
     {"fieldtype": "Section Break", "label": "Vehículo"},
     {"fieldname": "placa", "label": "Placa", "fieldtype": "Data", "in_list_view": 1},
+    {"fieldname": "placa_unificada", "label": "Placa Unificada", "fieldtype": "Data"},
     {"fieldname": "tcirculacion", "label": "T Circulación", "fieldtype": "Data"},
     {"fieldname": "color", "label": "Color", "fieldtype": "Data"},
     {"fieldname": "idtipovehiculo", "label": "ID Tipo Vehículo", "fieldtype": "Int"},
     {"fieldname": "tipo_placa", "label": "Tipo Placa", "fieldtype": "Data"},
+    {"fieldname": "tipo_placa_id", "label": "Tipo Placa ID", "fieldtype": "Data"},
     {"fieldname": "idmarca", "label": "ID Marca", "fieldtype": "Int"},
     # Section: Conductor
     {"fieldtype": "Section Break", "label": "Conductor"},
@@ -72,6 +75,8 @@ FIELDS = [
     {"fieldname": "nlicencia", "label": "N Licencia", "fieldtype": "Data"},
     {"fieldname": "idtipolicencia", "label": "ID Tipo Licencia", "fieldtype": "Int"},
     {"fieldname": "fechaopera", "label": "Fecha Opera", "fieldtype": "Date"},
+    {"fieldname": "articulo_valido", "label": "Articulo Valido", "fieldtype": "Data"},
+    {"fieldname": "consolidado", "label": "Consolidado", "fieldtype": "Data"},
 ]
 
 TIPO_PLACA_MAP = {
@@ -88,6 +93,22 @@ TIPO_PLACA_MAP = {
     10: "U Bus Urbano",
     11: "APACHE",
     12: "EXTRANJERO",
+}
+
+TIPO_PLACA_ID_MAP = {
+    0: "N",
+    1: "P",
+    2: "C",
+    3: "P",
+    4: "BUS",
+    5: "P",
+    6: "M",
+    7: "C",
+    8: "A",
+    9: "O",
+    10: "U",
+    11: "M",
+    12: "N",
 }
 
 TIPO_LICENCIA_MAP = {
@@ -616,20 +637,53 @@ def create_doctype():
     frappe.db.commit()
 
 
+def _normalize_header(value: str) -> str:
+    if value is None:
+        return ""
+    value = value.strip().lower()
+    value = unicodedata.normalize("NFKD", value)
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
+    value = re.sub(r"[^a-z0-9]+", "", value)
+    return value
+
+
 def _iter_rows() -> Iterable[tuple]:
     fieldnames = [f["fieldname"] for f in FIELDS if f.get("fieldname")]
-    with open(CSV_PATH, newline="", encoding="utf-8", errors="replace") as f:
-        reader = csv.DictReader(f, delimiter=";")
+    aliases = {
+        "tipoplaca": "tipo_placa",
+        "articulovalido": "articulo_valido",
+    }
+    with open(CSV_PATH, newline="", encoding="utf-8-sig", errors="replace") as f:
+        sample = f.read(2048)
+        f.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=[",", ";", "\t", "|"])
+        except Exception:
+            dialect = csv.get_dialect("excel")
+        reader = csv.DictReader(f, dialect=dialect)
+        mapped_headers = {}
+        for header in reader.fieldnames or []:
+            normalized = _normalize_header(header)
+            mapped = aliases.get(normalized, normalized)
+            if mapped in fieldnames:
+                mapped_headers[header] = mapped
         for row in reader:
-            idtipovehiculo = _clean_value("idtipovehiculo", row.get("idtipovehiculo"))
-            idtipolicencia = _map_idtipolicencia(row.get("idtipolicencia"))
-            idsituacion = _map_idsituacion(row.get("idsituacion"))
-            idmarca = _map_idmarca(row.get("idmarca"))
-            status = _map_status(row.get("status"))
+            row_mapped = {mapped: row.get(orig) for orig, mapped in mapped_headers.items()}
+            idtipovehiculo = _clean_value("idtipovehiculo", row_mapped.get("idtipovehiculo"))
+            idtipolicencia = _map_idtipolicencia(row_mapped.get("idtipolicencia"))
+            idsituacion = _map_idsituacion(row_mapped.get("idsituacion"))
+            idmarca = _map_idmarca(row_mapped.get("idmarca"))
+            status = _map_status(row_mapped.get("status"))
             values = []
             for fieldname in fieldnames:
                 if fieldname == "tipo_placa":
                     values.append(TIPO_PLACA_MAP.get(idtipovehiculo, "Nulo"))
+                elif fieldname == "tipo_placa_id":
+                    values.append(TIPO_PLACA_ID_MAP.get(idtipovehiculo, "N"))
+                elif fieldname == "placa_unificada":
+                    tipo = TIPO_PLACA_ID_MAP.get(idtipovehiculo, "N")
+                    placa = (_clean_value("placa", row_mapped.get("placa")) or "")
+                    values.append(f"{tipo}{placa}")
                 elif fieldname == "idtipovehiculo":
                     values.append(idtipovehiculo)
                 elif fieldname == "idtipolicencia":
@@ -641,14 +695,19 @@ def _iter_rows() -> Iterable[tuple]:
                 elif fieldname == "status":
                     values.append(status)
                 else:
-                    values.append(_clean_value(fieldname, row.get(fieldname)))
+                    values.append(_clean_value(fieldname, row_mapped.get(fieldname)))
             yield tuple(values)
 
 
-def import_data(batch_size: int = 2000):
+def import_data(batch_size: int = 2000, truncate: bool = True):
     doctype_name = "PMT Historico"
     if not frappe.db.exists("DocType", doctype_name):
         raise RuntimeError("DocType 'PMT Historico' no existe. Ejecuta create_doctype primero.")
+
+    if truncate:
+        table = f"tab{doctype_name}"
+        frappe.db.sql(f"TRUNCATE `{table}`")
+        frappe.db.commit()
 
     data_fields = [f["fieldname"] for f in FIELDS if f.get("fieldname")]
     fields = [
@@ -681,6 +740,47 @@ def import_data(batch_size: int = 2000):
         frappe.db.commit()
 
 
+def update_tipo_placa_id_records():
+    doctype_name = "PMT Historico"
+    table = f"tab{doctype_name}"
+    frappe.db.sql(
+        f"""
+        UPDATE `{table}`
+        SET tipo_placa_id = CASE idtipovehiculo
+            WHEN 0 THEN 'N'
+            WHEN 1 THEN 'P'
+            WHEN 2 THEN 'C'
+            WHEN 3 THEN 'P'
+            WHEN 4 THEN 'BUS'
+            WHEN 5 THEN 'P'
+            WHEN 6 THEN 'M'
+            WHEN 7 THEN 'C'
+            WHEN 8 THEN 'A'
+            WHEN 9 THEN 'O'
+            WHEN 10 THEN 'U'
+            WHEN 11 THEN 'M'
+            WHEN 12 THEN 'N'
+            ELSE 'N'
+        END
+        """
+    )
+    frappe.db.commit()
+
+
+def update_placa_unificada_records():
+    doctype_name = "PMT Historico"
+    table = f"tab{doctype_name}"
+    frappe.db.sql(
+        f"""
+        UPDATE `{table}`
+        SET placa_unificada = CONCAT(COALESCE(tipo_placa_id, ''), COALESCE(placa, ''))
+        """
+    )
+    frappe.db.commit()
+
+
 def run_all():
     create_doctype()
     import_data()
+    update_tipo_placa_id_records()
+    update_placa_unificada_records()
