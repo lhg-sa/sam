@@ -19,7 +19,7 @@ function add_print_solicitud_button(frm) {
   }
 
   frm.add_custom_button(__("Imprimir Solicitud"), () => {
-    const printFormat = "Material Request Recepcion Bienes";
+    const printFormat = "Material Request SMC-01-1";
     const url = frappe.urllib.get_full_url(
       `/api/method/frappe.utils.print_format.download_pdf?doctype=${encodeURIComponent(
         frm.doc.doctype

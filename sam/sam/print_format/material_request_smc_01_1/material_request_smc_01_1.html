@@ -1,0 +1,111 @@
+<style>
+	@page { size: Letter; margin: 0.4in; }
+	body, html { margin: 0; padding: 0; height: 100%; }
+	.print-format { font-family: "OCR-A", "OCR-B", "Courier New", monospace; font-size: 10pt; margin: 0; padding: 0; }
+	.page { position: relative; min-height: 10in; box-sizing: border-box; page-break-after: avoid; page-break-inside: avoid; }
+	.footer { position: absolute; left: 0; right: 0; bottom: 1.25in; }
+	.center { text-align: center; }
+	.right { text-align: right; }
+	.nowrap { white-space: nowrap; }
+	.indent { display: inline-block; margin-left: 40ch; }
+	.items-table { width: 100%; border-collapse: collapse; font-size: 8pt; margin-left: -25ch; }
+	.items-table td { padding: 0; }
+	.spacer-1 { height: 0.75em; }
+	.spacer-2 { height: 1.5em; }
+	.spacer-3 { height: 2.25em; }
+	.spacer-4 { height: 3em; }
+	.spacer-5 { height: 3.75em; }
+	.spacer-10 { height: 7.5em; }
+</style>
+
+{% set day = frappe.utils.formatdate(doc.transaction_date, "dd") if doc.transaction_date else "" %}
+{% set month = frappe.utils.formatdate(doc.transaction_date, "MM") if doc.transaction_date else "" %}
+{% set year = frappe.utils.formatdate(doc.transaction_date, "YYYY") if doc.transaction_date else "" %}
+
+<div class="print-format">
+	<div class="page">
+		<!-- Encabezado: Nombre del documento -->
+		<div class="spacer-5"></div>
+		<table style="width:100%; border-collapse: collapse;">
+			<tr>
+				<td class="center nowrap" style="font-size:8pt;">{{ doc.name }}</td>
+			</tr>
+		</table>
+		
+		<div class="spacer-10"></div>
+
+		<!-- Fila: Fecha | Unidad | Campo 9 -->
+		<table style="width:100%; border-collapse: collapse;">
+			<tr>
+				<!-- Fecha: día, mes, año -->
+				<td style="width:22%; vertical-align: top;" class="center">{{ day }} {{ month }} {{ year }}</td>
+				
+				<!-- Unidad -->
+				<td style="width:48%; vertical-align: top;" class="center">
+					<div class="spacer-3"></div>
+					{{ (doc.campo_5 or "-") ~ "-" }} {{ doc.custom_unidad }}
+				</td>
+				
+				<!-- Campo 9 -->
+				<td style="width:30%; vertical-align: top;" class="center">
+					<div class="spacer-4"></div>
+					&nbsp;&nbsp;&nbsp;&nbsp;{{ (doc.campo_9 or "-") ~ "-" }}
+				</td>
+			</tr>
+		</table>
+
+		<!-- Fila: Campos 7 y 8 -->
+		<table style="width:100%; border-collapse: collapse;">
+			<tr>
+				<td style="width:70%;" class="center">{{ (doc.campo_7 or "-") ~ "-" }} {{ (doc.campo_8 or "-") ~ "-" }}</td>
+				<td style="width:30%;"></td>
+			</tr>
+		</table>
+
+		<div class="spacer-4"></div>
+
+		<!-- Tipo: BIENES | MATERIALES | SUMINISTROS | SERVICIOS -->
+		<table style="width:100%; border-collapse: collapse;">
+			<tr class="center">
+				<td style="width:25%;"><span class="indent">&nbsp;&nbsp;&nbsp;&nbsp;{% if doc.custom_tipo == "BIENES" %}X{% endif %}</span></td>
+				<td style="width:25%;"><span class="indent">&nbsp;&nbsp;&nbsp;&nbsp;{% if doc.custom_tipo == "MATERIALES" %}X{% endif %}</span></td>
+				<td style="width:25%;"><span class="indent">&nbsp;&nbsp;&nbsp;&nbsp;{% if doc.custom_tipo == "SUMINISTROS" %}X{% endif %}</span></td>
+				<td style="width:25%;"><span class="indent">&nbsp;&nbsp;&nbsp;&nbsp;{% if doc.custom_tipo == "SERVICIOS" %}X{% endif %}</span></td>
+			</tr>
+		</table>
+
+		<div class="spacer-3"></div>
+
+		<!-- Tabla de Items -->
+		<table class="items-table">
+			{% for item in doc.items %}
+			<tr class="center">
+				<td style="width:12.5%; text-align: left; padding-left: 7ch;">{{ item.item_code or "-" }}</td>
+				<td style="width:8%; text-align: left; margin-left: -6ch;">{{ frappe.db.get_value("Item", item.item_code, "custom_renglon") or "-" }}</td>
+				<td style="width:10%; position: relative; left: -5ch;">{{ item.qty or "-" }}</td>
+				<td style="width:35.5%; text-align: left; margin-left: -7ch;">{{ item.item_name or "-" }}</td>				
+				<td style="width:10%; text-align: left; margin-left: -30ch;">{{ item.uom or "-" }}</td>
+				<td style="width:10%; text-align: left; margin-left: -25ch;">{{ item.campo_23 or "-" }}</td>
+				<td style="width:7%;  text-align: left; margin-left: -25ch;">{{ item.campo_19 or "-" }}</td>
+				<td style="width:7%;">{{ item.campo_20 or "-" }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		<!-- Footer -->
+		<div class="footer">
+			<table style="width:100%; border-collapse: collapse;">
+				<tr>
+					<td colspan="6"></td>
+					<td class="right nowrap">{{ (doc.campo_21 or "-") ~ "-" }}</td>
+				</tr>
+			</table>
+
+			<table style="width:100%; border-collapse: collapse;">
+				<tr>
+					<td style="width:100%;">{{ (doc.campo_22 or "-") ~ "-" }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
