@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class castastro_detalles_trimestre(Document):
+class CastastroDetallesTrimestre(Document):
 	pass

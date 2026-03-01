@@ -110,7 +110,7 @@
    "fieldname": "new_catastro_inmueble",
    "fieldtype": "Link",
    "label": "New Catastro Inmueble",
-   "options": "DMP Inmueble",
+   "options": "Catastro Inmueble",
    "read_only": 1
   },
   {
@@ -124,7 +124,7 @@
    "fieldtype": "Link",
    "label": "ID Inmueble de Catastro:",
    "mandatory_depends_on": "eval:doc.catastro_movimiento_tipo==\"4-ACTUALIZACION DE VALOR\"",
-   "options": "DMP Inmueble"
+   "options": "Catastro Inmueble"
   },
   {
    "fetch_from": "id_catastro.tarjeta",
@@ -307,10 +307,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-22 14:09:45.934753",
+ "modified": "2026-03-01 17:26:04.490541",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "catastro_movimiento",
+ "name": "Catastro Movimiento",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class catastro_colindancia(Document):
+class CatastroColindancia(Document):
 	pass

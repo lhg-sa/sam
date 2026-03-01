@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class Testcatastro_movimiento(FrappeTestCase):
+class TestCatastroMovimiento(FrappeTestCase):
 	pass

@@ -236,7 +236,7 @@
    "fieldname": "grupo_fha",
    "fieldtype": "Link",
    "label": "Grupo de FHA",
-   "options": "catastro_fha"
+   "options": "Catastro FHA"
   },
   {
    "bold": 1,
@@ -254,7 +254,7 @@
    "fieldname": "zona_catastral",
    "fieldtype": "Link",
    "label": "Zona",
-   "options": "catastro_zona"
+   "options": "Catastro Zona"
   },
   {
    "fieldname": "sector_manzana",
@@ -266,7 +266,7 @@
    "fieldname": "colonia_bloque",
    "fieldtype": "Link",
    "label": "Colonia/Bloque",
-   "options": "catastro_colonia_bloque"
+   "options": "Catastro Colonia Bloque"
   },
   {
    "fieldname": "tarjeta",
@@ -392,7 +392,7 @@
    "fieldname": "inmueble_copropietario",
    "fieldtype": "Table",
    "label": "Inmueble Copropietario",
-   "options": "inmueble_copropietario"
+   "options": "Catastro Inmueble Copropietario"
   },
   {
    "bold": 1,
@@ -443,7 +443,7 @@
    "fieldname": "cc_detalle_table",
    "fieldtype": "Table",
    "label": "Detalle",
-   "options": "catastro_inmueble_cc",
+   "options": "Catastro Inmueble CC",
    "read_only": 1
   },
   {
@@ -608,7 +608,7 @@
    "fieldname": "colindantes",
    "fieldtype": "Table",
    "label": "Catastro Colindancia",
-   "options": "catastro_colindancia"
+   "options": "Catastro Colindancia"
   },
   {
    "bold": 1,
@@ -669,11 +669,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-18 18:13:23.350697",
+ "modified": "2026-03-01 17:31:47.068836",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "catastro_inmueble",
- "naming_rule": "Expression",
+ "name": "Catastro Inmueble",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

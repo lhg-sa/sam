@@ -96,7 +96,7 @@
    "fieldname": "colonia_bloque",
    "fieldtype": "Link",
    "label": "Colonia/Bloque",
-   "options": "catastro_colonia_bloque"
+   "options": "Catastro Colonia Bloque"
   },
   {
    "fieldname": "column_break_rfnw",
@@ -267,11 +267,11 @@
  "image_field": "image_base",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-18 18:13:28.432760",
+ "modified": "2026-03-01 17:29:54.066530",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "sp_persona",
- "naming_rule": "Expression",
+ "name": "SP Persona",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

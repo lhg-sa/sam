@@ -51,7 +51,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Inmueble Id",
-   "options": "DMP Inmueble",
+   "options": "Catastro Inmueble",
    "reqd": 1
   },
   {
@@ -100,7 +100,7 @@
    "fieldname": "colonia_bloque",
    "fieldtype": "Read Only",
    "label": "Colonia/Bloque",
-   "options": "catastro_colonia_bloque"
+   "options": "Catastro Colonia Bloque"
   },
   {
    "fieldname": "column_break_rfnw",
@@ -274,10 +274,10 @@
  "image_field": "image_base",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-22 14:09:48.404381",
+ "modified": "2026-03-01 17:29:55.247712",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "sp_inmueble",
+ "name": "SP Inmueble",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

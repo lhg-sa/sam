@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class sp_inmueble(Document):
+class SPInmueble(Document):
 	pass

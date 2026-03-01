@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class catastro_fha(Document):
+class CatastroFHA(Document):
 	pass

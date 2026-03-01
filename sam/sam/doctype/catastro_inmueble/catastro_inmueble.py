@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class catastro_inmueble(Document):
+class CatastroInmueble(Document):
 	pass

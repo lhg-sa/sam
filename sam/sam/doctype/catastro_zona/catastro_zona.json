@@ -30,7 +30,7 @@
  "modified": "2025-11-18 18:13:32.086719",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "catastro_zona",
+ "name": "Catastro Zona",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

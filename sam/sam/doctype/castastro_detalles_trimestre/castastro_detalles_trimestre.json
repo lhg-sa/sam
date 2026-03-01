@@ -22,7 +22,7 @@
    "fieldname": "id_catastro",
    "fieldtype": "Link",
    "label": "ID Inmueble de Catastro:",
-   "options": "DMP Inmueble"
+   "options": "Catastro Inmueble"
   },
   {
    "fieldname": "castastro_detalles_trimestre_descripcion",
@@ -79,10 +79,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-22 14:09:47.707058",
+ "modified": "2026-03-01 17:26:05.964274",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "castastro_detalles_trimestre",
+ "name": "Castastro Detalles Trimestre",
  "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [

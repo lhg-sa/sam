@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class sp_persona(Document):
+class SPPersona(Document):
 	pass

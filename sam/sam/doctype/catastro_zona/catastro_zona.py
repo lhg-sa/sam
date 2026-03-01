@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class catastro_zona(Document):
+class CatastroZona(Document):
 	pass

@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class Testcastastro_detalles_trimestre(FrappeTestCase):
+class TestCastastroDetallesTrimestre(FrappeTestCase):
 	pass

@@ -1,7 +1,7 @@
 // Copyright (c) 2025, Lidar Holding Group S. A. and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("castastro_detalles_trimestre", {
+// frappe.ui.form.on("Castastro Detalles Trimestre", {
 // 	refresh(frm) {
 
 // 	},

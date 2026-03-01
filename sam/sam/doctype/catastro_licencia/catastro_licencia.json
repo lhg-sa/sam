@@ -50,7 +50,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "ID Inmueble de Catastro",
-   "options": "DMP Inmueble",
+   "options": "Catastro Inmueble",
    "reqd": 1
   },
   {
@@ -199,10 +199,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-22 14:09:47.021892",
+ "modified": "2026-03-01 17:26:05.344204",
  "modified_by": "Administrator",
  "module": "SAM",
- "name": "catastro_licencia",
+ "name": "Catastro Licencia",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

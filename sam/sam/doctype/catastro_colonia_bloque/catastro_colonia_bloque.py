@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class catastro_colonia_bloque(Document):
+class CatastroColoniaBloque(Document):
 	pass

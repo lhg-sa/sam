@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class tempo(Document):
+class catastro_CatastroInmuebleCopropietario(Document):
 	pass

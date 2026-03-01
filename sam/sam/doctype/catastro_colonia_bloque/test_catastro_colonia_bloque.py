@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class Testcatastro_colonia_bloque(FrappeTestCase):
+class TestCatastroColoniaBloque(FrappeTestCase):
 	pass

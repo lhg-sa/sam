@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class Testcatastro_licencia(FrappeTestCase):
+class TestCatastroLicencia(FrappeTestCase):
 	pass

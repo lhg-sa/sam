@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class Testcatastro_fha(FrappeTestCase):
+class TestCatastroFHA(FrappeTestCase):
 	pass
