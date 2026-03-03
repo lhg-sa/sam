@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/pmt-movil/sw.js', { scope: '/pmt-movil/' })})}

@@ -1,0 +1,86 @@
+{
+ "actions": [],
+ "autoname": "SDF-{#}",
+ "creation": "2026-03-01 18:32:52.341876",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "material_request_id",
+  "detalle_solicitud_html",
+  "section_break_mucm",
+  "fuente_detalle",
+  "section_break_lszp",
+  "column_break_rwau",
+  "column_break_smyv",
+  "total_asignacion_fuente"
+ ],
+ "fields": [
+  {
+   "fieldname": "material_request_id",
+   "fieldtype": "Link",
+   "label": "Solicitud de Compra ID",
+   "options": "Material Request"
+  },
+  {
+   "fieldname": "section_break_mucm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fuente_detalle",
+   "fieldtype": "Table",
+   "label": "Detalle de Fuentes",
+   "options": "DAFIM Solicitud Fuente Detalle"
+  },
+  {
+   "fieldname": "section_break_lszp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_asignacion_fuente",
+   "fieldtype": "Currency",
+   "label": "Total Asignado",
+   "precision": "2"
+  },
+  {
+   "fieldname": "detalle_solicitud_html",
+   "fieldtype": "HTML",
+   "label": "Detalle de Solicitud"
+  },
+  {
+   "fieldname": "column_break_rwau",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_smyv",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-01 20:57:18.248279",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "DAFIM Solicitud Fuente",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

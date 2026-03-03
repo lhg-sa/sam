@@ -1,0 +1,1 @@
+{"name":"PMT Móvil","short_name":"PMT","description":"Sistema de Control Vehicular","start_url":"./","display":"standalone","background_color":"#ffffff","theme_color":"#1e1b4b","lang":"en","scope":"./","icons":[{"src":"pwa-192x192.svg","sizes":"192x192","type":"image/svg+xml"},{"src":"pwa-512x512.svg","sizes":"512x512","type":"image/svg+xml"}]}

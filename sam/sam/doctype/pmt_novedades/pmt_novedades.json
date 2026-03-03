@@ -1,0 +1,138 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:PMT-NOV-{YYYY}-{#####}",
+ "creation": "2026-03-03 06:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tipo_incidencia",
+  "descripcion",
+  "usuario_registro",
+  "fecha_hora_reporte",
+  "section_break_ubicacion",
+  "usar_ubicacion_gps",
+  "latitud",
+  "longitud",
+  "precision_gps",
+  "ubicacion_texto",
+  "section_break_evidencia",
+  "imagenes"
+ ],
+ "fields": [
+  {
+   "fieldname": "tipo_incidencia",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tipo de Incidencia",
+   "options": "Accidente de Tránsito\nSemáforo Dañado\nVía Obstruida\nOtro",
+   "reqd": 1
+  },
+  {
+   "fieldname": "descripcion",
+   "fieldtype": "Small Text",
+   "label": "Descripción",
+   "reqd": 1
+  },
+  {
+   "default": "{user}",
+   "fieldname": "usuario_registro",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Usuario Registro",
+   "options": "User",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "fecha_hora_reporte",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Fecha Hora Reporte",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_ubicacion",
+   "fieldtype": "Section Break",
+   "label": "Ubicación"
+  },
+  {
+   "default": "0",
+   "fieldname": "usar_ubicacion_gps",
+   "fieldtype": "Check",
+   "label": "Incluir Ubicación GPS"
+  },
+  {
+   "depends_on": "eval:doc.usar_ubicacion_gps==1",
+   "fieldname": "latitud",
+   "fieldtype": "Float",
+   "label": "Latitud"
+  },
+  {
+   "depends_on": "eval:doc.usar_ubicacion_gps==1",
+   "fieldname": "longitud",
+   "fieldtype": "Float",
+   "label": "Longitud"
+  },
+  {
+   "depends_on": "eval:doc.usar_ubicacion_gps==1",
+   "fieldname": "precision_gps",
+   "fieldtype": "Float",
+   "label": "Precisión GPS (m)"
+  },
+  {
+   "fieldname": "ubicacion_texto",
+   "fieldtype": "Small Text",
+   "label": "Referencia de Ubicación"
+  },
+  {
+   "fieldname": "section_break_evidencia",
+   "fieldtype": "Section Break",
+   "label": "Evidencia"
+  },
+  {
+   "fieldname": "imagenes",
+   "fieldtype": "Table",
+   "label": "Imágenes",
+   "options": "PMT Novedad Imagen"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-03 06:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "SAM",
+ "name": "PMT Novedades",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "All",
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
