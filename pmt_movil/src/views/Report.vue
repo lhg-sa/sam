@@ -55,19 +55,11 @@
         </div>
 
         <div class="bg-white rounded-xl border border-gray-200 p-4">
-          <div class="flex items-center justify-between gap-3">
-            <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
-              <input v-model="usarUbicacionGps" type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              Incluir ubicación GPS
-            </label>
-            <button
-              type="button"
-              @click="capturarGPS"
-              :disabled="gpsLoading"
-              class="px-3 py-2 text-sm rounded-lg bg-indigo-100 text-indigo-900 hover:bg-indigo-200 disabled:opacity-50"
-            >
-              {{ gpsLoading ? 'Obteniendo...' : 'Capturar GPS' }}
-            </button>
+          <div class="text-sm font-medium text-gray-700">
+            Ubicación GPS automática
+          </div>
+          <div class="mt-1 text-xs text-gray-500">
+            Se captura automáticamente al abrir esta pantalla y se envía por defecto en cada novedad.
           </div>
           <div v-if="gpsError" class="mt-2 text-xs text-red-600">{{ gpsError }}</div>
           <div v-if="latitud !== null && longitud !== null" class="mt-3 text-xs text-gray-600">
@@ -136,17 +128,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import BottomNav from '@/components/BottomNav.vue'
 import { ensureCsrfToken, logout } from '@/services/auth'
+import { parseApiError } from '@/services/http'
 import type { NovedadPayload } from '@/types/api'
 
 const router = useRouter()
 const tipo = ref('')
 const descripcion = ref('')
 const ubicacionTexto = ref('')
-const usarUbicacionGps = ref(false)
 const latitud = ref<number | null>(null)
 const longitud = ref<number | null>(null)
 const precisionGps = ref<number | null>(null)
@@ -200,39 +192,58 @@ const fileToBase64 = (file: File): Promise<string> => {
 
 void ensureCsrfToken().catch(() => undefined)
 
-const capturarGPS = () => {
+const capturarGPS = async (showError = true) => {
   gpsError.value = ''
   if (!navigator.geolocation) {
-    gpsError.value = 'El dispositivo no soporta geolocalización.'
+    if (showError) {
+      gpsError.value = 'El dispositivo no soporta geolocalización.'
+    }
     return
   }
 
   gpsLoading.value = true
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      latitud.value = Number(position.coords.latitude.toFixed(6))
-      longitud.value = Number(position.coords.longitude.toFixed(6))
-      precisionGps.value = Number(position.coords.accuracy.toFixed(2))
-      usarUbicacionGps.value = true
-      gpsLoading.value = false
-    },
-    (error) => {
-      gpsError.value = `No se pudo obtener GPS: ${error.message}`
-      gpsLoading.value = false
-    },
-    { enableHighAccuracy: true, timeout: 10000 }
-  )
+  try {
+    const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: true,
+        timeout: 10000,
+      })
+    })
+
+    latitud.value = Number(position.coords.latitude.toFixed(6))
+    longitud.value = Number(position.coords.longitude.toFixed(6))
+    precisionGps.value = Number(position.coords.accuracy.toFixed(2))
+  } catch (error) {
+    if (showError) {
+      const message = error instanceof Error ? error.message : String(error)
+      gpsError.value = `No se pudo obtener GPS: ${message}`
+    }
+  } finally {
+    gpsLoading.value = false
+  }
 }
+
+onMounted(() => {
+  void capturarGPS(false)
+})
 
 const submitReport = async () => {
   submitting.value = true
   try {
     const csrfToken = await ensureCsrfToken()
 
+    if (latitud.value === null || longitud.value === null) {
+      await capturarGPS(true)
+    }
+
+    if (latitud.value === null || longitud.value === null) {
+      throw new Error('No se pudo obtener ubicación GPS. Verifica permisos de ubicación e inténtalo de nuevo.')
+    }
+
     const payload: NovedadPayload = {
       tipo_incidencia: tipo.value,
       descripcion: descripcion.value,
-      usar_ubicacion_gps: usarUbicacionGps.value ? 1 : 0,
+      usar_ubicacion_gps: 1,
       latitud: latitud.value,
       longitud: longitud.value,
       precision_gps: precisionGps.value,
@@ -256,23 +267,19 @@ const submitReport = async () => {
     })
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => null)
-      const rawText = errorData ? '' : await response.text().catch(() => '')
-      throw new Error(
-        errorData?.message || errorData?.exc_type || rawText || `HTTP ${response.status}`
-      )
+      throw new Error(await parseApiError(response))
     }
 
     alert('Novedad registrada exitosamente')
     tipo.value = ''
     descripcion.value = ''
     ubicacionTexto.value = ''
-    usarUbicacionGps.value = false
     latitud.value = null
     longitud.value = null
     precisionGps.value = null
     imagenes.value.forEach((img) => URL.revokeObjectURL(img.preview))
     imagenes.value = []
+    void capturarGPS(false)
     router.push('/')
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error)

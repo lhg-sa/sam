@@ -3,6 +3,7 @@ export interface ApiResponse<T> {
   data?: T
   exc_type?: string
   exception?: string
+  _server_messages?: string
 }
 
 export interface SessionUserResponse {

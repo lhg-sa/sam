@@ -47,10 +47,14 @@ doctype_js = {
 	"Customer": "public/js/customer.js",
 	"Item": "public/js/item.js",
 	"Material Request": "public/js/material_request.js",
+    "PMT Novedades": "sam/doctype/pmt_novedades/pmt_novedades.js",
 }
 
 
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {
+    "PMT Novedades": "public/js/pmt_novedades_list.js",
+}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 

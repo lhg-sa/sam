@@ -7,21 +7,33 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+    "section_break_resumen",
   "tipo_incidencia",
   "descripcion",
+    "column_break_resumen",
   "usuario_registro",
   "fecha_hora_reporte",
   "section_break_ubicacion",
   "usar_ubicacion_gps",
   "latitud",
   "longitud",
+  "gps_mapa_html",
+    "column_break_ubicacion",
   "precision_gps",
   "ubicacion_texto",
   "section_break_evidencia",
+  "evidencia_carousel_html",
+    "column_break_evidencia",
   "imagenes"
  ],
  "fields": [
+    {
+     "fieldname": "section_break_resumen",
+     "fieldtype": "Section Break",
+     "label": "Resumen del Reporte"
+    },
   {
+     "columns": 6,
    "fieldname": "tipo_incidencia",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -31,12 +43,18 @@
    "reqd": 1
   },
   {
+    "columns": 6,
    "fieldname": "descripcion",
    "fieldtype": "Small Text",
    "label": "Descripción",
    "reqd": 1
   },
   {
+    "fieldname": "column_break_resumen",
+    "fieldtype": "Column Break"
+  },
+  {
+    "columns": 6,
    "default": "{user}",
    "fieldname": "usuario_registro",
    "fieldtype": "Link",
@@ -47,6 +65,7 @@
    "reqd": 1
   },
   {
+    "columns": 6,
    "default": "Now",
    "fieldname": "fecha_hora_reporte",
    "fieldtype": "Datetime",
@@ -67,12 +86,14 @@
    "label": "Incluir Ubicación GPS"
   },
   {
+    "columns": 4,
    "depends_on": "eval:doc.usar_ubicacion_gps==1",
    "fieldname": "latitud",
    "fieldtype": "Float",
    "label": "Latitud"
   },
   {
+    "columns": 4,
    "depends_on": "eval:doc.usar_ubicacion_gps==1",
    "fieldname": "longitud",
    "fieldtype": "Float",
@@ -80,11 +101,23 @@
   },
   {
    "depends_on": "eval:doc.usar_ubicacion_gps==1",
+   "fieldname": "gps_mapa_html",
+   "fieldtype": "HTML",
+   "label": "Ubicación en Mapa"
+  },
+  {
+    "fieldname": "column_break_ubicacion",
+    "fieldtype": "Column Break"
+  },
+  {
+    "columns": 4,
+   "depends_on": "eval:doc.usar_ubicacion_gps==1",
    "fieldname": "precision_gps",
    "fieldtype": "Float",
    "label": "Precisión GPS (m)"
   },
   {
+    "columns": 8,
    "fieldname": "ubicacion_texto",
    "fieldtype": "Small Text",
    "label": "Referencia de Ubicación"
@@ -95,6 +128,16 @@
    "label": "Evidencia"
   },
   {
+   "fieldname": "evidencia_carousel_html",
+   "fieldtype": "HTML",
+   "label": "Galería de Evidencia (Solo lectura)"
+  },
+    {
+     "fieldname": "column_break_evidencia",
+     "fieldtype": "Column Break"
+    },
+  {
+     "columns": 12,
    "fieldname": "imagenes",
    "fieldtype": "Table",
    "label": "Imágenes",
