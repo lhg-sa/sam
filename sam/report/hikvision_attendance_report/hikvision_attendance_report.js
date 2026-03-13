@@ -21,12 +21,6 @@ frappe.query_reports["Hikvision Attendance Report"] = {
 			default: frappe.datetime.now_date()
 		},
 		{
-			fieldname: "custom_renglon",
-			label: __("Renglon"),
-			fieldtype: "Link",
-			options: "DAFIM Renglon"
-		},
-		{
 			fieldname: "designation",
 			label: __("Puesto"),
 			fieldtype: "Link",

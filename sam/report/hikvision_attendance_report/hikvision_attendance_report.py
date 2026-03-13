@@ -48,8 +48,6 @@ def get_columns():
         {"fieldname": "exit_issue", "label": "Exit Issue", "fieldtype": "Data", "width": 100},
         {"fieldname": "extra_time", "label": "Extra Time", "fieldtype": "Data", "width": 120},
         {"fieldname": "late_time", "label": "Late Time", "fieldtype": "Data", "width": 120},
-        {"fieldname": "almuerzo_sale", "label": "Salida Almuerzo", "fieldtype": "Time", "width": 120},
-        {"fieldname": "almuerzo_retorna", "label": "Retorno de Almuerzo", "fieldtype": "Time", "width": 120},
     ]
 
 
@@ -160,11 +158,11 @@ def get_data(filters):
                 shift_start_time = datetime.strptime(str(record.start_time), "%H:%M:%S")
                 
                 if entry_time > shift_start_time:
-                    entry_issue = "<span style='color:red; font-weight: bold;'>TARDE</span>"
+                    entry_issue = "<span style='color:red'>TARDE</span>"
                 else:
-                    entry_issue = "<span style='color:green; font-weight: bold;'>OK</span>"
+                    entry_issue = "<span style='color:green'>OK</span>"
             except (ValueError, TypeError):
-                entry_issue = "<span style='color:orange; font-weight: bold;'>ERROR</span>"
+                entry_issue = "-"
         
         if record.exit_time and record.end_time:
             try:
@@ -172,11 +170,11 @@ def get_data(filters):
                 shift_end_time = datetime.strptime(str(record.end_time), "%H:%M:%S")
                 
                 if exit_time < shift_end_time:
-                    exit_issue = "<span style='color:orange; font-weight: bold;'>ANTES</span>"
+                    exit_issue = "<span style='color:red'>ANTES</span>"
                 else:
-                    exit_issue = "<span style='color:green; font-weight: bold;'>OK</span>"
+                    exit_issue = "<span style='color:green'>OK</span>"
             except (ValueError, TypeError):
-                exit_issue = "<span style='color:orange; font-weight: bold;'>ERROR</span>"
+                exit_issue = "-"
         
         # Calculate extra/late time
         if record.entry and record.exit_time and record.start_time and record.end_time:
@@ -214,8 +212,6 @@ def get_data(filters):
             "exit_issue": exit_issue,
             "extra_time": format_timedelta(extra_time),
             "late_time": format_timedelta(late_time),
-            "almuerzo_sale": None,  # Placeholder for future lunch break detection
-            "almuerzo_retorna": None,  # Placeholder for future lunch break detection
         }
         
         # Apply filters if required
@@ -247,8 +243,6 @@ def get_data(filters):
             "exit_issue": "",
             "extra_time": "<b>" + format_timedelta(total_extra_time) + "</b>",
             "late_time": "<b>" + format_timedelta(total_late_time) + "</b>",
-            "almuerzo_sale": "",
-            "almuerzo_retorna": "",
         })
     
     return processed_records
