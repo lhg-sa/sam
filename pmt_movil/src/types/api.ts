@@ -47,6 +47,8 @@ export interface NovedadImagePayload {
 export interface NovedadPayload {
   tipo_incidencia: string
   descripcion: string
+  vehiculo_id?: string
+  boleta_id?: string
   usar_ubicacion_gps: 0 | 1
   latitud: number | null
   longitud: number | null

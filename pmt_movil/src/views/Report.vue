@@ -35,6 +35,7 @@
               <option value="Accidente de Tránsito">Accidente de Tránsito</option>
               <option value="Semáforo Dañado">Semáforo Dañado</option>
               <option value="Vía Obstruida">Vía Obstruida</option>
+              <option value="Boleta">Boleta</option>
               <option value="Otro">Otro</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
@@ -52,6 +53,34 @@
           <div class="mt-1">
             <textarea id="descripcion" v-model="descripcion" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-xl p-3 border" placeholder="Escribe los detalles aquí..." required></textarea>
           </div>
+        </div>
+
+        <div>
+          <label for="vehiculoId" class="block text-sm font-medium text-gray-700 mb-1">
+            Vehículo / Placa
+          </label>
+          <input
+            id="vehiculoId"
+            v-model="vehiculoId"
+            type="text"
+            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-xl p-3 border"
+            placeholder="Ej: P123ABC"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="boletaId" class="block text-sm font-medium text-gray-700 mb-1">
+            Boleta ID
+          </label>
+          <input
+            id="boletaId"
+            v-model="boletaId"
+            type="text"
+            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-xl p-3 border"
+            placeholder="Ej: BOL-0001"
+            autocomplete="off"
+          />
         </div>
 
         <div class="bg-white rounded-xl border border-gray-200 p-4">
@@ -138,6 +167,8 @@ import type { NovedadPayload } from '@/types/api'
 const router = useRouter()
 const tipo = ref('')
 const descripcion = ref('')
+const vehiculoId = ref('')
+const boletaId = ref('')
 const ubicacionTexto = ref('')
 const latitud = ref<number | null>(null)
 const longitud = ref<number | null>(null)
@@ -243,6 +274,8 @@ const submitReport = async () => {
     const payload: NovedadPayload = {
       tipo_incidencia: tipo.value,
       descripcion: descripcion.value,
+      vehiculo_id: vehiculoId.value.trim().toUpperCase(),
+      boleta_id: boletaId.value.trim().toUpperCase(),
       usar_ubicacion_gps: 1,
       latitud: latitud.value,
       longitud: longitud.value,
@@ -273,6 +306,8 @@ const submitReport = async () => {
     alert('Novedad registrada exitosamente')
     tipo.value = ''
     descripcion.value = ''
+    vehiculoId.value = ''
+    boletaId.value = ''
     ubicacionTexto.value = ''
     latitud.value = null
     longitud.value = null

@@ -5,6 +5,7 @@ frappe.ui.form.on("PMT Novedades", {
 	onload(frm) {
 		apply_enterprise_theme(frm);
 		set_read_only_mode(frm);
+		render_gps_map_link(frm);
 	},
 
 	refresh() {
@@ -31,6 +32,27 @@ frappe.ui.form.on("PMT Novedades", {
 
 	usar_ubicacion_gps(frm) {
 		set_dashboard_indicators(frm);
+		add_map_button(frm);
+		render_gps_map_link(frm);
+	},
+
+	latitud(frm) {
+		add_map_button(frm);
+		render_gps_map_link(frm);
+	},
+
+	longitud(frm) {
+		add_map_button(frm);
+		render_gps_map_link(frm);
+	},
+
+	validate(frm) {
+		render_gps_map_link(frm);
+	},
+
+	after_save(frm) {
+		add_map_button(frm);
+		render_gps_map_link(frm);
 	},
 });
 
@@ -172,30 +194,31 @@ function get_public_image_url(value) {
 }
 
 function render_gps_map_link(frm) {
-	const html_field = frm.fields_dict.gps_mapa_html;
-	if (!html_field || !html_field.$wrapper) return;
+	const map_url = get_map_url_from_doc(frm.doc);
+	const next_value = map_url || "";
 
-	const has_coords = frappe.utils.is_numeric(frm.doc.latitud) && frappe.utils.is_numeric(frm.doc.longitud);
-	if (!has_coords) {
-		html_field.$wrapper.html(
-			`<div class="pmt-empty-map">${__("No hay coordenadas GPS disponibles.")}</div>`
-		);
-		return;
+	if (frm.doc.gps_mapa_html !== next_value) {
+		frm.doc.gps_mapa_html = next_value;
 	}
 
-	const lat = Number(frm.doc.latitud).toFixed(6);
-	const lon = Number(frm.doc.longitud).toFixed(6);
-	const query = encodeURIComponent(`${lat},${lon}`);
-	const map_url = `https://www.google.com/maps?q=${query}`;
+	frm.refresh_field("gps_mapa_html");
+}
 
-	html_field.$wrapper.html(`
-		<div class="pmt-map-link-box">
-			<span class="pmt-map-link-label">${__("Coordenadas GPS")}</span>
-			<a href="${map_url}" target="_blank" rel="noopener noreferrer" class="pmt-map-link-anchor">
-				${frappe.utils.escape_html(`${lat}, ${lon}`)}
-			</a>
-		</div>
-	`);
+function get_map_url_from_doc(doc) {
+	const from_field = (doc.gps_mapa_html || "").toString().trim();
+	if (/^https?:\/\//i.test(from_field)) return from_field;
+
+	return get_google_maps_url(doc.latitud, doc.longitud);
+}
+
+function get_google_maps_url(latitud, longitud) {
+	const has_coords = frappe.utils.is_numeric(latitud) && frappe.utils.is_numeric(longitud);
+	if (!has_coords) return "";
+
+	const lat = Number(latitud).toFixed(6);
+	const lon = Number(longitud).toFixed(6);
+	const query = encodeURIComponent(`${lat},${lon}`);
+	return `https://www.google.com/maps?q=${query}`;
 }
 
 function set_dashboard_indicators(frm) {
@@ -232,13 +255,11 @@ function set_dashboard_indicators(frm) {
 function add_map_button(frm) {
 	frm.remove_custom_button(__("Ver ubicación en mapa"));
 
-	const has_coords = frappe.utils.is_numeric(frm.doc.latitud) && frappe.utils.is_numeric(frm.doc.longitud);
-	if (!has_coords) return;
+	const map_url = get_map_url_from_doc(frm.doc);
+	if (!map_url) return;
 
 	frm.add_custom_button(__("Ver ubicación en mapa"), () => {
-		const lat = encodeURIComponent(frm.doc.latitud);
-		const lon = encodeURIComponent(frm.doc.longitud);
-		window.open(`https://www.google.com/maps?q=${lat},${lon}`, "_blank");
+		window.open(map_url, "_blank");
 	}).addClass("btn-primary");
 }
 

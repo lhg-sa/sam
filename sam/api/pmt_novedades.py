@@ -28,6 +28,8 @@ def create_pmt_novedad(payload: str | None = None):
 	{
 		"tipo_incidencia": "Accidente de Tránsito",
 		"descripcion": "...",
+		"vehiculo_id": "P123ABC",
+		"boleta_id": "BOL-0001",
 		"usar_ubicacion_gps": 1,
 		"latitud": 14.6,
 		"longitud": -90.5,
@@ -59,6 +61,8 @@ def create_pmt_novedad(payload: str | None = None):
 	novedad = frappe.new_doc("PMT Novedades")
 	novedad.tipo_incidencia = tipo_incidencia
 	novedad.descripcion = descripcion
+	novedad.vehiculo_id = (data.get("vehiculo_id") or "").strip() or None
+	novedad.boleta_id = (data.get("boleta_id") or "").strip() or None
 	novedad.usuario_registro = frappe.session.user
 	novedad.usar_ubicacion_gps = 1 if data.get("usar_ubicacion_gps") else 0
 	novedad.latitud = data.get("latitud")
