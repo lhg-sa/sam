@@ -20,46 +20,82 @@ from datetime import datetime
 from requests.auth import HTTPDigestAuth
 
 
-# Configuración del Hikvision
-HIKVISION_CONFIG = {
-    "host": "172.16.0.25",
-    "port": 80,
-    "username": "admin",
-    "password": "Fraijanes1.",
-    "timeout": 30,
-}
+def get_device_config(device_name=None):
+	"""
+	Obtiene la configuración del dispositivo desde el DocType.
+	
+	Args:
+		device_name (str): Nombre del dispositivo. Si es None, retorna el primero activo.
+	
+	Returns:
+		dict: Configuración del dispositivo o None si no existe
+	"""
+	filters = {"is_active": 1}
+	if device_name:
+		filters["name"] = device_name
+	
+	device = frappe.db.get_value(
+		"Hikvision Device",
+		filters,
+		["name", "device_name", "device_ip", "port", "username", "password"],
+		as_dict=True
+	)
+	
+	if not device:
+		return None
+	
+	# Obtener la contraseña (campo Password)
+	password = frappe.get_decrypted_password("Hikvision Device", device.name, "password")
+	
+	return {
+		"host": device.device_ip,
+		"port": device.port or 80,
+		"username": device.username,
+		"password": password,
+		"timeout": 30,
+	}
 
 
-def get_hikvision_auth():
-    """Retorna las credenciales de autenticación digest."""
-    return HTTPDigestAuth(
-        HIKVISION_CONFIG["username"],
-        HIKVISION_CONFIG["password"]
-    )
+def get_hikvision_auth(device_name=None):
+	"""Retorna las credenciales de autenticación digest."""
+	config = get_device_config(device_name)
+	if not config:
+		raise ValueError("No active Hikvision device found in configuration")
+	
+	return HTTPDigestAuth(config["username"], config["password"])
 
 
-def get_hikvision_url(endpoint):
-    """Construye la URL completa del endpoint ISAPI."""
-    host = HIKVISION_CONFIG["host"]
-    port = HIKVISION_CONFIG["port"]
-    return f"http://{host}:{port}{endpoint}"
+def get_hikvision_url(endpoint, device_name=None):
+	"""Construye la URL completa del endpoint ISAPI."""
+	config = get_device_config(device_name)
+	if not config:
+		raise ValueError("No active Hikvision device found in configuration")
+	
+	host = config["host"]
+	port = config["port"]
+	return f"http://{host}:{port}{endpoint}"
 
 
-def poll_alert_stream(duration_seconds=60):
+def poll_alert_stream(duration_seconds=60, device_name=None):
     """
     Lee el stream de alertas del Hikvision por un tiempo determinado.
     
     Args:
         duration_seconds (int): Segundos a escuchar el stream
+        device_name (str): Nombre del dispositivo (opcional)
     
     Returns:
         list: Lista de eventos recibidos
     """
     import time
     
-    url = get_hikvision_url("/ISAPI/Event/notification/alertStream")
-    auth = get_hikvision_auth()
-    timeout = HIKVISION_CONFIG["timeout"]
+    config = get_device_config(device_name)
+    if not config:
+        raise ValueError("No active Hikvision device found in configuration")
+    
+    url = get_hikvision_url("/ISAPI/Event/notification/alertStream", device_name)
+    auth = get_hikvision_auth(device_name)
+    timeout = config["timeout"]
     
     events = []
     boundary = None
@@ -144,21 +180,26 @@ def parse_multipart_event(buffer):
     return None
 
 
-def save_event_from_stream(event_data):
+def save_event_from_stream(event_data, device_name=None):
     """
     Guarda un evento del stream en la base de datos.
     
     Args:
         event_data (dict): Datos del evento
+        device_name (str): Nombre del dispositivo (opcional)
     """
     try:
+        config = get_device_config(device_name)
+        if not config:
+            raise ValueError("No active Hikvision device found in configuration")
+        
         # Extraer datos del AccessControllerEvent
         acs_event = event_data.get("AccessControllerEvent", {})
         
         event_doc = frappe.get_doc({
             "doctype": "Hikvision Event",
             "received_at": datetime.now(),
-            "source_ip": HIKVISION_CONFIG["host"],
+            "source_ip": config["host"],
             "content_type": "application/json",
             "raw_body": json.dumps(event_data, indent=2),
             "parsed_json": json.dumps(event_data, indent=2),
@@ -236,6 +277,10 @@ def search_acs_events(start_time=None, end_time=None, max_results=30):
     if not end_time:
         end_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     
+    config = get_device_config()
+    if not config:
+        raise ValueError("No active Hikvision device found in configuration")
+    
     url = get_hikvision_url("/ISAPI/AccessControl/AcsEvent")
     auth = get_hikvision_auth()
     
@@ -255,7 +300,7 @@ def search_acs_events(start_time=None, end_time=None, max_results=30):
             url,
             auth=auth,
             json=payload,
-            timeout=HIKVISION_CONFIG["timeout"]
+            timeout=config["timeout"]
         )
         
         if response.status_code == 200:
@@ -269,18 +314,25 @@ def search_acs_events(start_time=None, end_time=None, max_results=30):
         return None
 
 
-def get_device_info():
+def get_device_info(device_name=None):
     """
     Obtiene información del dispositivo Hikvision.
+    
+    Args:
+        device_name (str): Nombre del dispositivo (opcional)
     
     Returns:
         dict: Información del dispositivo
     """
-    url = get_hikvision_url("/ISAPI/System/deviceInfo")
-    auth = get_hikvision_auth()
+    config = get_device_config(device_name)
+    if not config:
+        raise ValueError("No active Hikvision device found in configuration")
+    
+    url = get_hikvision_url("/ISAPI/System/deviceInfo", device_name)
+    auth = get_hikvision_auth(device_name)
     
     try:
-        response = requests.get(url, auth=auth, timeout=HIKVISION_CONFIG["timeout"])
+        response = requests.get(url, auth=auth, timeout=config["timeout"])
         
         if response.status_code == 200:
             # Parsear XML a dict
@@ -301,21 +353,26 @@ def get_device_info():
         return None
 
 
-def poll_events(duration=60):
+def poll_events(duration=60, device_name=None):
     """
     Función principal de polling.
     
     Args:
         duration (int): Duración en segundos
+        device_name (str): Nombre del dispositivo (opcional)
     
     Returns:
         list: Eventos recibidos
     """
+    config = get_device_config(device_name)
+    if not config:
+        raise ValueError("No active Hikvision device found in configuration")
+    
     print(f"Iniciando polling de eventos Hikvision por {duration} segundos...")
-    print(f"Dispositivo: {HIKVISION_CONFIG['host']}")
+    print(f"Dispositivo: {config['host']}")
     
     # Verificar conexión
-    device_info = get_device_info()
+    device_info = get_device_info(device_name)
     if device_info:
         print(f"Conectado a: {device_info.get('deviceName', 'Unknown')}")
         print(f"Modelo: {device_info.get('model', 'Unknown')}")
